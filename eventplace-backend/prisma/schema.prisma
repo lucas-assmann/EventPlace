@@ -14,9 +14,26 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
-  birthDate DateTime 
+  birthDate DateTime
   avatar    String?
   rating    Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // localizations Localization[]
 }
+
+// model Localization {
+//   id     String @id @default(uuid())
+//   cep    String
+//   street String
+//   city   String
+//   state  String
+//   country String
+
+//   number String
+//   complement String?
+
+//   userId String
+//   user   User @relation(fields: [userId], references: [id])
+// }
