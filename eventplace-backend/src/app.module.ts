@@ -8,7 +8,13 @@ import { HttpModule } from '@nestjs/axios';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), UserModule, PrismaModule, HttpModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot(),
+    UserModule,
+    PrismaModule,
+    HttpModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

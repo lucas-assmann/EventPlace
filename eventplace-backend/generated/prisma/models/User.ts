@@ -266,6 +266,7 @@ export type UserWhereInput = {
   cep?: Prisma.StringFilter<"User"> | string
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
+  localization?: Prisma.User_localizationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -282,6 +283,7 @@ export type UserOrderByWithRelationInput = {
   cep?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
+  localization?: Prisma.user_localizationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -301,6 +303,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   cep?: Prisma.StringFilter<"User"> | string
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
+  localization?: Prisma.User_localizationListRelationFilter
 }, "id" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -353,6 +356,7 @@ export type UserCreateInput = {
   cep: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -369,6 +373,7 @@ export type UserUncheckedCreateInput = {
   cep: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -385,6 +390,7 @@ export type UserUpdateInput = {
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -401,6 +407,7 @@ export type UserUncheckedUpdateInput = {
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -520,6 +527,20 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutLocalizationInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLocalizationInput, Prisma.UserUncheckedCreateWithoutLocalizationInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLocalizationInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLocalizationNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLocalizationInput, Prisma.UserUncheckedCreateWithoutLocalizationInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLocalizationInput
+  upsert?: Prisma.UserUpsertWithoutLocalizationInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLocalizationInput, Prisma.UserUpdateWithoutLocalizationInput>, Prisma.UserUncheckedUpdateWithoutLocalizationInput>
+}
+
 export type UserCreateNestedOneWithoutEventsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutEventsInput, Prisma.UserUncheckedCreateWithoutEventsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutEventsInput
@@ -548,6 +569,86 @@ export type UserUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTicketsInput, Prisma.UserUpdateWithoutTicketsInput>, Prisma.UserUncheckedUpdateWithoutTicketsInput>
 }
 
+export type UserCreateWithoutLocalizationInput = {
+  id?: string
+  name: string
+  username: string
+  email: string
+  password: string
+  birthDate: Date | string
+  avatar?: string | null
+  rating: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cep: string
+  events?: Prisma.EventCreateNestedManyWithoutUserInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutLocalizationInput = {
+  id?: string
+  name: string
+  username: string
+  email: string
+  password: string
+  birthDate: Date | string
+  avatar?: string | null
+  rating: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cep: string
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutLocalizationInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLocalizationInput, Prisma.UserUncheckedCreateWithoutLocalizationInput>
+}
+
+export type UserUpsertWithoutLocalizationInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLocalizationInput, Prisma.UserUncheckedUpdateWithoutLocalizationInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLocalizationInput, Prisma.UserUncheckedCreateWithoutLocalizationInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLocalizationInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLocalizationInput, Prisma.UserUncheckedUpdateWithoutLocalizationInput>
+}
+
+export type UserUpdateWithoutLocalizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLocalizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutEventsInput = {
   id?: string
   name: string
@@ -561,6 +662,7 @@ export type UserCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -576,6 +678,7 @@ export type UserUncheckedCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -607,6 +710,7 @@ export type UserUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -622,6 +726,7 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTicketsInput = {
@@ -637,6 +742,7 @@ export type UserCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketsInput = {
@@ -652,6 +758,7 @@ export type UserUncheckedCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketsInput = {
@@ -683,6 +790,7 @@ export type UserUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketsInput = {
@@ -698,6 +806,7 @@ export type UserUncheckedUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
+  localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -708,11 +817,13 @@ export type UserUncheckedUpdateWithoutTicketsInput = {
 export type UserCountOutputType = {
   events: number
   tickets: number
+  localization: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | UserCountOutputTypeCountEventsArgs
   tickets?: boolean | UserCountOutputTypeCountTicketsArgs
+  localization?: boolean | UserCountOutputTypeCountLocalizationArgs
 }
 
 /**
@@ -739,6 +850,13 @@ export type UserCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.TicketWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLocalizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.user_localizationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -754,6 +872,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   cep?: boolean
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
+  localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -803,6 +922,7 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
+  localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -813,6 +933,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     events: Prisma.$EventPayload<ExtArgs>[]
     tickets: Prisma.$TicketPayload<ExtArgs>[]
+    localization: Prisma.$user_localizationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1222,6 +1343,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   events<T extends Prisma.User$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tickets<T extends Prisma.User$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  localization<T extends Prisma.User$localizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$localizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_localizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1700,6 +1822,30 @@ export type User$ticketsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
+}
+
+/**
+ * User.localization
+ */
+export type User$localizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the user_localization
+   */
+  select?: Prisma.user_localizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the user_localization
+   */
+  omit?: Prisma.user_localizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.user_localizationInclude<ExtArgs> | null
+  where?: Prisma.user_localizationWhereInput
+  orderBy?: Prisma.user_localizationOrderByWithRelationInput | Prisma.user_localizationOrderByWithRelationInput[]
+  cursor?: Prisma.user_localizationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.User_localizationScalarFieldEnum | Prisma.User_localizationScalarFieldEnum[]
 }
 
 /**

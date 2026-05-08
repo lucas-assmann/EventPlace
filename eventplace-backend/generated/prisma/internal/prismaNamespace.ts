@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  user_localization: 'user_localization',
   Event: 'Event',
   Ticket: 'Ticket'
 } as const
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "event" | "ticket"
+    modelProps: "user" | "user_localization" | "event" | "ticket"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -477,6 +478,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    user_localization: {
+      payload: Prisma.$user_localizationPayload<ExtArgs>
+      fields: Prisma.user_localizationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.user_localizationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.user_localizationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        findFirst: {
+          args: Prisma.user_localizationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.user_localizationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        findMany: {
+          args: Prisma.user_localizationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>[]
+        }
+        create: {
+          args: Prisma.user_localizationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        createMany: {
+          args: Prisma.user_localizationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.user_localizationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>[]
+        }
+        delete: {
+          args: Prisma.user_localizationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        update: {
+          args: Prisma.user_localizationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        deleteMany: {
+          args: Prisma.user_localizationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.user_localizationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.user_localizationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>[]
+        }
+        upsert: {
+          args: Prisma.user_localizationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_localizationPayload>
+        }
+        aggregate: {
+          args: Prisma.User_localizationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUser_localization>
+        }
+        groupBy: {
+          args: Prisma.user_localizationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_localizationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.user_localizationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_localizationCountAggregateOutputType> | number
         }
       }
     }
@@ -682,6 +757,18 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const User_localizationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  state: 'state',
+  city: 'city',
+  street: 'street',
+  number: 'number'
+} as const
+
+export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
 
 
 export const EventScalarFieldEnum = {
@@ -892,6 +979,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  user_localization?: Prisma.user_localizationOmit
   event?: Prisma.EventOmit
   ticket?: Prisma.TicketOmit
 }

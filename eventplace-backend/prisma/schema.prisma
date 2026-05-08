@@ -21,9 +21,20 @@ model User {
   updatedAt DateTime @updatedAt
   cep       String
 
-  events  Event[]
-  tickets Ticket[]
+  events       Event[]
+  tickets      Ticket[]
+  localization user_localization[]
+}
 
+model user_localization {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  state  String
+  city   String
+  street String
+  number String?
 }
 
 model Event {

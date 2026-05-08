@@ -11,3 +11,15 @@ export class UserAlreadyExistsException extends HttpException {
     );
   }
 }
+
+export class InvalidUserCep extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'CEP inválido',
+        error: 'INVALID_CEP',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

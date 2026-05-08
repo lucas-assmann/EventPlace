@@ -1,10 +1,13 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { UserAlreadyExistsException } from 'src/errors/user.error';
-import { PrismaService } from 'src/prisma.service';
-import { hashPassword } from 'src/utils/hash.password';
-import { CreateUserDto } from './dto/create-user.dto';
+import {
+  InvalidUserCep,
+  UserAlreadyExistsException,
+} from '../errors/user.error';
+import { PrismaService } from '../prisma.service';
+import { hashPassword } from '../utils/hash.password';
+import { AddressResponse, CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
@@ -15,6 +18,7 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    // Passar para outro lugar
     const userExists = await this.prisma.user.findUnique({
       where: {
         username: createUserDto.username,
@@ -26,13 +30,19 @@ export class UserService {
       throw new UserAlreadyExistsException();
     }
 
-    await firstValueFrom(
-      this.httpService.get(
-        `https://viacep.com.br/ws/${createUserDto.cep}/json`,
+    // Melhorar essa parte (Tentar deixar reutilizável)
+    // Código muito poluído
+    const response = await firstValueFrom(
+      this.httpService.get<AddressResponse>(
+        `https://viacep.com.br/ws/${createUserDto.cep}/json/`,
       ),
     );
 
-    await this.prisma.user.create({
+    if (response.data.erro) {
+      throw new InvalidUserCep();
+    }
+
+    const user = await this.prisma.user.create({
       data: {
         name: createUserDto.name,
         username: createUserDto.username,
@@ -42,6 +52,15 @@ export class UserService {
         avatar: createUserDto.avatar,
         rating: createUserDto.rating,
         cep: createUserDto.cep,
+      },
+    });
+
+    await this.prisma.user_localization.create({
+      data: {
+        userId: user.id,
+        city: response.data.localidade,
+        street: response.data.logradouro,
+        state: response.data.estado,
       },
     });
 

@@ -52,3 +52,10 @@ export class CreateUserDto {
   @Length(8, 8)
   cep: string;
 }
+
+export class AddressResponse {
+  estado: string;
+  localidade: string;
+  logradouro: string;
+  erro?: boolean;
+}
