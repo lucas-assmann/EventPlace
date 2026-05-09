@@ -5,12 +5,14 @@ import { PrismaService } from '../prisma.service';
 import { hashPassword } from '../utils/hash.password';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ResendEmailService } from 'src/utils/resend.email';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
     private getCep: GetCep,
+    private resend: ResendEmailService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -26,6 +28,8 @@ export class UserService {
     }
 
     const response = await this.getCep.getCep(createUserDto.cep);
+
+    await this.resend.sendEmail(createUserDto.email);
 
     await this.prisma.user.create({
       data: {
