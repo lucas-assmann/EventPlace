@@ -353,7 +353,7 @@ export type UserCreateInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -371,7 +371,7 @@ export type UserUncheckedCreateInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -425,7 +425,7 @@ export type UserCreateManyInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -598,7 +598,7 @@ export type UserCreateWithoutLocalizationInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -615,7 +615,7 @@ export type UserUncheckedCreateWithoutLocalizationInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -682,7 +682,7 @@ export type UserCreateWithoutEventsInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -699,7 +699,7 @@ export type UserUncheckedCreateWithoutEventsInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -766,7 +766,7 @@ export type UserCreateWithoutTicketsInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -783,7 +783,7 @@ export type UserUncheckedCreateWithoutTicketsInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -850,7 +850,7 @@ export type UserCreateWithoutBlackListInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
@@ -867,7 +867,7 @@ export type UserUncheckedCreateWithoutBlackListInput = {
   password: string
   birthDate: Date | string
   avatar?: string | null
-  rating: number
+  rating?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string

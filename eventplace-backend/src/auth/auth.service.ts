@@ -23,14 +23,9 @@ export class AuthService {
       where: { email: createAuthDto.email },
     });
 
-    // Arrumar para melhorar, simplificar os if's
-    if (!user) {
-      throw new UserNotFoundException();
-    }
+    const passwordMatch = await verify(user!.password, createAuthDto.password);
 
-    const passwordMatch = await verify(user.password, createAuthDto.password);
-
-    if (!passwordMatch) {
+    if (!passwordMatch || !user) {
       throw new UserNotFoundException();
     }
 

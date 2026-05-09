@@ -16,7 +16,7 @@ model User {
   password  String
   birthDate DateTime
   avatar    String?
-  rating    Float
+  rating    Float    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cep       String
@@ -30,12 +30,15 @@ model User {
 model user_localization {
   id     String @id @default(uuid())
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   state  String
   city   String
   street String
-  number String?
+  number String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Event {
@@ -49,7 +52,7 @@ model Event {
 
   cep     String
   userId  String
-  user    User     @relation(fields: [userId], references: [id])
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tickets Ticket[]
 }
 
@@ -60,14 +63,14 @@ model Ticket {
   eventId   String
   event     Event    @relation(fields: [eventId], references: [id])
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
 
 model BlackList {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   token     String
   createdAt DateTime @default(now())
 }

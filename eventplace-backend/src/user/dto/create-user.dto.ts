@@ -3,14 +3,11 @@ import {
   IsDate,
   IsEmail,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
   IsUrl,
   Length,
-  Max,
   MaxLength,
-  Min,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -43,14 +40,13 @@ export class CreateUserDto {
   @IsDate()
   birthDate: Date;
 
-  @IsNumber()
-  @Min(0)
-  @Max(10)
-  rating: number;
-
   @IsString()
   @Length(8, 8)
   cep: string;
+
+  @IsString()
+  @Length(1, 5)
+  number: string;
 }
 
 export class AddressResponse {

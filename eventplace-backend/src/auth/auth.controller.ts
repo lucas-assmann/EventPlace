@@ -1,6 +1,5 @@
 import { Body, Controller, Post, Req } from '@nestjs/common';
 import type { Request } from 'express';
-import { UnauthorizedExceptionRoute } from 'src/errors/user.error';
 import { extractTokenFromHeader } from 'src/utils/auth.utils';
 import { Public } from 'src/utils/public.decorator';
 import { AuthService } from './auth.service';
@@ -19,9 +18,6 @@ export class AuthController {
   @Post('logout')
   logout(@Req() request: Request) {
     const token = extractTokenFromHeader(request);
-    if (!token) {
-      throw new UnauthorizedExceptionRoute();
-    }
-    return this.authService.logout(token);
+    return this.authService.logout(token!);
   }
 }

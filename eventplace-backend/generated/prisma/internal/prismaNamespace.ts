@@ -840,7 +840,9 @@ export const User_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
-  number: 'number'
+  number: 'number',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
