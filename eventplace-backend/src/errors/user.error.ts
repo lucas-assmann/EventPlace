@@ -23,3 +23,15 @@ export class InvalidUserCepException extends HttpException {
     );
   }
 }
+
+export class UnauthorizedExceptionRoute extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Não autorizado',
+        error: 'UNAUTHORIZED',
+      },
+      HttpStatus.UNAUTHORIZED,
+    );
+  }
+}
