@@ -37,3 +37,8 @@ export type Event = Prisma.EventModel
  * 
  */
 export type Ticket = Prisma.TicketModel
+/**
+ * Model BlackList
+ * 
+ */
+export type BlackList = Prisma.BlackListModel

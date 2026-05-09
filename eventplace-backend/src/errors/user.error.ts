@@ -35,3 +35,15 @@ export class UnauthorizedExceptionRoute extends HttpException {
     );
   }
 }
+
+export class UserNotFoundException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Email ou senha inválidos',
+        error: 'USER_NOT_FOUND',
+      },
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}

@@ -21,6 +21,7 @@ model User {
   updatedAt DateTime @updatedAt
   cep       String
 
+  blackList    BlackList[]
   events       Event[]
   tickets      Ticket[]
   localization user_localization[]
@@ -60,5 +61,13 @@ model Ticket {
   event     Event    @relation(fields: [eventId], references: [id])
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model BlackList {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String
   createdAt DateTime @default(now())
 }

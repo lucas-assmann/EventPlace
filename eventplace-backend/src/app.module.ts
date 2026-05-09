@@ -6,6 +6,9 @@ import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma.module';
 import { HttpModule } from '@nestjs/axios';
 import { AuthModule } from './auth/auth.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { AuthGuard } from './auth/auth.guard';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -14,8 +17,16 @@ import { AuthModule } from './auth/auth.module';
     PrismaModule,
     HttpModule,
     AuthModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    PrismaService,
+    {
+      provide: 'APP_GUARD',
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}

@@ -11,6 +11,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
+import { Public } from 'src/utils/public.decorator';
 
 @Controller('user')
 export class UserController {
@@ -19,6 +20,7 @@ export class UserController {
     private readonly httpService: HttpService,
   ) {}
 
+  @Public()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);

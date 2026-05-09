@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.6.0
- * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
+ * Prisma Client JS version: 7.8.0
+ * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.6.0",
-  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
+  client: "7.8.0",
+  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
 }
 
 /**
@@ -387,7 +387,8 @@ export const ModelName = {
   User: 'User',
   user_localization: 'user_localization',
   Event: 'Event',
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  BlackList: 'BlackList'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "event" | "ticket"
+    modelProps: "user" | "user_localization" | "event" | "ticket" | "blackList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +704,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BlackList: {
+      payload: Prisma.$BlackListPayload<ExtArgs>
+      fields: Prisma.BlackListFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BlackListFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BlackListFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        findFirst: {
+          args: Prisma.BlackListFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BlackListFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        findMany: {
+          args: Prisma.BlackListFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
+        }
+        create: {
+          args: Prisma.BlackListCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        createMany: {
+          args: Prisma.BlackListCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BlackListCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
+        }
+        delete: {
+          args: Prisma.BlackListDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        update: {
+          args: Prisma.BlackListUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        deleteMany: {
+          args: Prisma.BlackListDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BlackListUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BlackListUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
+        }
+        upsert: {
+          args: Prisma.BlackListUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
+        }
+        aggregate: {
+          args: Prisma.BlackListAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBlackList>
+        }
+        groupBy: {
+          args: Prisma.BlackListGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlackListGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BlackListCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlackListCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -796,6 +871,16 @@ export const TicketScalarFieldEnum = {
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const BlackListScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  createdAt: 'createdAt'
+} as const
+
+export type BlackListScalarFieldEnum = (typeof BlackListScalarFieldEnum)[keyof typeof BlackListScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -976,12 +1061,28 @@ export type PrismaClientOptions = ({
    * ```
    */
   comments?: runtime.SqlCommenterPlugin[]
+  /**
+   * Optional maximum size for the query plan cache. If not provided, a default size will be used.
+   * A value of `0` can be used to disable the cache entirely. A higher cache size can improve
+   * performance for applications that execute a large number of unique queries, while a smaller
+   * cache size can reduce memory usage.
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   queryPlanCacheMaxSize: 100,
+   * })
+   * ```
+   */
+  queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   user_localization?: Prisma.user_localizationOmit
   event?: Prisma.EventOmit
   ticket?: Prisma.TicketOmit
+  blackList?: Prisma.BlackListOmit
 }
 
 /* Types for Logging */
