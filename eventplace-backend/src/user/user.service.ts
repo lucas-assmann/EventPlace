@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import {
-  InvalidUserCep,
+  InvalidUserCepException,
   UserAlreadyExistsException,
 } from '../errors/user.error';
 import { PrismaService } from '../prisma.service';
@@ -39,7 +39,7 @@ export class UserService {
     );
 
     if (response.data.erro) {
-      throw new InvalidUserCep();
+      throw new InvalidUserCepException();
     }
 
     const user = await this.prisma.user.create({

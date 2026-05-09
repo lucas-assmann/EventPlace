@@ -12,7 +12,7 @@ export class UserAlreadyExistsException extends HttpException {
   }
 }
 
-export class InvalidUserCep extends HttpException {
+export class InvalidUserCepException extends HttpException {
   constructor() {
     super(
       {

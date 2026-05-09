@@ -1,26 +1,33 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { verify } from '@node-rs/argon2';
+import { PrismaService } from 'src/prisma.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
-  }
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
+  async validateUser(
+    createAuthDto: CreateAuthDto,
+  ): Promise<{ acess_token: string }> {
+    const user = await this.prisma.user.findUnique({
+      where: { email: createAuthDto.email },
+    });
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+    // Arrumar para melhorar, simplificar os if's
+    if (!user) {
+      throw new UnauthorizedException('Credenciais inválidas');
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+    const passwordMatch = await verify(user.password, createAuthDto.password);
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
+    if (!passwordMatch) {
+      throw new UnauthorizedException('Credenciais inválidas');
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    return { acess_token: await this.jwtService.signAsync({ id: user.id }) };
   }
 }
