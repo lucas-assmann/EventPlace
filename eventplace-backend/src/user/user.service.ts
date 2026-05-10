@@ -18,10 +18,12 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const userExists = await this.prisma.user.findUnique({
+    const userExists = await this.prisma.user.findFirst({
       where: {
-        username: createUserDto.username,
-        email: createUserDto.email,
+        OR: [
+          { email: createUserDto.email },
+          { username: createUserDto.username },
+        ],
       },
     });
 
@@ -48,6 +50,7 @@ export class UserService {
             city: response.localidade,
             street: response.logradouro,
             number: createUserDto.number,
+            neighborhood: response.bairro,
           },
         },
       },
@@ -64,11 +67,6 @@ export class UserService {
 
     return `Usuário atualizado com sucesso!`;
   }
-
-  findAll() {
-    return this.prisma.user.findMany();
-  }
-
   async remove(id: string, token: string) {
     await this.prisma.user.delete({
       where: { id },

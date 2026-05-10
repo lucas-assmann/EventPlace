@@ -55,6 +55,11 @@ export type user_localization = Prisma.user_localizationModel
  */
 export type Event = Prisma.EventModel
 /**
+ * Model event_localization
+ * 
+ */
+export type event_localization = Prisma.event_localizationModel
+/**
  * Model Ticket
  * 
  */

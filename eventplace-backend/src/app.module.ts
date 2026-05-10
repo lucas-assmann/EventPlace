@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AuthGuard } from './auth/auth.guard';
 import { PrismaService } from './prisma.service';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PrismaService } from './prisma.service';
     HttpModule,
     AuthModule,
     ScheduleModule.forRoot(),
+    EventModule,
   ],
   controllers: [AppController],
   providers: [

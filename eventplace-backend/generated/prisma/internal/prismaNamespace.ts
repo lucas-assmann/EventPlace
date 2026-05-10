@@ -387,6 +387,7 @@ export const ModelName = {
   User: 'User',
   user_localization: 'user_localization',
   Event: 'Event',
+  event_localization: 'event_localization',
   Ticket: 'Ticket',
   BlackList: 'BlackList'
 } as const
@@ -404,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "event" | "ticket" | "blackList"
+    modelProps: "user" | "user_localization" | "event" | "event_localization" | "ticket" | "blackList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -630,6 +631,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    event_localization: {
+      payload: Prisma.$event_localizationPayload<ExtArgs>
+      fields: Prisma.event_localizationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.event_localizationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.event_localizationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        findFirst: {
+          args: Prisma.event_localizationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.event_localizationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        findMany: {
+          args: Prisma.event_localizationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>[]
+        }
+        create: {
+          args: Prisma.event_localizationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        createMany: {
+          args: Prisma.event_localizationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.event_localizationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>[]
+        }
+        delete: {
+          args: Prisma.event_localizationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        update: {
+          args: Prisma.event_localizationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        deleteMany: {
+          args: Prisma.event_localizationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.event_localizationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.event_localizationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>[]
+        }
+        upsert: {
+          args: Prisma.event_localizationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_localizationPayload>
+        }
+        aggregate: {
+          args: Prisma.Event_localizationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvent_localization>
+        }
+        groupBy: {
+          args: Prisma.event_localizationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_localizationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.event_localizationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_localizationCountAggregateOutputType> | number
+        }
+      }
+    }
     Ticket: {
       payload: Prisma.$TicketPayload<ExtArgs>
       fields: Prisma.TicketFieldRefs
@@ -840,6 +915,7 @@ export const User_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
+  neighborhood: 'neighborhood',
   number: 'number',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -852,7 +928,10 @@ export const EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  startAt: 'startAt',
+  banner: 'banner',
+  date: 'date',
+  appropriate_age: 'appropriate_age',
+  max_person_quantity: 'max_person_quantity',
   endAt: 'endAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -861,6 +940,21 @@ export const EventScalarFieldEnum = {
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const Event_localizationScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  state: 'state',
+  city: 'city',
+  street: 'street',
+  neighborhood: 'neighborhood',
+  number: 'number',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalarFieldEnum)[keyof typeof Event_localizationScalarFieldEnum]
 
 
 export const TicketScalarFieldEnum = {
@@ -953,6 +1047,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Appropriate_age'
+ */
+export type EnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age'>
+    
+
+
+/**
+ * Reference to a field of type 'Appropriate_age[]'
+ */
+export type ListEnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age[]'>
     
 
 
@@ -1082,6 +1190,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   user_localization?: Prisma.user_localizationOmit
   event?: Prisma.EventOmit
+  event_localization?: Prisma.event_localizationOmit
   ticket?: Prisma.TicketOmit
   blackList?: Prisma.BlackListOmit
 }

@@ -475,14 +475,6 @@ export type TicketUncheckedUpdateManyWithoutEventNestedInput = {
   deleteMany?: Prisma.TicketScalarWhereInput | Prisma.TicketScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type TicketCreateWithoutUserInput = {
   id?: string
   price: number

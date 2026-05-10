@@ -20,15 +20,28 @@ export type EventModel = runtime.Types.Result.DefaultSelection<Prisma.$EventPayl
 
 export type AggregateEvent = {
   _count: EventCountAggregateOutputType | null
+  _avg: EventAvgAggregateOutputType | null
+  _sum: EventSumAggregateOutputType | null
   _min: EventMinAggregateOutputType | null
   _max: EventMaxAggregateOutputType | null
+}
+
+export type EventAvgAggregateOutputType = {
+  max_person_quantity: number | null
+}
+
+export type EventSumAggregateOutputType = {
+  max_person_quantity: number | null
 }
 
 export type EventMinAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
-  startAt: Date | null
+  banner: string | null
+  date: Date | null
+  appropriate_age: $Enums.Appropriate_age | null
+  max_person_quantity: number | null
   endAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -40,7 +53,10 @@ export type EventMaxAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
-  startAt: Date | null
+  banner: string | null
+  date: Date | null
+  appropriate_age: $Enums.Appropriate_age | null
+  max_person_quantity: number | null
   endAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,7 +68,10 @@ export type EventCountAggregateOutputType = {
   id: number
   title: number
   description: number
-  startAt: number
+  banner: number
+  date: number
+  appropriate_age: number
+  max_person_quantity: number
   endAt: number
   createdAt: number
   updatedAt: number
@@ -62,11 +81,22 @@ export type EventCountAggregateOutputType = {
 }
 
 
+export type EventAvgAggregateInputType = {
+  max_person_quantity?: true
+}
+
+export type EventSumAggregateInputType = {
+  max_person_quantity?: true
+}
+
 export type EventMinAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  startAt?: true
+  banner?: true
+  date?: true
+  appropriate_age?: true
+  max_person_quantity?: true
   endAt?: true
   createdAt?: true
   updatedAt?: true
@@ -78,7 +108,10 @@ export type EventMaxAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  startAt?: true
+  banner?: true
+  date?: true
+  appropriate_age?: true
+  max_person_quantity?: true
   endAt?: true
   createdAt?: true
   updatedAt?: true
@@ -90,7 +123,10 @@ export type EventCountAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  startAt?: true
+  banner?: true
+  date?: true
+  appropriate_age?: true
+  max_person_quantity?: true
   endAt?: true
   createdAt?: true
   updatedAt?: true
@@ -137,6 +173,18 @@ export type EventAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EventAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EventSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EventMinAggregateInputType
@@ -167,6 +215,8 @@ export type EventGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: EventCountAggregateInputType | true
+  _avg?: EventAvgAggregateInputType
+  _sum?: EventSumAggregateInputType
   _min?: EventMinAggregateInputType
   _max?: EventMaxAggregateInputType
 }
@@ -175,13 +225,18 @@ export type EventGroupByOutputType = {
   id: string
   title: string
   description: string
-  startAt: Date
+  banner: string
+  date: Date
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date
   createdAt: Date
   updatedAt: Date
   cep: string
   userId: string
   _count: EventCountAggregateOutputType | null
+  _avg: EventAvgAggregateOutputType | null
+  _sum: EventSumAggregateOutputType | null
   _min: EventMinAggregateOutputType | null
   _max: EventMaxAggregateOutputType | null
 }
@@ -208,7 +263,10 @@ export type EventWhereInput = {
   id?: Prisma.StringFilter<"Event"> | string
   title?: Prisma.StringFilter<"Event"> | string
   description?: Prisma.StringFilter<"Event"> | string
-  startAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  banner?: Prisma.StringFilter<"Event"> | string
+  date?: Prisma.DateTimeFilter<"Event"> | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFilter<"Event"> | number
   endAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
@@ -216,13 +274,17 @@ export type EventWhereInput = {
   userId?: Prisma.StringFilter<"Event"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tickets?: Prisma.TicketListRelationFilter
+  localization?: Prisma.Event_localizationListRelationFilter
 }
 
 export type EventOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
+  banner?: Prisma.SortOrder
+  date?: Prisma.SortOrder
+  appropriate_age?: Prisma.SortOrder
+  max_person_quantity?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -230,16 +292,20 @@ export type EventOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
+  localization?: Prisma.event_localizationOrderByRelationAggregateInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  title?: string
   AND?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   OR?: Prisma.EventWhereInput[]
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
-  title?: Prisma.StringFilter<"Event"> | string
   description?: Prisma.StringFilter<"Event"> | string
-  startAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  banner?: Prisma.StringFilter<"Event"> | string
+  date?: Prisma.DateTimeFilter<"Event"> | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFilter<"Event"> | number
   endAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
@@ -247,21 +313,27 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"Event"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tickets?: Prisma.TicketListRelationFilter
-}, "id">
+  localization?: Prisma.Event_localizationListRelationFilter
+}, "id" | "title">
 
 export type EventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
+  banner?: Prisma.SortOrder
+  date?: Prisma.SortOrder
+  appropriate_age?: Prisma.SortOrder
+  max_person_quantity?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
+  _avg?: Prisma.EventAvgOrderByAggregateInput
   _max?: Prisma.EventMaxOrderByAggregateInput
   _min?: Prisma.EventMinOrderByAggregateInput
+  _sum?: Prisma.EventSumOrderByAggregateInput
 }
 
 export type EventScalarWhereWithAggregatesInput = {
@@ -271,7 +343,10 @@ export type EventScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Event"> | string
   title?: Prisma.StringWithAggregatesFilter<"Event"> | string
   description?: Prisma.StringWithAggregatesFilter<"Event"> | string
-  startAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
+  banner?: Prisma.StringWithAggregatesFilter<"Event"> | string
+  date?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageWithAggregatesFilter<"Event"> | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntWithAggregatesFilter<"Event"> | number
   endAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
@@ -283,59 +358,78 @@ export type EventCreateInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   userId: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -347,7 +441,10 @@ export type EventUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -358,7 +455,10 @@ export type EventUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -380,7 +480,10 @@ export type EventCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
+  banner?: Prisma.SortOrder
+  date?: Prisma.SortOrder
+  appropriate_age?: Prisma.SortOrder
+  max_person_quantity?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -388,11 +491,18 @@ export type EventCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
+export type EventAvgOrderByAggregateInput = {
+  max_person_quantity?: Prisma.SortOrder
+}
+
 export type EventMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
+  banner?: Prisma.SortOrder
+  date?: Prisma.SortOrder
+  appropriate_age?: Prisma.SortOrder
+  max_person_quantity?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -404,12 +514,19 @@ export type EventMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  startAt?: Prisma.SortOrder
+  banner?: Prisma.SortOrder
+  date?: Prisma.SortOrder
+  appropriate_age?: Prisma.SortOrder
+  max_person_quantity?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+}
+
+export type EventSumOrderByAggregateInput = {
+  max_person_quantity?: Prisma.SortOrder
 }
 
 export type EventScalarRelationFilter = {
@@ -459,6 +576,32 @@ export type EventUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.EventScalarWhereInput | Prisma.EventScalarWhereInput[]
 }
 
+export type EnumAppropriate_ageFieldUpdateOperationsInput = {
+  set?: $Enums.Appropriate_age
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type EventCreateNestedOneWithoutLocalizationInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutLocalizationInput, Prisma.EventUncheckedCreateWithoutLocalizationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutLocalizationInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneRequiredWithoutLocalizationNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutLocalizationInput, Prisma.EventUncheckedCreateWithoutLocalizationInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutLocalizationInput
+  upsert?: Prisma.EventUpsertWithoutLocalizationInput
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutLocalizationInput, Prisma.EventUpdateWithoutLocalizationInput>, Prisma.EventUncheckedUpdateWithoutLocalizationInput>
+}
+
 export type EventCreateNestedOneWithoutTicketsInput = {
   create?: Prisma.XOR<Prisma.EventCreateWithoutTicketsInput, Prisma.EventUncheckedCreateWithoutTicketsInput>
   connectOrCreate?: Prisma.EventCreateOrConnectWithoutTicketsInput
@@ -477,24 +620,32 @@ export type EventCreateWithoutUserInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutUserInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutUserInput = {
@@ -530,7 +681,10 @@ export type EventScalarWhereInput = {
   id?: Prisma.StringFilter<"Event"> | string
   title?: Prisma.StringFilter<"Event"> | string
   description?: Prisma.StringFilter<"Event"> | string
-  startAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  banner?: Prisma.StringFilter<"Event"> | string
+  date?: Prisma.DateTimeFilter<"Event"> | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFilter<"Event"> | number
   endAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
@@ -538,28 +692,116 @@ export type EventScalarWhereInput = {
   userId?: Prisma.StringFilter<"Event"> | string
 }
 
-export type EventCreateWithoutTicketsInput = {
+export type EventCreateWithoutLocalizationInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   user: Prisma.UserCreateNestedOneWithoutEventsInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutLocalizationInput = {
+  id?: string
+  title: string
+  description: string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
+  endAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cep: string
+  userId: string
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutLocalizationInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutLocalizationInput, Prisma.EventUncheckedCreateWithoutLocalizationInput>
+}
+
+export type EventUpsertWithoutLocalizationInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutLocalizationInput, Prisma.EventUncheckedUpdateWithoutLocalizationInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutLocalizationInput, Prisma.EventUncheckedCreateWithoutLocalizationInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutLocalizationInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutLocalizationInput, Prisma.EventUncheckedUpdateWithoutLocalizationInput>
+}
+
+export type EventUpdateWithoutLocalizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutLocalizationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutTicketsInput = {
+  id?: string
+  title: string
+  description: string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
+  endAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cep: string
+  user: Prisma.UserCreateNestedOneWithoutEventsInput
+  localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutTicketsInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
   userId: string
+  localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutTicketsInput = {
@@ -582,31 +824,42 @@ export type EventUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+  localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutTicketsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyUserInput = {
   id?: string
   title: string
   description: string
-  startAt: Date | string
+  banner: string
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  max_person_quantity: number
   endAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -617,31 +870,42 @@ export type EventUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  startAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
   endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,10 +919,12 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
 
 export type EventCountOutputType = {
   tickets: number
+  localization: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tickets?: boolean | EventCountOutputTypeCountTicketsArgs
+  localization?: boolean | EventCountOutputTypeCountLocalizationArgs
 }
 
 /**
@@ -678,12 +944,22 @@ export type EventCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.TicketWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountLocalizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.event_localizationWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   description?: boolean
-  startAt?: boolean
+  banner?: boolean
+  date?: boolean
+  appropriate_age?: boolean
+  max_person_quantity?: boolean
   endAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -691,6 +967,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Event$ticketsArgs<ExtArgs>
+  localization?: boolean | Prisma.Event$localizationArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -698,7 +975,10 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   title?: boolean
   description?: boolean
-  startAt?: boolean
+  banner?: boolean
+  date?: boolean
+  appropriate_age?: boolean
+  max_person_quantity?: boolean
   endAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -711,7 +991,10 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   title?: boolean
   description?: boolean
-  startAt?: boolean
+  banner?: boolean
+  date?: boolean
+  appropriate_age?: boolean
+  max_person_quantity?: boolean
   endAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -724,7 +1007,10 @@ export type EventSelectScalar = {
   id?: boolean
   title?: boolean
   description?: boolean
-  startAt?: boolean
+  banner?: boolean
+  date?: boolean
+  appropriate_age?: boolean
+  max_person_quantity?: boolean
   endAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -732,10 +1018,11 @@ export type EventSelectScalar = {
   userId?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "startAt" | "endAt" | "createdAt" | "updatedAt" | "cep" | "userId", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "banner" | "date" | "appropriate_age" | "max_person_quantity" | "endAt" | "createdAt" | "updatedAt" | "cep" | "userId", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tickets?: boolean | Prisma.Event$ticketsArgs<ExtArgs>
+  localization?: boolean | Prisma.Event$localizationArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -750,12 +1037,16 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     tickets: Prisma.$TicketPayload<ExtArgs>[]
+    localization: Prisma.$event_localizationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
     description: string
-    startAt: Date
+    banner: string
+    date: Date
+    appropriate_age: $Enums.Appropriate_age
+    max_person_quantity: number
     endAt: Date
     createdAt: Date
     updatedAt: Date
@@ -1157,6 +1448,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tickets<T extends Prisma.Event$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  localization<T extends Prisma.Event$localizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$localizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$event_localizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1189,7 +1481,10 @@ export interface EventFieldRefs {
   readonly id: Prisma.FieldRef<"Event", 'String'>
   readonly title: Prisma.FieldRef<"Event", 'String'>
   readonly description: Prisma.FieldRef<"Event", 'String'>
-  readonly startAt: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly banner: Prisma.FieldRef<"Event", 'String'>
+  readonly date: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly appropriate_age: Prisma.FieldRef<"Event", 'Appropriate_age'>
+  readonly max_person_quantity: Prisma.FieldRef<"Event", 'Int'>
   readonly endAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Event", 'DateTime'>
@@ -1617,6 +1912,30 @@ export type Event$ticketsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
+}
+
+/**
+ * Event.localization
+ */
+export type Event$localizationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the event_localization
+   */
+  select?: Prisma.event_localizationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the event_localization
+   */
+  omit?: Prisma.event_localizationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.event_localizationInclude<ExtArgs> | null
+  where?: Prisma.event_localizationWhereInput
+  orderBy?: Prisma.event_localizationOrderByWithRelationInput | Prisma.event_localizationOrderByWithRelationInput[]
+  cursor?: Prisma.event_localizationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Event_localizationScalarFieldEnum | Prisma.Event_localizationScalarFieldEnum[]
 }
 
 /**

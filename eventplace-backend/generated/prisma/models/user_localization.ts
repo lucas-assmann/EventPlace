@@ -30,6 +30,7 @@ export type User_localizationMinAggregateOutputType = {
   state: string | null
   city: string | null
   street: string | null
+  neighborhood: string | null
   number: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -41,6 +42,7 @@ export type User_localizationMaxAggregateOutputType = {
   state: string | null
   city: string | null
   street: string | null
+  neighborhood: string | null
   number: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,6 +54,7 @@ export type User_localizationCountAggregateOutputType = {
   state: number
   city: number
   street: number
+  neighborhood: number
   number: number
   createdAt: number
   updatedAt: number
@@ -65,6 +68,7 @@ export type User_localizationMinAggregateInputType = {
   state?: true
   city?: true
   street?: true
+  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
@@ -76,6 +80,7 @@ export type User_localizationMaxAggregateInputType = {
   state?: true
   city?: true
   street?: true
+  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
@@ -87,6 +92,7 @@ export type User_localizationCountAggregateInputType = {
   state?: true
   city?: true
   street?: true
+  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
@@ -171,6 +177,7 @@ export type User_localizationGroupByOutputType = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt: Date
   updatedAt: Date
@@ -203,6 +210,7 @@ export type user_localizationWhereInput = {
   state?: Prisma.StringFilter<"user_localization"> | string
   city?: Prisma.StringFilter<"user_localization"> | string
   street?: Prisma.StringFilter<"user_localization"> | string
+  neighborhood?: Prisma.StringFilter<"user_localization"> | string
   number?: Prisma.StringFilter<"user_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
@@ -215,6 +223,7 @@ export type user_localizationOrderByWithRelationInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -230,6 +239,7 @@ export type user_localizationWhereUniqueInput = Prisma.AtLeast<{
   state?: Prisma.StringFilter<"user_localization"> | string
   city?: Prisma.StringFilter<"user_localization"> | string
   street?: Prisma.StringFilter<"user_localization"> | string
+  neighborhood?: Prisma.StringFilter<"user_localization"> | string
   number?: Prisma.StringFilter<"user_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
@@ -242,6 +252,7 @@ export type user_localizationOrderByWithAggregationInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -259,6 +270,7 @@ export type user_localizationScalarWhereWithAggregatesInput = {
   state?: Prisma.StringWithAggregatesFilter<"user_localization"> | string
   city?: Prisma.StringWithAggregatesFilter<"user_localization"> | string
   street?: Prisma.StringWithAggregatesFilter<"user_localization"> | string
+  neighborhood?: Prisma.StringWithAggregatesFilter<"user_localization"> | string
   number?: Prisma.StringWithAggregatesFilter<"user_localization"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"user_localization"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"user_localization"> | Date | string
@@ -269,6 +281,7 @@ export type user_localizationCreateInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -281,6 +294,7 @@ export type user_localizationUncheckedCreateInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -291,6 +305,7 @@ export type user_localizationUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -303,6 +318,7 @@ export type user_localizationUncheckedUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -314,6 +330,7 @@ export type user_localizationCreateManyInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -324,6 +341,7 @@ export type user_localizationUpdateManyMutationInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,6 +353,7 @@ export type user_localizationUncheckedUpdateManyInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -356,6 +375,7 @@ export type user_localizationCountOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -367,6 +387,7 @@ export type user_localizationMaxOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -378,6 +399,7 @@ export type user_localizationMinOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -430,6 +452,7 @@ export type user_localizationCreateWithoutUserInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -440,6 +463,7 @@ export type user_localizationUncheckedCreateWithoutUserInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -480,6 +504,7 @@ export type user_localizationScalarWhereInput = {
   state?: Prisma.StringFilter<"user_localization"> | string
   city?: Prisma.StringFilter<"user_localization"> | string
   street?: Prisma.StringFilter<"user_localization"> | string
+  neighborhood?: Prisma.StringFilter<"user_localization"> | string
   number?: Prisma.StringFilter<"user_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user_localization"> | Date | string
@@ -490,6 +515,7 @@ export type user_localizationCreateManyUserInput = {
   state: string
   city: string
   street: string
+  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -500,6 +526,7 @@ export type user_localizationUpdateWithoutUserInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -510,6 +537,7 @@ export type user_localizationUncheckedUpdateWithoutUserInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -520,6 +548,7 @@ export type user_localizationUncheckedUpdateManyWithoutUserInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -533,6 +562,7 @@ export type user_localizationSelect<ExtArgs extends runtime.Types.Extensions.Int
   state?: boolean
   city?: boolean
   street?: boolean
+  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -545,6 +575,7 @@ export type user_localizationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   state?: boolean
   city?: boolean
   street?: boolean
+  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -557,6 +588,7 @@ export type user_localizationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   state?: boolean
   city?: boolean
   street?: boolean
+  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -569,12 +601,13 @@ export type user_localizationSelectScalar = {
   state?: boolean
   city?: boolean
   street?: boolean
+  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type user_localizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "state" | "city" | "street" | "number" | "createdAt" | "updatedAt", ExtArgs["result"]["user_localization"]>
+export type user_localizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "state" | "city" | "street" | "neighborhood" | "number" | "createdAt" | "updatedAt", ExtArgs["result"]["user_localization"]>
 export type user_localizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -596,6 +629,7 @@ export type $user_localizationPayload<ExtArgs extends runtime.Types.Extensions.I
     state: string
     city: string
     street: string
+    neighborhood: string
     number: string
     createdAt: Date
     updatedAt: Date
@@ -1028,6 +1062,7 @@ export interface user_localizationFieldRefs {
   readonly state: Prisma.FieldRef<"user_localization", 'String'>
   readonly city: Prisma.FieldRef<"user_localization", 'String'>
   readonly street: Prisma.FieldRef<"user_localization", 'String'>
+  readonly neighborhood: Prisma.FieldRef<"user_localization", 'String'>
   readonly number: Prisma.FieldRef<"user_localization", 'String'>
   readonly createdAt: Prisma.FieldRef<"user_localization", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"user_localization", 'DateTime'>

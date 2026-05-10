@@ -8,6 +8,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Appropriate_age {
+  ADULT
+  EVERYONE
+}
+
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -31,28 +36,49 @@ model user_localization {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  state  String
-  city   String
-  street String
-  number String
+  state        String
+  city         String
+  street       String
+  neighborhood String
+  number       String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Event {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  startAt     DateTime
-  endAt       DateTime
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                  String          @id @default(uuid())
+  title               String          @unique
+  description         String
+  banner              String
+  date                DateTime
+  appropriate_age     Appropriate_age
+  max_person_quantity Int
+  endAt               DateTime
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
 
   cep     String
   userId  String
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tickets Ticket[]
+
+  localization event_localization[]
+}
+
+model event_localization {
+  id      String @id @default(uuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  state        String
+  city         String
+  street       String
+  neighborhood String
+  number       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Ticket {
@@ -60,7 +86,7 @@ model Ticket {
   price     Float
   quantity  Int
   eventId   String
-  event     Event    @relation(fields: [eventId], references: [id])
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())

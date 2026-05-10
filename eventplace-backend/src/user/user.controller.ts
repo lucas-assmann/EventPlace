@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Patch,
-  Post,
-  Req,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Patch, Post, Req } from '@nestjs/common';
 import type { Request } from 'express';
 import { extractTokenFromHeader } from 'src/utils/auth.utils';
 import { Public } from 'src/utils/public.decorator';
@@ -36,11 +28,6 @@ export class UserController {
   update(@Req() request: AuthRequest, @Body() updateUserDto: UpdateUserDto) {
     const id = request.user.id;
     return this.userService.update(id, updateUserDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.userService.findAll();
   }
 
   @Delete()

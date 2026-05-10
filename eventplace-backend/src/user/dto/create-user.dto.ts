@@ -53,5 +53,6 @@ export class AddressResponse {
   estado: string;
   localidade: string;
   logradouro: string;
+  bairro: string;
   erro?: boolean;
 }

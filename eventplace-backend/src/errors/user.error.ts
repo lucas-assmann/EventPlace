@@ -47,3 +47,27 @@ export class UserNotFoundException extends HttpException {
     );
   }
 }
+
+export class EventAlreadyExistsException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Evento já existe',
+        error: 'EVENT_ALREADY_EXISTS',
+      },
+      HttpStatus.CONFLICT,
+    );
+  }
+}
+
+export class DateInvalidException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Data inválida',
+        error: 'DATE_INVALID',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

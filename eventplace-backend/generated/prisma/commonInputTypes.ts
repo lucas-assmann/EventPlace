@@ -137,6 +137,13 @@ export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
 }
 
+export type EnumAppropriate_ageFilter<$PrismaModel = never> = {
+  equals?: $Enums.Appropriate_age | Prisma.EnumAppropriate_ageFieldRefInput<$PrismaModel>
+  in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel> | $Enums.Appropriate_age
+}
+
 export type IntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -146,6 +153,16 @@ export type IntFilter<$PrismaModel = never> = {
   gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
   gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
   not?: Prisma.NestedIntFilter<$PrismaModel> | number
+}
+
+export type EnumAppropriate_ageWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Appropriate_age | Prisma.EnumAppropriate_ageFieldRefInput<$PrismaModel>
+  in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppropriate_ageWithAggregatesFilter<$PrismaModel> | $Enums.Appropriate_age
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel>
 }
 
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -298,6 +315,23 @@ export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatFilter<$PrismaModel>
   _min?: Prisma.NestedFloatFilter<$PrismaModel>
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
+}
+
+export type NestedEnumAppropriate_ageFilter<$PrismaModel = never> = {
+  equals?: $Enums.Appropriate_age | Prisma.EnumAppropriate_ageFieldRefInput<$PrismaModel>
+  in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel> | $Enums.Appropriate_age
+}
+
+export type NestedEnumAppropriate_ageWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Appropriate_age | Prisma.EnumAppropriate_ageFieldRefInput<$PrismaModel>
+  in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppropriate_ageWithAggregatesFilter<$PrismaModel> | $Enums.Appropriate_age
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel>
 }
 
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
