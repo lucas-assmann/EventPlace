@@ -26,21 +26,18 @@ export type AggregateBlackList = {
 
 export type BlackListMinAggregateOutputType = {
   id: string | null
-  userId: string | null
   token: string | null
   createdAt: Date | null
 }
 
 export type BlackListMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
   token: string | null
   createdAt: Date | null
 }
 
 export type BlackListCountAggregateOutputType = {
   id: number
-  userId: number
   token: number
   createdAt: number
   _all: number
@@ -49,21 +46,18 @@ export type BlackListCountAggregateOutputType = {
 
 export type BlackListMinAggregateInputType = {
   id?: true
-  userId?: true
   token?: true
   createdAt?: true
 }
 
 export type BlackListMaxAggregateInputType = {
   id?: true
-  userId?: true
   token?: true
   createdAt?: true
 }
 
 export type BlackListCountAggregateInputType = {
   id?: true
-  userId?: true
   token?: true
   createdAt?: true
   _all?: true
@@ -143,7 +137,6 @@ export type BlackListGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type BlackListGroupByOutputType = {
   id: string
-  userId: string
   token: string
   createdAt: Date
   _count: BlackListCountAggregateOutputType | null
@@ -171,18 +164,14 @@ export type BlackListWhereInput = {
   OR?: Prisma.BlackListWhereInput[]
   NOT?: Prisma.BlackListWhereInput | Prisma.BlackListWhereInput[]
   id?: Prisma.StringFilter<"BlackList"> | string
-  userId?: Prisma.StringFilter<"BlackList"> | string
   token?: Prisma.StringFilter<"BlackList"> | string
   createdAt?: Prisma.DateTimeFilter<"BlackList"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type BlackListOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type BlackListWhereUniqueInput = Prisma.AtLeast<{
@@ -190,15 +179,12 @@ export type BlackListWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.BlackListWhereInput | Prisma.BlackListWhereInput[]
   OR?: Prisma.BlackListWhereInput[]
   NOT?: Prisma.BlackListWhereInput | Prisma.BlackListWhereInput[]
-  userId?: Prisma.StringFilter<"BlackList"> | string
   token?: Prisma.StringFilter<"BlackList"> | string
   createdAt?: Prisma.DateTimeFilter<"BlackList"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type BlackListOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.BlackListCountOrderByAggregateInput
@@ -211,7 +197,6 @@ export type BlackListScalarWhereWithAggregatesInput = {
   OR?: Prisma.BlackListScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BlackListScalarWhereWithAggregatesInput | Prisma.BlackListScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"BlackList"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"BlackList"> | string
   token?: Prisma.StringWithAggregatesFilter<"BlackList"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BlackList"> | Date | string
 }
@@ -220,12 +205,10 @@ export type BlackListCreateInput = {
   id?: string
   token: string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutBlackListInput
 }
 
 export type BlackListUncheckedCreateInput = {
   id?: string
-  userId: string
   token: string
   createdAt?: Date | string
 }
@@ -234,19 +217,16 @@ export type BlackListUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutBlackListNestedInput
 }
 
 export type BlackListUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BlackListCreateManyInput = {
   id?: string
-  userId: string
   token: string
   createdAt?: Date | string
 }
@@ -259,208 +239,61 @@ export type BlackListUpdateManyMutationInput = {
 
 export type BlackListUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   token?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type BlackListListRelationFilter = {
-  every?: Prisma.BlackListWhereInput
-  some?: Prisma.BlackListWhereInput
-  none?: Prisma.BlackListWhereInput
-}
-
-export type BlackListOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type BlackListCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type BlackListMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type BlackListMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   token?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type BlackListCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput> | Prisma.BlackListCreateWithoutUserInput[] | Prisma.BlackListUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.BlackListCreateOrConnectWithoutUserInput | Prisma.BlackListCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.BlackListCreateManyUserInputEnvelope
-  connect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-}
-
-export type BlackListUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput> | Prisma.BlackListCreateWithoutUserInput[] | Prisma.BlackListUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.BlackListCreateOrConnectWithoutUserInput | Prisma.BlackListCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.BlackListCreateManyUserInputEnvelope
-  connect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-}
-
-export type BlackListUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput> | Prisma.BlackListCreateWithoutUserInput[] | Prisma.BlackListUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.BlackListCreateOrConnectWithoutUserInput | Prisma.BlackListCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.BlackListUpsertWithWhereUniqueWithoutUserInput | Prisma.BlackListUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.BlackListCreateManyUserInputEnvelope
-  set?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  disconnect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  delete?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  connect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  update?: Prisma.BlackListUpdateWithWhereUniqueWithoutUserInput | Prisma.BlackListUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.BlackListUpdateManyWithWhereWithoutUserInput | Prisma.BlackListUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.BlackListScalarWhereInput | Prisma.BlackListScalarWhereInput[]
-}
-
-export type BlackListUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput> | Prisma.BlackListCreateWithoutUserInput[] | Prisma.BlackListUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.BlackListCreateOrConnectWithoutUserInput | Prisma.BlackListCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.BlackListUpsertWithWhereUniqueWithoutUserInput | Prisma.BlackListUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.BlackListCreateManyUserInputEnvelope
-  set?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  disconnect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  delete?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  connect?: Prisma.BlackListWhereUniqueInput | Prisma.BlackListWhereUniqueInput[]
-  update?: Prisma.BlackListUpdateWithWhereUniqueWithoutUserInput | Prisma.BlackListUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.BlackListUpdateManyWithWhereWithoutUserInput | Prisma.BlackListUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.BlackListScalarWhereInput | Prisma.BlackListScalarWhereInput[]
-}
-
-export type BlackListCreateWithoutUserInput = {
-  id?: string
-  token: string
-  createdAt?: Date | string
-}
-
-export type BlackListUncheckedCreateWithoutUserInput = {
-  id?: string
-  token: string
-  createdAt?: Date | string
-}
-
-export type BlackListCreateOrConnectWithoutUserInput = {
-  where: Prisma.BlackListWhereUniqueInput
-  create: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput>
-}
-
-export type BlackListCreateManyUserInputEnvelope = {
-  data: Prisma.BlackListCreateManyUserInput | Prisma.BlackListCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type BlackListUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.BlackListWhereUniqueInput
-  update: Prisma.XOR<Prisma.BlackListUpdateWithoutUserInput, Prisma.BlackListUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.BlackListCreateWithoutUserInput, Prisma.BlackListUncheckedCreateWithoutUserInput>
-}
-
-export type BlackListUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.BlackListWhereUniqueInput
-  data: Prisma.XOR<Prisma.BlackListUpdateWithoutUserInput, Prisma.BlackListUncheckedUpdateWithoutUserInput>
-}
-
-export type BlackListUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.BlackListScalarWhereInput
-  data: Prisma.XOR<Prisma.BlackListUpdateManyMutationInput, Prisma.BlackListUncheckedUpdateManyWithoutUserInput>
-}
-
-export type BlackListScalarWhereInput = {
-  AND?: Prisma.BlackListScalarWhereInput | Prisma.BlackListScalarWhereInput[]
-  OR?: Prisma.BlackListScalarWhereInput[]
-  NOT?: Prisma.BlackListScalarWhereInput | Prisma.BlackListScalarWhereInput[]
-  id?: Prisma.StringFilter<"BlackList"> | string
-  userId?: Prisma.StringFilter<"BlackList"> | string
-  token?: Prisma.StringFilter<"BlackList"> | string
-  createdAt?: Prisma.DateTimeFilter<"BlackList"> | Date | string
-}
-
-export type BlackListCreateManyUserInput = {
-  id?: string
-  token: string
-  createdAt?: Date | string
-}
-
-export type BlackListUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  token?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type BlackListUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  token?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type BlackListUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  token?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type BlackListSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   token?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["blackList"]>
 
 export type BlackListSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   token?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["blackList"]>
 
 export type BlackListSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   token?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["blackList"]>
 
 export type BlackListSelectScalar = {
   id?: boolean
-  userId?: boolean
   token?: boolean
   createdAt?: boolean
 }
 
-export type BlackListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "token" | "createdAt", ExtArgs["result"]["blackList"]>
-export type BlackListInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type BlackListIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type BlackListIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type BlackListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "token" | "createdAt", ExtArgs["result"]["blackList"]>
 
 export type $BlackListPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "BlackList"
-  objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string
     token: string
     createdAt: Date
   }, ExtArgs["result"]["blackList"]>
@@ -857,7 +690,6 @@ readonly fields: BlackListFieldRefs;
  */
 export interface Prisma__BlackListClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -888,7 +720,6 @@ export interface Prisma__BlackListClient<T, Null = never, ExtArgs extends runtim
  */
 export interface BlackListFieldRefs {
   readonly id: Prisma.FieldRef<"BlackList", 'String'>
-  readonly userId: Prisma.FieldRef<"BlackList", 'String'>
   readonly token: Prisma.FieldRef<"BlackList", 'String'>
   readonly createdAt: Prisma.FieldRef<"BlackList", 'DateTime'>
 }
@@ -908,10 +739,6 @@ export type BlackListFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
-  /**
    * Filter, which BlackList to fetch.
    */
   where: Prisma.BlackListWhereUniqueInput
@@ -930,10 +757,6 @@ export type BlackListFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
-  /**
    * Filter, which BlackList to fetch.
    */
   where: Prisma.BlackListWhereUniqueInput
@@ -951,10 +774,6 @@ export type BlackListFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
   /**
    * Filter, which BlackList to fetch.
    */
@@ -1004,10 +823,6 @@ export type BlackListFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensio
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
-  /**
    * Filter, which BlackList to fetch.
    */
   where?: Prisma.BlackListWhereInput
@@ -1055,10 +870,6 @@ export type BlackListFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
   /**
    * Filter, which BlackLists to fetch.
    */
@@ -1108,10 +919,6 @@ export type BlackListCreateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
-  /**
    * The data needed to create a BlackList.
    */
   data: Prisma.XOR<Prisma.BlackListCreateInput, Prisma.BlackListUncheckedCreateInput>
@@ -1145,10 +952,6 @@ export type BlackListCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    */
   data: Prisma.BlackListCreateManyInput | Prisma.BlackListCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1163,10 +966,6 @@ export type BlackListUpdateArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
   /**
    * The data needed to update a BlackList.
    */
@@ -1219,10 +1018,6 @@ export type BlackListUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many BlackLists to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1237,10 +1032,6 @@ export type BlackListUpsertArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
   /**
    * The filter to search for the BlackList to update in case it exists.
    */
@@ -1267,10 +1058,6 @@ export type BlackListDeleteArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
   /**
    * Filter which BlackList to delete.
    */
@@ -1303,8 +1090,4 @@ export type BlackListDefaultArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the BlackList
    */
   omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
 }

@@ -6,10 +6,6 @@ import { UserNotFoundException } from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 
-interface JwtPayload {
-  id: string;
-}
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -33,10 +29,8 @@ export class AuthService {
   }
 
   async logout(token: string) {
-    const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
     const verifyToken = await this.prisma.blackList.create({
       data: {
-        userId: payload.id,
         token,
       },
     });

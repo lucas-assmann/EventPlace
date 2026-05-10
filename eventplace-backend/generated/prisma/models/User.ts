@@ -264,7 +264,6 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cep?: Prisma.StringFilter<"User"> | string
-  blackList?: Prisma.BlackListListRelationFilter
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
@@ -282,7 +281,6 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
-  blackList?: Prisma.BlackListOrderByRelationAggregateInput
   events?: Prisma.EventOrderByRelationAggregateInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
   localization?: Prisma.user_localizationOrderByRelationAggregateInput
@@ -303,7 +301,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cep?: Prisma.StringFilter<"User"> | string
-  blackList?: Prisma.BlackListListRelationFilter
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
@@ -357,7 +354,6 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListCreateNestedManyWithoutUserInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
@@ -375,7 +371,6 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListUncheckedCreateNestedManyWithoutUserInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
@@ -393,7 +388,6 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
@@ -411,7 +405,6 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUncheckedUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
@@ -576,20 +569,6 @@ export type UserUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTicketsInput, Prisma.UserUpdateWithoutTicketsInput>, Prisma.UserUncheckedUpdateWithoutTicketsInput>
 }
 
-export type UserCreateNestedOneWithoutBlackListInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBlackListInput, Prisma.UserUncheckedCreateWithoutBlackListInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlackListInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutBlackListNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBlackListInput, Prisma.UserUncheckedCreateWithoutBlackListInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBlackListInput
-  upsert?: Prisma.UserUpsertWithoutBlackListInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBlackListInput, Prisma.UserUpdateWithoutBlackListInput>, Prisma.UserUncheckedUpdateWithoutBlackListInput>
-}
-
 export type UserCreateWithoutLocalizationInput = {
   id?: string
   name: string
@@ -602,7 +581,6 @@ export type UserCreateWithoutLocalizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListCreateNestedManyWithoutUserInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
 }
@@ -619,7 +597,6 @@ export type UserUncheckedCreateWithoutLocalizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListUncheckedCreateNestedManyWithoutUserInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
 }
@@ -652,7 +629,6 @@ export type UserUpdateWithoutLocalizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
 }
@@ -669,7 +645,6 @@ export type UserUncheckedUpdateWithoutLocalizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUncheckedUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -686,7 +661,6 @@ export type UserCreateWithoutEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
 }
@@ -703,7 +677,6 @@ export type UserUncheckedCreateWithoutEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -736,7 +709,6 @@ export type UserUpdateWithoutEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
 }
@@ -753,7 +725,6 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -770,7 +741,6 @@ export type UserCreateWithoutTicketsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListCreateNestedManyWithoutUserInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
 }
@@ -787,7 +757,6 @@ export type UserUncheckedCreateWithoutTicketsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cep: string
-  blackList?: Prisma.BlackListUncheckedCreateNestedManyWithoutUserInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -820,7 +789,6 @@ export type UserUpdateWithoutTicketsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
 }
@@ -837,92 +805,7 @@ export type UserUncheckedUpdateWithoutTicketsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
-  blackList?: Prisma.BlackListUncheckedUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
-  localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutBlackListInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  birthDate: Date | string
-  avatar?: string | null
-  rating?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cep: string
-  events?: Prisma.EventCreateNestedManyWithoutUserInput
-  tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
-  localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutBlackListInput = {
-  id?: string
-  name: string
-  username: string
-  email: string
-  password: string
-  birthDate: Date | string
-  avatar?: string | null
-  rating?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  cep: string
-  events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
-  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
-  localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutBlackListInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutBlackListInput, Prisma.UserUncheckedCreateWithoutBlackListInput>
-}
-
-export type UserUpsertWithoutBlackListInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutBlackListInput, Prisma.UserUncheckedUpdateWithoutBlackListInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutBlackListInput, Prisma.UserUncheckedCreateWithoutBlackListInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutBlackListInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutBlackListInput, Prisma.UserUncheckedUpdateWithoutBlackListInput>
-}
-
-export type UserUpdateWithoutBlackListInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cep?: Prisma.StringFieldUpdateOperationsInput | string
-  events?: Prisma.EventUpdateManyWithoutUserNestedInput
-  tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
-  localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutBlackListInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  cep?: Prisma.StringFieldUpdateOperationsInput | string
-  events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
-  tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -932,14 +815,12 @@ export type UserUncheckedUpdateWithoutBlackListInput = {
  */
 
 export type UserCountOutputType = {
-  blackList: number
   events: number
   tickets: number
   localization: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  blackList?: boolean | UserCountOutputTypeCountBlackListArgs
   events?: boolean | UserCountOutputTypeCountEventsArgs
   tickets?: boolean | UserCountOutputTypeCountTicketsArgs
   localization?: boolean | UserCountOutputTypeCountLocalizationArgs
@@ -953,13 +834,6 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountBlackListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BlackListWhereInput
 }
 
 /**
@@ -996,7 +870,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   cep?: boolean
-  blackList?: boolean | Prisma.User$blackListArgs<ExtArgs>
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
   localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
@@ -1047,7 +920,6 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "birthDate" | "avatar" | "rating" | "createdAt" | "updatedAt" | "cep", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  blackList?: boolean | Prisma.User$blackListArgs<ExtArgs>
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
   localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
@@ -1059,7 +931,6 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    blackList: Prisma.$BlackListPayload<ExtArgs>[]
     events: Prisma.$EventPayload<ExtArgs>[]
     tickets: Prisma.$TicketPayload<ExtArgs>[]
     localization: Prisma.$user_localizationPayload<ExtArgs>[]
@@ -1470,7 +1341,6 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  blackList<T extends Prisma.User$blackListArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$blackListArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlackListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   events<T extends Prisma.User$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tickets<T extends Prisma.User$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   localization<T extends Prisma.User$localizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$localizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_localizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1904,30 +1774,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
-}
-
-/**
- * User.blackList
- */
-export type User$blackListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BlackList
-   */
-  select?: Prisma.BlackListSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BlackList
-   */
-  omit?: Prisma.BlackListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BlackListInclude<ExtArgs> | null
-  where?: Prisma.BlackListWhereInput
-  orderBy?: Prisma.BlackListOrderByWithRelationInput | Prisma.BlackListOrderByWithRelationInput[]
-  cursor?: Prisma.BlackListWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BlackListScalarFieldEnum | Prisma.BlackListScalarFieldEnum[]
 }
 
 /**

@@ -21,7 +21,6 @@ model User {
   updatedAt DateTime @updatedAt
   cep       String
 
-  blackList    BlackList[]
   events       Event[]
   tickets      Ticket[]
   localization user_localization[]
@@ -69,8 +68,6 @@ model Ticket {
 
 model BlackList {
   id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   token     String
   createdAt DateTime @default(now())
 }

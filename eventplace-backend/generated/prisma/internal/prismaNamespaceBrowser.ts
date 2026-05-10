@@ -134,7 +134,6 @@ export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof 
 
 export const BlackListScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   token: 'token',
   createdAt: 'createdAt'
 } as const
