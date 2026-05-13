@@ -1,0 +1,35 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `eventId` on the `Ticket` table. All the data in the column will be lost.
+  - You are about to drop the column `price` on the `Ticket` table. All the data in the column will be lost.
+  - You are about to drop the column `quantity` on the `Ticket` table. All the data in the column will be lost.
+  - Added the required column `ticketTypeId` to the `Ticket` table without a default value. This is not possible if the table is not empty.
+
+*/
+-- DropForeignKey
+ALTER TABLE "Ticket" DROP CONSTRAINT "Ticket_eventId_fkey";
+
+-- AlterTable
+ALTER TABLE "Ticket" DROP COLUMN "eventId",
+DROP COLUMN "price",
+DROP COLUMN "quantity",
+ADD COLUMN     "ticketTypeId" TEXT NOT NULL;
+
+-- CreateTable
+CREATE TABLE "TicketType" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "price" DECIMAL(10,2) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "eventId" TEXT NOT NULL,
+
+    CONSTRAINT "TicketType_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "Ticket" ADD CONSTRAINT "Ticket_ticketTypeId_fkey" FOREIGN KEY ("ticketTypeId") REFERENCES "TicketType"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "TicketType" ADD CONSTRAINT "TicketType_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -1,5 +1,6 @@
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
+  IsArray,
   IsDate,
   IsEnum,
   IsNotEmpty,
@@ -8,6 +9,7 @@ import {
   IsString,
   Length,
   Min,
+  ValidateNested,
 } from 'class-validator';
 import { Appropriate_age } from '../../../generated/prisma/enums';
 
@@ -52,6 +54,11 @@ export class CreateEventDto {
   @Transform(({ value }) => new Date(value as string))
   @IsNotEmpty()
   endAt: Date;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateTicketTypeDto)
+  ticketType: CreateTicketTypeDto[];
 }
 
 export class Event_localizationDto {
@@ -60,4 +67,20 @@ export class Event_localizationDto {
   logradouro: string;
   bairro: string;
   erro?: boolean;
+}
+
+export class CreateTicketTypeDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(0)
+  price: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(1)
+  quantity: number;
 }

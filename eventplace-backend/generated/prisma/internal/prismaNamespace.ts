@@ -389,6 +389,7 @@ export const ModelName = {
   Event: 'Event',
   event_localization: 'event_localization',
   Ticket: 'Ticket',
+  TicketType: 'TicketType',
   BlackList: 'BlackList'
 } as const
 
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "event" | "event_localization" | "ticket" | "blackList"
+    modelProps: "user" | "user_localization" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -779,6 +780,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TicketType: {
+      payload: Prisma.$TicketTypePayload<ExtArgs>
+      fields: Prisma.TicketTypeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TicketTypeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TicketTypeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        findFirst: {
+          args: Prisma.TicketTypeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TicketTypeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        findMany: {
+          args: Prisma.TicketTypeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>[]
+        }
+        create: {
+          args: Prisma.TicketTypeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        createMany: {
+          args: Prisma.TicketTypeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TicketTypeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>[]
+        }
+        delete: {
+          args: Prisma.TicketTypeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        update: {
+          args: Prisma.TicketTypeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        deleteMany: {
+          args: Prisma.TicketTypeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TicketTypeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TicketTypeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>[]
+        }
+        upsert: {
+          args: Prisma.TicketTypeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketTypePayload>
+        }
+        aggregate: {
+          args: Prisma.TicketTypeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTicketType>
+        }
+        groupBy: {
+          args: Prisma.TicketTypeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TicketTypeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TicketTypeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TicketTypeCountAggregateOutputType> | number
+        }
+      }
+    }
     BlackList: {
       payload: Prisma.$BlackListPayload<ExtArgs>
       fields: Prisma.BlackListFieldRefs
@@ -959,14 +1034,24 @@ export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalar
 
 export const TicketScalarFieldEnum = {
   id: 'id',
-  price: 'price',
-  quantity: 'quantity',
-  eventId: 'eventId',
   userId: 'userId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  ticketTypeId: 'ticketTypeId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const TicketTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  quantity: 'quantity',
+  price: 'price',
+  createdAt: 'createdAt',
+  eventId: 'eventId'
+} as const
+
+export type TicketTypeScalarFieldEnum = (typeof TicketTypeScalarFieldEnum)[keyof typeof TicketTypeScalarFieldEnum]
 
 
 export const BlackListScalarFieldEnum = {
@@ -1075,6 +1160,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 /**
@@ -1192,6 +1291,7 @@ export type GlobalOmitConfig = {
   event?: Prisma.EventOmit
   event_localization?: Prisma.event_localizationOmit
   ticket?: Prisma.TicketOmit
+  ticketType?: Prisma.TicketTypeOmit
   blackList?: Prisma.BlackListOmit
 }
 

@@ -54,6 +54,11 @@ export class EventService {
           },
         },
         userId,
+        ticketType: {
+          createMany: {
+            data: createEventDto.ticketType,
+          },
+        },
       },
     });
     return 'evento criado com sucesso!';

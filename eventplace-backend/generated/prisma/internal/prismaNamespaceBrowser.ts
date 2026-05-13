@@ -56,6 +56,7 @@ export const ModelName = {
   Event: 'Event',
   event_localization: 'event_localization',
   Ticket: 'Ticket',
+  TicketType: 'TicketType',
   BlackList: 'BlackList'
 } as const
 
@@ -142,14 +143,24 @@ export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalar
 
 export const TicketScalarFieldEnum = {
   id: 'id',
-  price: 'price',
-  quantity: 'quantity',
-  eventId: 'eventId',
   userId: 'userId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  ticketTypeId: 'ticketTypeId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const TicketTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  quantity: 'quantity',
+  price: 'price',
+  createdAt: 'createdAt',
+  eventId: 'eventId'
+} as const
+
+export type TicketTypeScalarFieldEnum = (typeof TicketTypeScalarFieldEnum)[keyof typeof TicketTypeScalarFieldEnum]
 
 
 export const BlackListScalarFieldEnum = {

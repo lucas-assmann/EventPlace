@@ -65,6 +65,11 @@ export type event_localization = Prisma.event_localizationModel
  */
 export type Ticket = Prisma.TicketModel
 /**
+ * Model TicketType
+ * 
+ */
+export type TicketType = Prisma.TicketTypeModel
+/**
  * Model BlackList
  * 
  */
