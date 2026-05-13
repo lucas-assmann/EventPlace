@@ -6,7 +6,6 @@ import { PrismaService } from '../prisma.service';
 import { hashPassword } from '../utils/hash.password';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
@@ -14,7 +13,6 @@ export class UserService {
     private prisma: PrismaService,
     private getCep: GetCep,
     private resend: ResendEmailService,
-    private jwtService: JwtService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {

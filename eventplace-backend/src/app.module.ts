@@ -10,6 +10,7 @@ import { EventModule } from './event/event.module';
 import { PrismaModule } from './prisma.module';
 import { PrismaService } from './prisma.service';
 import { UserModule } from './user/user.module';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     AuthModule,
     ScheduleModule.forRoot(),
     EventModule,
+    TicketModule,
   ],
   controllers: [AppController],
   providers: [
