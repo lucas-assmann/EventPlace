@@ -71,3 +71,27 @@ export class DateInvalidException extends HttpException {
     );
   }
 }
+
+export class EnoughTicket extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Nao há tickets suficientes',
+        error: 'ENOUGH_TICKET',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}
+
+export class NotExistTicket extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Ticket não encontrado',
+        error: 'NOT_EXIST_TICKET',
+      },
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}

@@ -1,22 +1,84 @@
 import { Injectable } from '@nestjs/common';
+import { EnoughTicket, NotExistTicket } from 'src/errors/user.error';
+import { PrismaService } from 'src/prisma.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
-import { UpdateTicketDto } from './dto/update-ticket.dto';
 
 @Injectable()
 export class TicketService {
-  async create(createTicketDto: CreateTicketDto) {
-    return 'Compra feita com sucesso! Seu ticket foi gerado e ser enviado por email.';
+  constructor(private prisma: PrismaService) {}
+  async create(createTicketDto: CreateTicketDto, userId: string) {
+    const userTicket = await this.prisma.ticketType.findUnique({
+      where: {
+        id: createTicketDto.ticketTypeId,
+      },
+    });
+
+    if (userTicket === null) {
+      throw new NotExistTicket();
+    }
+
+    if (userTicket?.quantity === 0) {
+      throw new EnoughTicket();
+    }
+
+    const buyTicket = await this.prisma.ticket.create({
+      data: {
+        ...createTicketDto,
+        userId,
+      },
+    });
+
+    await this.prisma.ticketType.update({
+      where: {
+        id: createTicketDto.ticketTypeId,
+      },
+      data: {
+        quantity: {
+          decrement: 1,
+        },
+      },
+    });
+
+    return buyTicket;
   }
 
-  findAll() {
-    return `This action returns all ticket`;
+  async findAll(userId: string) {
+    const allUserTicket = await this.prisma.ticket.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    return allUserTicket;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
+  async findOne(id: string, userId: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    if (ticket === null) {
+      throw new NotExistTicket();
+    }
+
+    return ticket;
   }
 
-  update(id: number, updateTicketDto: UpdateTicketDto) {
-    return `This action updates a #${id} ticket`;
+  async findByName(name: string, userId: string) {
+    const searchTicketTypeByUser = await this.prisma.ticket.findMany({
+      where: {
+        userId,
+        ticketType: {
+          name,
+        },
+      },
+      include: {
+        ticketType: true,
+      },
+    });
+    return searchTicketTypeByUser;
   }
 }
