@@ -47,6 +47,7 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   cep: string | null
   isVerified: boolean | null
+  age: $Enums.User_age | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -62,6 +63,7 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   cep: string | null
   isVerified: boolean | null
+  age: $Enums.User_age | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -77,6 +79,7 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   cep: number
   isVerified: number
+  age: number
   _all: number
 }
 
@@ -102,6 +105,7 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
+  age?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -117,6 +121,7 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
+  age?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -132,6 +137,7 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
+  age?: true
   _all?: true
 }
 
@@ -234,6 +240,7 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   cep: string
   isVerified: boolean
+  age: $Enums.User_age
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -272,6 +279,7 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cep?: Prisma.StringFilter<"User"> | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  age?: Prisma.EnumUser_ageFilter<"User"> | $Enums.User_age
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
@@ -291,6 +299,7 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
   localization?: Prisma.user_localizationOrderByRelationAggregateInput
@@ -313,6 +322,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cep?: Prisma.StringFilter<"User"> | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
+  age?: Prisma.EnumUser_ageFilter<"User"> | $Enums.User_age
   events?: Prisma.EventListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
@@ -332,6 +342,7 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -355,6 +366,7 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   cep?: Prisma.StringWithAggregatesFilter<"User"> | string
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  age?: Prisma.EnumUser_ageWithAggregatesFilter<"User"> | $Enums.User_age
 }
 
 export type UserCreateInput = {
@@ -370,6 +382,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
@@ -389,6 +402,7 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
@@ -408,6 +422,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
@@ -427,6 +442,7 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
@@ -446,6 +462,7 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
 }
 
 export type UserUpdateManyMutationInput = {
@@ -461,6 +478,7 @@ export type UserUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -476,6 +494,7 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -491,6 +510,7 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -510,6 +530,7 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -525,6 +546,7 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -558,6 +580,10 @@ export type FloatFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type EnumUser_ageFieldUpdateOperationsInput = {
+  set?: $Enums.User_age
 }
 
 export type UserCreateNestedOneWithoutLocalizationInput = {
@@ -629,6 +655,7 @@ export type UserCreateWithoutLocalizationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
@@ -647,6 +674,7 @@ export type UserUncheckedCreateWithoutLocalizationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
@@ -681,6 +709,7 @@ export type UserUpdateWithoutLocalizationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
@@ -699,6 +728,7 @@ export type UserUncheckedUpdateWithoutLocalizationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
@@ -717,6 +747,7 @@ export type UserCreateWithoutVerificationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
@@ -735,6 +766,7 @@ export type UserUncheckedCreateWithoutVerificationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
@@ -769,6 +801,7 @@ export type UserUpdateWithoutVerificationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
@@ -787,6 +820,7 @@ export type UserUncheckedUpdateWithoutVerificationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
@@ -805,6 +839,7 @@ export type UserCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
@@ -823,6 +858,7 @@ export type UserUncheckedCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
@@ -857,6 +893,7 @@ export type UserUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
@@ -875,6 +912,7 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
@@ -893,6 +931,7 @@ export type UserCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
@@ -911,6 +950,7 @@ export type UserUncheckedCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
+  age: $Enums.User_age
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
@@ -945,6 +985,7 @@ export type UserUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
@@ -963,6 +1004,7 @@ export type UserUncheckedUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
@@ -1039,6 +1081,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
+  age?: boolean
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
   localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
@@ -1059,6 +1102,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
+  age?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1074,6 +1118,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
+  age?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1089,9 +1134,10 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
+  age?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "birthDate" | "avatar" | "rating" | "createdAt" | "updatedAt" | "cep" | "isVerified", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "birthDate" | "avatar" | "rating" | "createdAt" | "updatedAt" | "cep" | "isVerified" | "age", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
@@ -1123,6 +1169,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     cep: string
     isVerified: boolean
+    age: $Enums.User_age
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1562,6 +1609,7 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly cep: Prisma.FieldRef<"User", 'String'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly age: Prisma.FieldRef<"User", 'User_age'>
 }
     
 

@@ -15,3 +15,12 @@ export const Appropriate_age = {
 } as const
 
 export type Appropriate_age = (typeof Appropriate_age)[keyof typeof Appropriate_age]
+
+
+export const User_age = {
+  ADULT: 'ADULT',
+  TEEN: 'TEEN',
+  CHILD: 'CHILD'
+} as const
+
+export type User_age = (typeof User_age)[keyof typeof User_age]

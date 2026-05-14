@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { GetCep } from 'src/utils/get.cep.utils';
 import { ResendEmailService } from 'src/utils/resend.email';
 import {
+  DateInvalidException,
   EmailOrCodeInvalidException,
   UserAlreadyExistsException,
 } from '../errors/user.error';
@@ -9,6 +10,7 @@ import { PrismaService } from '../prisma.service';
 import { hashPassword } from '../utils/hash.password';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserAge } from 'src/utils/user.age';
 
 @Injectable()
 export class UserService {
@@ -16,6 +18,7 @@ export class UserService {
     private prisma: PrismaService,
     private getCep: GetCep,
     private resend: ResendEmailService,
+    private user_age: UserAge,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -34,6 +37,12 @@ export class UserService {
 
     const response = await this.getCep.getCep(createUserDto.cep);
 
+    const userAge = this.user_age.getAge(createUserDto.birthDate);
+
+    if (!userAge) {
+      throw new DateInvalidException();
+    }
+
     const user = await this.prisma.user.create({
       data: {
         name: createUserDto.name,
@@ -43,6 +52,7 @@ export class UserService {
         birthDate: createUserDto.birthDate,
         avatar: createUserDto.avatar,
         cep: createUserDto.cep,
+        age: userAge,
         localization: {
           create: {
             state: response.estado,

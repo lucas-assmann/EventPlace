@@ -13,20 +13,27 @@ enum Appropriate_age {
   EVERYONE
 }
 
-model User {
-  id        String   @id @default(uuid())
-  name      String
-  username  String   @unique
-  email     String   @unique
-  password  String
-  birthDate DateTime
-  avatar    String?
-  rating    Float    @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  cep       String
-  isVerified Boolean @default(false)
+enum User_age {
+  ADULT
+  TEEN
+  CHILD
+}
 
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  username   String   @unique
+  email      String   @unique
+  password   String
+  birthDate  DateTime
+  avatar     String?
+  rating     Float    @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  cep        String
+  isVerified Boolean  @default(false)
+
+  age User_age
 
   events       Event[]
   tickets      Ticket[]
@@ -69,12 +76,12 @@ model Event {
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
 
-  cep     String
-  userId  String
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cep    String
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   ticketType TicketType[]
-  
+
   localization event_localization[]
 }
 
@@ -99,7 +106,7 @@ model Ticket {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 
-  ticketType TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
+  ticketType   TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
   ticketTypeId String
 }
 

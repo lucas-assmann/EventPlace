@@ -1054,7 +1054,8 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   cep: 'cep',
-  isVerified: 'isVerified'
+  isVerified: 'isVerified',
+  age: 'age'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1225,6 +1226,20 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'User_age'
+ */
+export type EnumUser_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'User_age'>
+    
+
+
+/**
+ * Reference to a field of type 'User_age[]'
+ */
+export type ListEnumUser_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'User_age[]'>
     
 
 
