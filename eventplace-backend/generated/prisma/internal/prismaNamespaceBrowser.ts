@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   user_localization: 'user_localization',
+  user_verification: 'user_verification',
   Event: 'Event',
   event_localization: 'event_localization',
   Ticket: 'Ticket',
@@ -87,7 +88,8 @@ export const UserScalarFieldEnum = {
   rating: 'rating',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  cep: 'cep'
+  cep: 'cep',
+  isVerified: 'isVerified'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -106,6 +108,16 @@ export const User_localizationScalarFieldEnum = {
 } as const
 
 export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
+
+
+export const User_verificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code',
+  createdAt: 'createdAt'
+} as const
+
+export type User_verificationScalarFieldEnum = (typeof User_verificationScalarFieldEnum)[keyof typeof User_verificationScalarFieldEnum]
 
 
 export const EventScalarFieldEnum = {

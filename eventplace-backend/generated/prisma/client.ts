@@ -50,6 +50,11 @@ export type User = Prisma.UserModel
  */
 export type user_localization = Prisma.user_localizationModel
 /**
+ * Model user_verification
+ * 
+ */
+export type user_verification = Prisma.user_verificationModel
+/**
  * Model Event
  * 
  */

@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   user_localization: 'user_localization',
+  user_verification: 'user_verification',
   Event: 'Event',
   event_localization: 'event_localization',
   Ticket: 'Ticket',
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList"
+    modelProps: "user" | "user_localization" | "user_verification" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -555,6 +556,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.user_localizationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.User_localizationCountAggregateOutputType> | number
+        }
+      }
+    }
+    user_verification: {
+      payload: Prisma.$user_verificationPayload<ExtArgs>
+      fields: Prisma.user_verificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.user_verificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.user_verificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        findFirst: {
+          args: Prisma.user_verificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.user_verificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        findMany: {
+          args: Prisma.user_verificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>[]
+        }
+        create: {
+          args: Prisma.user_verificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        createMany: {
+          args: Prisma.user_verificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.user_verificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>[]
+        }
+        delete: {
+          args: Prisma.user_verificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        update: {
+          args: Prisma.user_verificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.user_verificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.user_verificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.user_verificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.user_verificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_verificationPayload>
+        }
+        aggregate: {
+          args: Prisma.User_verificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUser_verification>
+        }
+        groupBy: {
+          args: Prisma.user_verificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_verificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.user_verificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_verificationCountAggregateOutputType> | number
         }
       }
     }
@@ -978,7 +1053,8 @@ export const UserScalarFieldEnum = {
   rating: 'rating',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  cep: 'cep'
+  cep: 'cep',
+  isVerified: 'isVerified'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -997,6 +1073,16 @@ export const User_localizationScalarFieldEnum = {
 } as const
 
 export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
+
+
+export const User_verificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code',
+  createdAt: 'createdAt'
+} as const
+
+export type User_verificationScalarFieldEnum = (typeof User_verificationScalarFieldEnum)[keyof typeof User_verificationScalarFieldEnum]
 
 
 export const EventScalarFieldEnum = {
@@ -1132,6 +1218,13 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1288,6 +1381,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   user_localization?: Prisma.user_localizationOmit
+  user_verification?: Prisma.user_verificationOmit
   event?: Prisma.EventOmit
   event_localization?: Prisma.event_localizationOmit
   ticket?: Prisma.TicketOmit

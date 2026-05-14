@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { GetCep } from 'src/utils/get.cep.utils';
 import { ResendEmailService } from 'src/utils/resend.email';
-import { UserAlreadyExistsException } from '../errors/user.error';
+import {
+  EmailOrCodeInvalidException,
+  UserAlreadyExistsException,
+} from '../errors/user.error';
 import { PrismaService } from '../prisma.service';
 import { hashPassword } from '../utils/hash.password';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -31,9 +34,7 @@ export class UserService {
 
     const response = await this.getCep.getCep(createUserDto.cep);
 
-    // await this.resend.sendEmail(createUserDto.email);
-
-    await this.prisma.user.create({
+    const user = await this.prisma.user.create({
       data: {
         name: createUserDto.name,
         username: createUserDto.username,
@@ -54,7 +55,29 @@ export class UserService {
       },
     });
 
+    await this.resend.sendEmail(createUserDto.email, user.id);
+
     return 'Usuário criado com sucesso!';
+  }
+
+  async verifyEmail(code: string) {
+    const user = await this.prisma.user_verification.findUnique({
+      where: { code },
+    });
+
+    if (!user) {
+      throw new EmailOrCodeInvalidException();
+    }
+
+    await this.prisma.user.update({
+      where: { id: user.userId },
+      data: { isVerified: true },
+    });
+
+    await this.prisma.user_verification.delete({
+      where: { id: user.id },
+    });
+    return `Email verificado com sucesso!`;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

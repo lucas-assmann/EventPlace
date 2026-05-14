@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Patch, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Query,
+  Req,
+} from '@nestjs/common';
 import type { Request } from 'express';
 import { extractTokenFromHeader } from 'src/utils/auth.utils';
 import { Public } from 'src/utils/public.decorator';
@@ -22,6 +31,12 @@ export class UserController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+
+  @Public()
+  @Get('verify')
+  verifyEmail(@Query('code') code: string) {
+    return this.userService.verifyEmail(code);
   }
 
   @Patch()

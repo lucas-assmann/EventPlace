@@ -95,3 +95,15 @@ export class NotExistTicket extends HttpException {
     );
   }
 }
+
+export class EmailOrCodeInvalidException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Email ou Código inválidos',
+        error: 'EMAIL_OR_CODE_INVALID',
+      },
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}
