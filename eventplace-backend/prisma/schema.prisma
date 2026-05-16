@@ -116,7 +116,8 @@ model Ticket {
   ticketType   TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
   ticketTypeId String
 
-  status Status_Ticket @default(PENDING)
+  status      Status_Ticket @default(PENDING)
+  paymentCode String?       @unique
 }
 
 model TicketType {

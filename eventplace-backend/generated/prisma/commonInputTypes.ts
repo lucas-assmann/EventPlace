@@ -211,6 +211,23 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntFilter<$PrismaModel>
 }
 
+export type EnumStatus_TicketFilter<$PrismaModel = never> = {
+  equals?: $Enums.Status_Ticket | Prisma.EnumStatus_TicketFieldRefInput<$PrismaModel>
+  in?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel> | $Enums.Status_Ticket
+}
+
+export type EnumStatus_TicketWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Status_Ticket | Prisma.EnumStatus_TicketFieldRefInput<$PrismaModel>
+  in?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatus_TicketWithAggregatesFilter<$PrismaModel> | $Enums.Status_Ticket
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel>
+}
+
 export type DecimalFilter<$PrismaModel = never> = {
   equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
@@ -435,6 +452,23 @@ export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedIntFilter<$PrismaModel>
   _max?: Prisma.NestedIntFilter<$PrismaModel>
+}
+
+export type NestedEnumStatus_TicketFilter<$PrismaModel = never> = {
+  equals?: $Enums.Status_Ticket | Prisma.EnumStatus_TicketFieldRefInput<$PrismaModel>
+  in?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel> | $Enums.Status_Ticket
+}
+
+export type NestedEnumStatus_TicketWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Status_Ticket | Prisma.EnumStatus_TicketFieldRefInput<$PrismaModel>
+  in?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Status_Ticket[] | Prisma.ListEnumStatus_TicketFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStatus_TicketWithAggregatesFilter<$PrismaModel> | $Enums.Status_Ticket
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStatus_TicketFilter<$PrismaModel>
 }
 
 export type NestedDecimalFilter<$PrismaModel = never> = {

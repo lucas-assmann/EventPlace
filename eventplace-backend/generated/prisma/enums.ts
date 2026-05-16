@@ -24,3 +24,13 @@ export const User_age = {
 } as const
 
 export type User_age = (typeof User_age)[keyof typeof User_age]
+
+
+export const Status_Ticket = {
+  CANCELLED: 'CANCELLED',
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  USED: 'USED'
+} as const
+
+export type Status_Ticket = (typeof Status_Ticket)[keyof typeof Status_Ticket]

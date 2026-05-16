@@ -158,7 +158,9 @@ export const TicketScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   createdAt: 'createdAt',
-  ticketTypeId: 'ticketTypeId'
+  ticketTypeId: 'ticketTypeId',
+  status: 'status',
+  paymentCode: 'paymentCode'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]

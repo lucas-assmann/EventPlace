@@ -1123,7 +1123,9 @@ export const TicketScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   createdAt: 'createdAt',
-  ticketTypeId: 'ticketTypeId'
+  ticketTypeId: 'ticketTypeId',
+  status: 'status',
+  paymentCode: 'paymentCode'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
@@ -1268,6 +1270,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Status_Ticket'
+ */
+export type EnumStatus_TicketFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status_Ticket'>
+    
+
+
+/**
+ * Reference to a field of type 'Status_Ticket[]'
+ */
+export type ListEnumStatus_TicketFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status_Ticket[]'>
     
 
 

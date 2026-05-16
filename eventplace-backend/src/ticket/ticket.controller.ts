@@ -29,6 +29,17 @@ export class TicketController {
     return this.ticketService.findAll(user.id);
   }
 
+  @Get('qrcode/generate/:ticketId')
+  generateQRCode(@Param('ticketId') ticketId: string) {
+    return this.ticketService.generateQRCode(ticketId);
+  }
+
+  @Get('payment/confirm')
+  ConfirmPayment(@Query('code') code: string, @Req() request: AuthRequest) {
+    const user = request.user;
+    return this.ticketService.ConfirmPayment(code, user.id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string, @Req() request: AuthRequest) {
     const user = request.user;
