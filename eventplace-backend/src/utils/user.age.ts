@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { User_age } from 'generated/prisma/enums';
 import { DateInvalidException } from 'src/errors/user.error';
-import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UserAge {
-  constructor(private prisma: PrismaService) {}
   calculateAge(date: Date) {
     const today = new Date();
     const birthDate = new Date(date);

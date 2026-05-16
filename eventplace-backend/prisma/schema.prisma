@@ -19,6 +19,13 @@ enum User_age {
   CHILD
 }
 
+enum Status_Ticket {
+  CANCELLED
+  PENDING
+  CONFIRMED
+  USED
+}
+
 model User {
   id         String   @id @default(uuid())
   name       String
@@ -108,6 +115,8 @@ model Ticket {
 
   ticketType   TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
   ticketTypeId String
+
+  status Status_Ticket @default(PENDING)
 }
 
 model TicketType {

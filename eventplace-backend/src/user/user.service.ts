@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { EmailService } from 'src/utils/email';
 import { GetCep } from 'src/utils/get.cep.utils';
-import { ResendEmailService } from 'src/utils/resend.email';
+import { UserAge } from 'src/utils/user.age';
 import {
   DateInvalidException,
   EmailOrCodeInvalidException,
@@ -10,14 +11,13 @@ import { PrismaService } from '../prisma.service';
 import { hashPassword } from '../utils/hash.password';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserAge } from 'src/utils/user.age';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
     private getCep: GetCep,
-    private resend: ResendEmailService,
+    private email: EmailService,
     private user_age: UserAge,
   ) {}
 
@@ -65,7 +65,7 @@ export class UserService {
       },
     });
 
-    await this.resend.sendEmail(createUserDto.email, user.id);
+    await this.email.sendEmail(createUserDto.email, user.id);
 
     return 'Usuário criado com sucesso!';
   }
