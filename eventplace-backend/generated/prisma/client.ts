@@ -79,3 +79,8 @@ export type TicketType = Prisma.TicketTypeModel
  * 
  */
 export type BlackList = Prisma.BlackListModel
+/**
+ * Model SessionList
+ * 
+ */
+export type SessionList = Prisma.SessionListModel

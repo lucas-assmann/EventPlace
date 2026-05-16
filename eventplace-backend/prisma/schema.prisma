@@ -46,6 +46,7 @@ model User {
   tickets      Ticket[]
   localization user_localization[]
   verification user_verification[]
+  sessionList  SessionList[]
 }
 
 model user_localization {
@@ -136,5 +137,13 @@ model TicketType {
 model BlackList {
   id        String   @id @default(uuid())
   token     String
+  createdAt DateTime @default(now())
+}
+
+model SessionList {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }

@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { verify } from '@node-rs/argon2';
-import { UserNotFoundException } from 'src/errors/user.error';
+import {
+  ActiveUserException,
+  UserNotFoundException,
+} from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 
@@ -19,23 +22,52 @@ export class AuthService {
       where: { email: createAuthDto.email },
     });
 
-    const passwordMatch = await verify(user!.password, createAuthDto.password);
-
-    if (!passwordMatch || !user) {
+    if (!user) {
       throw new UserNotFoundException();
     }
 
-    return { acess_token: await this.jwtService.signAsync({ id: user.id }) };
+    const verifyToken = await this.prisma.sessionList.findFirst({
+      where: { userId: user.id },
+    });
+
+    if (verifyToken) {
+      throw new ActiveUserException();
+    }
+
+    const passwordMatch = await verify(user.password, createAuthDto.password);
+
+    if (!passwordMatch) {
+      throw new UserNotFoundException();
+    }
+
+    if (verifyToken) {
+      await this.prisma.sessionList.deleteMany({
+        where: { userId: user.id },
+      });
+    }
+
+    const session = await this.prisma.sessionList.create({
+      data: {
+        userId: user.id,
+        token: await this.jwtService.signAsync({ id: user.id }),
+      },
+    });
+
+    return { acess_token: session.token };
   }
 
   async logout(token: string) {
-    const verifyToken = await this.prisma.blackList.create({
+    await this.prisma.sessionList.deleteMany({
+      where: { token },
+    });
+
+    const blacklistedToken = await this.prisma.blackList.create({
       data: {
         token,
       },
     });
 
-    return verifyToken;
+    return blacklistedToken;
   }
 
   @Cron(CronExpression.EVERY_HOUR)

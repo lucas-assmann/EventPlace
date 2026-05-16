@@ -391,7 +391,8 @@ export const ModelName = {
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
-  BlackList: 'BlackList'
+  BlackList: 'BlackList',
+  SessionList: 'SessionList'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "user_verification" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList"
+    modelProps: "user" | "user_localization" | "user_verification" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList" | "sessionList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SessionList: {
+      payload: Prisma.$SessionListPayload<ExtArgs>
+      fields: Prisma.SessionListFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SessionListFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SessionListFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        findFirst: {
+          args: Prisma.SessionListFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SessionListFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        findMany: {
+          args: Prisma.SessionListFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>[]
+        }
+        create: {
+          args: Prisma.SessionListCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        createMany: {
+          args: Prisma.SessionListCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SessionListCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>[]
+        }
+        delete: {
+          args: Prisma.SessionListDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        update: {
+          args: Prisma.SessionListUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        deleteMany: {
+          args: Prisma.SessionListDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SessionListUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SessionListUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>[]
+        }
+        upsert: {
+          args: Prisma.SessionListUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionListPayload>
+        }
+        aggregate: {
+          args: Prisma.SessionListAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSessionList>
+        }
+        groupBy: {
+          args: Prisma.SessionListGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionListGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SessionListCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionListCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1150,6 +1225,16 @@ export const BlackListScalarFieldEnum = {
 } as const
 
 export type BlackListScalarFieldEnum = (typeof BlackListScalarFieldEnum)[keyof typeof BlackListScalarFieldEnum]
+
+
+export const SessionListScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type SessionListScalarFieldEnum = (typeof SessionListScalarFieldEnum)[keyof typeof SessionListScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1418,6 +1503,7 @@ export type GlobalOmitConfig = {
   ticket?: Prisma.TicketOmit
   ticketType?: Prisma.TicketTypeOmit
   blackList?: Prisma.BlackListOmit
+  sessionList?: Prisma.SessionListOmit
 }
 
 /* Types for Logging */

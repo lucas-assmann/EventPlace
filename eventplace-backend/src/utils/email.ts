@@ -4,6 +4,15 @@ import * as nodemailer from 'nodemailer';
 import { Transporter } from 'nodemailer';
 import { PrismaService } from 'src/prisma.service';
 
+interface TicketEmailData {
+  email: string;
+  title: string;
+  ticketType: string;
+  eventName: string;
+  day: string;
+  price: number;
+}
+
 @Injectable()
 export class EmailService {
   private transporter: Transporter;
@@ -40,6 +49,16 @@ export class EmailService {
         code,
         userId,
       },
+    });
+  }
+
+  async sendTicketEmail(data: TicketEmailData) {
+    const { email, title, ticketType, eventName, day, price } = data;
+    await this.transporter.sendMail({
+      from: this.configService.get('GMAIL_USER'),
+      to: email,
+      subject: `Compra de ingresso para ${eventName} efetuada com sucesso!`,
+      html: `<p>Olá, ${title}!</p><p>A compra do ingresso ${ticketType} no valor de R$ ${price.toFixed(2)} do evento ${eventName} no dia ${day} foi efetuada com sucesso!</p>`,
     });
   }
 }

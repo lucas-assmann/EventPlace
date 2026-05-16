@@ -107,3 +107,27 @@ export class EmailOrCodeInvalidException extends HttpException {
     );
   }
 }
+
+export class ActiveUserException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Usuário ativo',
+        error: 'ACTIVE_USER',
+      },
+      HttpStatus.CONFLICT,
+    );
+  }
+}
+
+export class InvalidEmailException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Email inválido',
+        error: 'INVALID_EMAIL',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

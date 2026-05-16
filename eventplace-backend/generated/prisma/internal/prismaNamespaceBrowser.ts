@@ -58,7 +58,8 @@ export const ModelName = {
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
-  BlackList: 'BlackList'
+  BlackList: 'BlackList',
+  SessionList: 'SessionList'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -185,6 +186,16 @@ export const BlackListScalarFieldEnum = {
 } as const
 
 export type BlackListScalarFieldEnum = (typeof BlackListScalarFieldEnum)[keyof typeof BlackListScalarFieldEnum]
+
+
+export const SessionListScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type SessionListScalarFieldEnum = (typeof SessionListScalarFieldEnum)[keyof typeof SessionListScalarFieldEnum]
 
 
 export const SortOrder = {
