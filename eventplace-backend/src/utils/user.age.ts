@@ -23,7 +23,6 @@ export class UserAge {
   getAge(date: Date): User_age {
     const age = this.calculateAge(date);
     if (age >= 18) return User_age.ADULT;
-    else if (age >= 13) return User_age.TEEN;
-    else return User_age.CHILD;
+    else return User_age.MINOR;
   }
 }

@@ -131,3 +131,15 @@ export class InvalidEmailException extends HttpException {
     );
   }
 }
+
+export class EnoughAgeException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Idade insuficiente',
+        error: 'ENOUGH_AGE',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

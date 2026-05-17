@@ -91,9 +91,19 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
+    const userAge = this.user_age.getAge(updateUserDto.birthDate!);
+
     await this.prisma.user.update({
       where: { id },
-      data: updateUserDto,
+      data: {
+        name: updateUserDto.name,
+        username: updateUserDto.username,
+        email: updateUserDto.email,
+        birthDate: updateUserDto.birthDate,
+        avatar: updateUserDto.avatar,
+        cep: updateUserDto.cep,
+        age: userAge,
+      },
     });
 
     return `Usuário atualizado com sucesso!`;

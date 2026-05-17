@@ -15,8 +15,7 @@ enum Appropriate_age {
 
 enum User_age {
   ADULT
-  TEEN
-  CHILD
+  MINOR
 }
 
 enum Status_Ticket {

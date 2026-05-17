@@ -19,8 +19,7 @@ export type Appropriate_age = (typeof Appropriate_age)[keyof typeof Appropriate_
 
 export const User_age = {
   ADULT: 'ADULT',
-  TEEN: 'TEEN',
-  CHILD: 'CHILD'
+  MINOR: 'MINOR'
 } as const
 
 export type User_age = (typeof User_age)[keyof typeof User_age]

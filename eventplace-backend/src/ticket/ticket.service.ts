@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  EnoughAgeException,
   EnoughTicket,
   InvalidEmailException,
   NotExistTicket,
@@ -7,6 +8,7 @@ import {
 import { PrismaService } from 'src/prisma.service';
 import { EmailService } from 'src/utils/email';
 import { generateQRCode } from 'src/utils/qr.generator';
+import { Appropriate_age, User_age } from './../../generated/prisma/enums';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 
 @Injectable()
@@ -21,14 +23,29 @@ export class TicketService {
       where: {
         id: createTicketDto.ticketTypeId,
       },
+      include: {
+        event: true,
+      },
     });
 
-    if (userTicket === null) {
+    if (!userTicket) {
       throw new NotExistTicket();
     }
 
-    if (userTicket?.quantity === 0) {
+    if (userTicket.quantity === 0) {
       throw new EnoughTicket();
+    }
+
+    if (userTicket.event.appropriate_age === Appropriate_age.ADULT) {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (user?.age === User_age.MINOR) {
+        throw new EnoughAgeException();
+      }
     }
 
     const buyTicket = await this.prisma.ticket.create({
