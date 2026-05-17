@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { verify } from '@node-rs/argon2';
 import { EmailService } from 'src/utils/email';
 import { GetCep } from 'src/utils/get.cep.utils';
 import { UserAge } from 'src/utils/user.age';
 import {
   DateInvalidException,
   EmailOrCodeInvalidException,
+  InvalidPasswordException,
   UserAlreadyExistsException,
 } from '../errors/user.error';
 import { PrismaService } from '../prisma.service';
@@ -108,6 +110,37 @@ export class UserService {
 
     return `Usuário atualizado com sucesso!`;
   }
+
+  async updatePassword(id: string, password: string, oldPasswordUser: string) {
+    const oldPasswordDB = await this.prisma.user.findUnique({
+      where: { id },
+      select: { password: true },
+    });
+
+    if (!oldPasswordDB) {
+      throw new InvalidPasswordException();
+    }
+
+    const passwordMatch = await verify(oldPasswordDB.password, oldPasswordUser);
+
+    if (!passwordMatch) {
+      throw new InvalidPasswordException();
+    }
+
+    await this.prisma.sessionList.deleteMany({
+      where: { userId: id },
+    });
+
+    await this.prisma.user.update({
+      where: { id },
+      data: {
+        password: await hashPassword(password),
+      },
+    });
+
+    return `Senha atualizada com sucesso!`;
+  }
+
   async remove(id: string, token: string) {
     await this.prisma.user.delete({
       where: { id },

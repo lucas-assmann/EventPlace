@@ -61,13 +61,30 @@ export class AuthService {
       where: { token },
     });
 
-    const blacklistedToken = await this.prisma.blackList.create({
+    await this.prisma.blackList.create({
       data: {
         token,
       },
     });
 
-    return blacklistedToken;
+    return 'Deslogado com sucesso!';
+  }
+
+  @Cron(CronExpression.EVERY_HOUR)
+  async expiredTokenSessionList() {
+    const sessions = await this.prisma.sessionList.findMany();
+
+    for (const session of sessions) {
+      // eslint-disable-next-line
+      const decoded = this.jwtService.decode(session.token) as { exp: number };
+      const isExpired = decoded.exp < Math.floor(Date.now() / 1000);
+
+      if (isExpired) {
+        await this.prisma.sessionList.deleteMany({
+          where: { token: session.token },
+        });
+      }
+    }
   }
 
   @Cron(CronExpression.EVERY_HOUR)

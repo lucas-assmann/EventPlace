@@ -143,3 +143,15 @@ export class EnoughAgeException extends HttpException {
     );
   }
 }
+
+export class InvalidPasswordException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Senha inválida',
+        error: 'INVALID_PASSWORD',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

@@ -5,6 +5,7 @@ import {
   Get,
   Patch,
   Post,
+  Put,
   Query,
   Req,
 } from '@nestjs/common';
@@ -12,7 +13,7 @@ import type { Request } from 'express';
 import { extractTokenFromHeader } from 'src/utils/auth.utils';
 import { Public } from 'src/utils/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdatePasswordDto, UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
 interface AuthRequest extends Request {
@@ -43,6 +44,19 @@ export class UserController {
   update(@Req() request: AuthRequest, @Body() updateUserDto: UpdateUserDto) {
     const id = request.user.id;
     return this.userService.update(id, updateUserDto);
+  }
+
+  @Put('password')
+  updatePassword(
+    @Req() request: AuthRequest,
+    @Body() updatePasswordDto: UpdatePasswordDto,
+  ) {
+    const id = request.user.id;
+    return this.userService.updatePassword(
+      id,
+      updatePasswordDto.password,
+      updatePasswordDto.oldPassword,
+    );
   }
 
   @Delete()
