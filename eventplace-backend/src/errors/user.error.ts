@@ -155,3 +155,15 @@ export class InvalidPasswordException extends HttpException {
     );
   }
 }
+
+export class NeededValidationException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Validação necessária',
+        error: 'NEEDED_VALIDATION',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

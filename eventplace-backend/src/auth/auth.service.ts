@@ -4,6 +4,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { verify } from '@node-rs/argon2';
 import {
   ActiveUserException,
+  NeededValidationException,
   UserNotFoundException,
 } from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
@@ -24,6 +25,10 @@ export class AuthService {
 
     if (!user) {
       throw new UserNotFoundException();
+    }
+
+    if (user.isVerified === false) {
+      throw new NeededValidationException();
     }
 
     const verifyToken = await this.prisma.sessionList.findFirst({
