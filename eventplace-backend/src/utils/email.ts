@@ -40,7 +40,7 @@ export class EmailService {
     await this.transporter.sendMail({
       from: this.configService.get('GMAIL_USER'),
       to: email,
-      subject: 'Criação de conta',
+      subject: 'Verificação de email',
       html: `<a href="${url}">Confirmar conta</a>`,
     });
 
