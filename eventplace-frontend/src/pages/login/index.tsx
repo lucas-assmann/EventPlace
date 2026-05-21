@@ -1,5 +1,6 @@
 import heroImage from '@/assets/hero.png'
 import loginImage from '@/assets/login-image.jpg'
+import { DialogDemo } from '@/components/dialog'
 import {
   LoginField,
   LoginImagePanel,
@@ -11,12 +12,18 @@ import {
   TypographyMuted,
   TypographyP,
 } from '@/components/ui/typography'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Mail } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false)
+  const [open, setOpen] = useState(false)
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setOpen(true)
+  }
 
   return (
     <LoginShell
@@ -57,7 +64,7 @@ export function Login() {
             Faça login no EventPlace e continue descobrindo eventos perfeitos para sua próxima noite incrível.
           </TypographyMuted>
 
-          <form className="mt-5 space-y-4">
+          <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
             <LoginField
               id="email"
               label="Email"
@@ -103,6 +110,16 @@ export function Login() {
             >
               Entrar
             </Button>
+
+            <DialogDemo
+              open={open}
+              onOpenChange={setOpen}
+              title="Verifique seu email!"
+              description="Você precisa verificar o email para acessar sua conta!"
+              link="/login"
+              Icon={<Mail className="text-blue-500 size-6 mt-1 bg-blue-300 rounded-md p-1" />}
+              text="Ok"
+            />
           </form>
 
           <div className="mt-7 space-y-3 text-center">

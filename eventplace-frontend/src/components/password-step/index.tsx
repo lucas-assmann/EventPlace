@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { passwordSchema, type PasswordData } from '@/schema/password-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeOff, ShieldAlert } from 'lucide-react'
+import { Check, Eye, EyeOff, ShieldAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -66,7 +66,7 @@ export function PasswordStep({ onNext }: Props) {
         <Label className="mt-2 flex flex-col items-start gap-1 text-[0.82rem] text-white/70">
           <p className="flex items-center gap-1">
             <ShieldAlert className="text-red-700" />
-            A senha deve conter no mínimo 8 caracteres.
+            A senha deve conter no mínimo 6 caracteres.
           </p>
           <p className="flex items-center gap-1">
             <ShieldAlert className="text-red-700" />
@@ -90,6 +90,7 @@ export function PasswordStep({ onNext }: Props) {
         description="Sua conta foi criada com sucesso!🥳"
         link="/login"
         text="Ir para Login"
+        Icon={<Check className="text-green-500 size-6 mt-1 bg-green-300 rounded-md p-1" />}
       />
 
       <div className="mt-7 space-y-3 text-center">
