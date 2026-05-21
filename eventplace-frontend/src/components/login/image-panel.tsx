@@ -30,7 +30,7 @@ export function LoginImagePanel({
   }, [slides.length])
 
   return (
-    <section className="relative hidden overflow-hidden border-r border-white/10 lg:block">
+    <section className="relative hidden overflow-hidden border-r border-white/10 min-[600px]:block">
       {slides.map((src, index) => (
         <img
           key={`${src}-${index}`}

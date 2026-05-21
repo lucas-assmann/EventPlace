@@ -6,6 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff, ShieldAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { DialogDemo } from '../dialog'
+import { TypographyP } from '../ui/typography'
 
 interface Props {
   onNext: (data: PasswordData) => void
@@ -13,13 +16,21 @@ interface Props {
 
 export function PasswordStep({ onNext }: Props) {
   const [showPassword, setShowPassword] = useState(false)
+  const [open, setOpen] = useState(false)
+
 
   const { register, handleSubmit, formState: { errors } } = useForm<PasswordData>({
     resolver: zodResolver(passwordSchema),
   })
 
+  const handleSubmitData = (data: PasswordData) => {
+    setOpen(true)
+    console.log(data)
+    onNext(data)
+  }
+
   return (
-    <form onSubmit={handleSubmit(onNext)} className="space-y-4">
+    <form onSubmit={handleSubmit(handleSubmitData)} className="space-y-4">
       <div>
         <LoginField
           id="email"
@@ -52,10 +63,10 @@ export function PasswordStep({ onNext }: Props) {
         />
         {errors.password && <span className="text-sm text-red-400">{errors.password.message}</span>}
 
-        <Label className="mt-1 flex flex-col items-start gap-1 text-[0.82rem] text-white/70">
+        <Label className="mt-2 flex flex-col items-start gap-1 text-[0.82rem] text-white/70">
           <p className="flex items-center gap-1">
             <ShieldAlert className="text-red-700" />
-            A senha deve conter no mínimo 6 caracteres.
+            A senha deve conter no mínimo 8 caracteres.
           </p>
           <p className="flex items-center gap-1">
             <ShieldAlert className="text-red-700" />
@@ -71,6 +82,31 @@ export function PasswordStep({ onNext }: Props) {
       >
         Criar Conta
       </Button>
+
+      <DialogDemo
+        open={open}
+        onOpenChange={setOpen}
+        title="Conta Criada🎆"
+        description="Sua conta foi criada com sucesso!🥳"
+        link="/login"
+        text="Ir para Login"
+      />
+
+      <div className="mt-7 space-y-3 text-center">
+        <TypographyP className="text-sm font-medium leading-none text-white/70">
+          Errou algo?
+        </TypographyP>
+        <Button
+          asChild
+          variant="outline"
+          onClick={window.location.reload}
+          className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-red-500 transition-colors hover:text-red-700 hover:bg-red-300"
+        >
+          <Link to="/register">
+            <span className="relative">Resetar cadastro</span>
+          </Link>
+        </Button>
+      </div>
     </form>
   )
 }

@@ -4,6 +4,8 @@ import type { RegisterDTO } from '@/interface/register-user-interface'
 import { personalDataSchema, type PersonalData } from '@/schema/personal-data-user-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { TypographyP } from '../ui/typography'
 
 interface Props {
   onNext: (data: Pick<RegisterDTO, 'name' | 'username' | 'birthDate'>) => void
@@ -58,6 +60,21 @@ export function PersonalDataStep({ onNext }: Props) {
       >
         Próximo
       </Button>
+
+      <div className="mt-7 space-y-3 text-center">
+        <TypographyP className="text-sm font-medium leading-none text-white/70">
+          Já tem uma conta?
+        </TypographyP>
+        <Button
+          asChild
+          variant="outline"
+          className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-white transition-colors hover:text-black"
+        >
+          <Link to="/login">
+            <span className="relative">Faça login agora!</span>
+          </Link>
+        </Button>
+      </div>
     </form>
   )
 }

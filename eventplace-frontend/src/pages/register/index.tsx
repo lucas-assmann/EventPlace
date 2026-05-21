@@ -5,13 +5,11 @@ import { LocationStep } from '@/components/location-step'
 import { PasswordStep } from '@/components/password-step'
 import { PersonalDataStep } from '@/components/personal-data-user-step'
 import { ProgressStep } from '@/components/progress-step'
-import { Button } from '@/components/ui/button'
 import type { LocationData } from '@/schema/location-schema'
 import type { PasswordData } from '@/schema/password-schema'
 import type { PersonalData } from '@/schema/personal-data-user-schema'
 import { Lock, MapPin, User } from 'lucide-react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 type RegisterDTO = PersonalData & LocationData & PasswordData
 
@@ -36,7 +34,7 @@ export function Register() {
     }
   }
 
-  return (                          
+  return (
     <div className="relative min-h-svh overflow-hidden bg-black text-white">
       <img
         src={loginImage}
@@ -45,66 +43,49 @@ export function Register() {
       />
       <div className="absolute inset-0 bg-black/60" />
 
-      <main className="relative z-10 flex min-h-svh items-center justify-center px-4 py-10 sm:px-6">
-        <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/40 backdrop-blur-[100px] sm:p-10">
+      <main className="relative z-10 flex min-h-svh items-center justify-center py-10 sm:px-6 px-0">      
+        <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/40 backdrop-blur-[100px] sm:p-10 h-full sm:h-auto py-6 px-2 flex flex-col justify-between">
+        <div className="mx-auto mb-8 max-w-md text-center">
 
-          <div className="mx-auto mb-8 max-w-md text-center">
-
-            <div className="relative flex mb-5 h-20 w-20 items-center justify-center mx-auto">
-              <svg
-                viewBox="0 0 64 64"
-                aria-hidden="true"
-                className="absolute inset-0 h-full w-full text-[#7C3AE0]"
-              >
-                <path
-                  d="M32 6 58 54H6L32 6Z"
-                  fill="black"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className="relative mt-3.5 text-xl font-black tracking-tight text-gray-300">
-                EP
-              </span>
-            </div>
-
-            <TypographyH2 className="mb-4 border-0 p-0 font-semibold leading-tight tracking-tight text-white">
-              Bem Vindo ao{' '}
-              <TypographyP className="text-[#7C3AE0] text-3xl font-bold">EventPlace</TypographyP>
-            </TypographyH2>
-            <TypographyMuted className="mx-auto max-w-lg text-sm leading-6 text-white/70">
-              Crie sua conta para começar a explorar eventos incríveis e encontrar o que mais combina com você.
-            </TypographyMuted>
-          </div>
-
-
-          <div className="flex justify-center gap-4 mb-6">
-            <ProgressStep steps={STEPS} currentStep={currentStep} />
-          </div>
-
-          <div className="mx-auto w-full max-w-xl">
-            {currentStep === 0 && <PersonalDataStep onNext={handleNext} />}
-            {currentStep === 1 && <LocationStep onNext={handleNext} />}
-            {currentStep === 2 && <PasswordStep onNext={handleNext} />}
-          </div>
-
-          <div className="mt-7 space-y-3 text-center">
-            <TypographyP className="text-sm font-medium leading-none text-white/70">
-              Já tem uma conta?
-            </TypographyP>
-            <Button
-              asChild
-              variant="outline"
-              className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-white transition-colors hover:text-black"
+          <div className="relative flex mb-5 h-20 w-20 items-center justify-center mx-auto">
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full text-[#7C3AE0]"
             >
-              <Link to="/login">
-                <span className="relative">Faça login agora!</span>
-              </Link>
-            </Button>
+              <path
+                d="M32 6 58 54H6L32 6Z"
+                fill="black"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="relative mt-3.5 text-xl font-black tracking-tight text-gray-300">
+              EP
+            </span>
           </div>
 
+          <TypographyH2 className="mb-4 border-0 p-0 font-semibold leading-tight tracking-tight text-white">
+            Bem Vindo ao{' '}
+            <TypographyP className="text-[#7C3AE0] text-3xl font-bold">EventPlace</TypographyP>
+          </TypographyH2>
+          <TypographyMuted className="mx-auto max-w-lg text-sm leading-6 text-white/70">
+            Crie sua conta para começar a explorar eventos incríveis e encontrar o que mais combina com você.
+          </TypographyMuted>
         </div>
+
+
+        <div className="flex justify-center gap-4 mb-6">
+          <ProgressStep steps={STEPS} currentStep={currentStep} />
+        </div>
+
+        <div className="mx-auto w-full max-w-xl">
+          {currentStep === 0 && <PersonalDataStep onNext={handleNext} />}
+          {currentStep === 1 && <LocationStep onNext={handleNext} />}
+          {currentStep === 2 && <PasswordStep onNext={handleNext} />}
+        </div>
+      </div>
       </main>
     </div>
   )

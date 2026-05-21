@@ -6,7 +6,6 @@ export function getCep(cep: string) {
   return axios.get(url)
     .then(response => response.data)
     .catch(error => {
-      console.error('Erro ao buscar CEP:', error);
-      throw error;
+      throw new Error(error.message);
     });
 }

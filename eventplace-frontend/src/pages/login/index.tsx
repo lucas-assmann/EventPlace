@@ -50,12 +50,6 @@ export function Login() {
         </div>
 
         <div className="w-full max-w-97.5 text-left ">
-          <img
-            src={loginImage}
-            alt=""
-            className="mb-10 h-36 w-full rounded-lg object-cover opacity-75 lg:hidden"
-          />
-
           <TypographyH2 className="mb-4 border-0 p-0 text-4xl font-semibold leading-tight tracking-tight text-white">
             Bem Vindo de volta!
           </TypographyH2>
