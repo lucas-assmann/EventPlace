@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { CalendarDays, MapPin, Menu, Search, Ticket } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import { Logo } from '../logo'
 
 interface HeaderProps {
   user?: {
@@ -25,15 +26,7 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
   return (
     <header className="sticky flex h-16 border-b border-purple-900/30 bg-zinc-950 lg:justify-around">
       <div className="max-w-7xl flex items-center gap-4 justify-around w-full">
-        <Link to="/" className="flex shrink-0 items-center gap-2.5">
-          <svg viewBox="0 0 32 32" width="32" height="32">
-            <polygon points="16,3 29,27 3,27" fill="transparent" stroke="#7C3AED" strokeWidth="2.5" strokeLinejoin="round" />
-            <text x="16" y="23" textAnchor="middle" fill="#e2e8f0" fontSize="9" fontWeight="700" fontFamily="sans-serif">EP</text>
-          </svg>
-          <span className="font-semibold tracking-wide text-white">
-            Event<span className="text-purple-500">Place</span>
-          </span>
-        </Link>
+        <Logo />
 
         <div className="relative hidden flex-1  sm:block max-w-2xl">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30 lg:width-full" />
@@ -80,7 +73,7 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
             size="sm"
             className="hidden border-purple-500/40 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:text-purple-300 sm:flex"
           >
-            <Link to="/ingressos">
+            <Link to="/ticket">
               <Ticket className="h-4 w-4" />
               Ingressos
               {ticketCount > 0 && (

@@ -1,5 +1,4 @@
 import { EventCard, type EventCardProps } from "@/components/event-card";
-import { Header } from "@/components/header";
 import { TypographyH1 } from "@/components/ui/typography";
 
 const events: EventCardProps[] = [
@@ -8,7 +7,7 @@ const events: EventCardProps[] = [
   { id: '3', title: 'Festival Eletrônico Universo', category: 'Show', location: 'Allianz Parque, SP', date: '15 Jul 2025 · 18h00', ticketsAvailable: 890, author: { name: 'Blue Note SP', rating: 4.2, avatarUrl: '/avatars/bluenote.jpg' } },
   { id: '4', title: 'Festival da Gastronomia Paulistana', category: 'Gastronomia', location: 'Ibirapuera, SP', date: '22 Jul 2025 · 12h00', ticketsAvailable: 560, author: { name: 'Blue Note SP', rating: 4.7, avatarUrl: '/avatars/bluenote.jpg' } },
   { id: '1', title: 'Noite de Jazz & Blues', category: 'Música', location: 'Blue Note SP, São Paulo', date: '28 Jun 2025 · 21h00', ticketsAvailable: 142, author: { name: 'Blue Note SP', rating: 4, avatarUrl: '/avatars/bluenote.jpg' } },
-  { id: '2', title: 'Brasil Game Show 2025', category: 'Games', location: 'Expo Center Norte, SP', date: '10 Jul 2025 · 10h00', ticketsAvailable: 2340, author: { name: 'Blue Note SP', rating: 4.5} },
+  { id: '2', title: 'Brasil Game Show 2025', category: 'Games', location: 'Expo Center Norte, SP', date: '10 Jul 2025 · 10h00', ticketsAvailable: 2340, author: { name: 'Blue Note SP', rating: 4.5 } },
   { id: '3', title: 'Festival Eletrônico Universo', category: 'Show', location: 'Allianz Parque, SP', date: '15 Jul 2025 · 18h00', ticketsAvailable: 890, author: { name: 'Blue Note SP', rating: 4.2, avatarUrl: '/avatars/bluenote.jpg' } },
   { id: '4', title: 'Festival da Gastronomia Paulistana', category: 'Gastronomia', location: 'Ibirapuera, SP', date: '22 Jul 2025 · 12h00', ticketsAvailable: 560, author: { name: 'Blue Note SP', rating: 4.7, avatarUrl: '/avatars/bluenote.jpg' } },
 ]
@@ -17,7 +16,6 @@ const events: EventCardProps[] = [
 export function Home() {
   return (
     <div className="min-h-screen bg-zinc-950">
-      <Header />
       <main className="mx-auto max-w-7xl px-4 py-10">
         <div className="ml-3 border-b-2 border-purple-500/50 pb-3">
           <TypographyH1 className="font-bold text-white w-full">Eventos em <span className="text-[#7C3AED] font-bold text-[56px]">destaque</span></TypographyH1>
