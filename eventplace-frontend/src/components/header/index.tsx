@@ -1,8 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { CalendarDays, MapPin, Menu, Search, Ticket } from 'lucide-react'
+import { CalendarDays, MapPin, Menu, PlusCircle, Search, Ticket } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import { DropdownAvatar } from '../dropdown-avatar'
 import { Logo } from '../logo'
 
 interface HeaderProps {
@@ -37,6 +38,21 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-4">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className={pathname === '/criar-evento'
+              ? 'text-purple-400 bg-purple-500/10 hover:bg-purple-500/15 hover:text-purple-300'
+              : 'text-white/60 hover:text-white hover:bg-white/6'
+            }
+          >
+            <Link to="/criar-evento">
+              <PlusCircle className="h-4 w-4" />
+              Criar Evento
+            </Link>
+          </Button>
+
           <Button
             asChild
             variant="ghost"
@@ -86,13 +102,15 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
 
           <div className="hidden h-5 w-px bg-white/10 sm:block" />
 
-          <Avatar className="h-9 w-9 cursor-pointer border-2 border-purple-500/40 transition-colors hover:border-purple-500">
-            <AvatarImage src={user?.avatarUrl} />
-            <AvatarFallback className="bg-purple-950 text-sm font-semibold text-purple-300">
-              {initials ?? 'EP'}
-            </AvatarFallback>
-          </Avatar>
-
+          <DropdownAvatar>
+            <Avatar className="border-white/10 bg-white/5 cursor-pointer">
+              {user?.avatarUrl ? (
+                <AvatarImage src={user.avatarUrl} alt={user.name} className="object-cover" />
+              ) : (
+                <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED]">{initials}</AvatarFallback>
+              )}
+            </Avatar>
+          </DropdownAvatar>
           <Button variant="ghost" size="icon" className="text-white/60 sm:hidden">
             <Menu className="h-5 w-5" />
           </Button>
