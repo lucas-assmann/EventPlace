@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { passwordSchema, type PasswordData } from '@/schema/password-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Check, Eye, EyeOff, ShieldAlert } from 'lucide-react'
+import { Eye, EyeOff, ShieldAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -12,20 +12,18 @@ import { TypographyP } from '../ui/typography'
 
 interface Props {
   onNext: (data: PasswordData) => void
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  dialogError?: string
 }
 
-export function PasswordStep({ onNext }: Props) {
+export function PasswordStep({ onNext, open, onOpenChange, dialogError }: Props) {
   const [showPassword, setShowPassword] = useState(false)
-  const [open, setOpen] = useState(false)
-
-
   const { register, handleSubmit, formState: { errors } } = useForm<PasswordData>({
     resolver: zodResolver(passwordSchema),
   })
 
   const handleSubmitData = (data: PasswordData) => {
-    setOpen(true)
-    console.log(data)
     onNext(data)
   }
 
@@ -85,12 +83,13 @@ export function PasswordStep({ onNext }: Props) {
 
       <DialogDemo
         open={open}
-        onOpenChange={setOpen}
-        title="Conta Criada🎆"
-        description="Sua conta foi criada com sucesso!🥳"
-        link="/login"
-        text="Ir para Login"
-        Icon={<Check className="text-green-500 size-6 mt-1 bg-green-300 rounded-md p-1" />}
+        onOpenChange={onOpenChange}
+        title={dialogError ? 'Erro ao criar conta no EventPlace' : 'Conta Criada 🎆'}
+        description={dialogError || 'Sua conta foi criada com sucesso!'}
+        variant={dialogError ? 'error' : 'success'}
+        link={dialogError ? undefined : '/login'}
+        text={dialogError ? undefined : 'Ir para Login'}
+        showClose={!!dialogError}
       />
 
       <div className="mt-7 space-y-3 text-center">

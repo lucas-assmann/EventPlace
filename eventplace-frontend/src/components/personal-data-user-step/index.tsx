@@ -6,15 +6,24 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { TypographyP } from '../ui/typography'
+import { useEffect } from 'react'
 
 interface Props {
   onNext: (data: Pick<RegisterDTO, 'name' | 'username' | 'birthDate'>) => void
+  apiErrors: Record<string, string>
 }
 
-export function PersonalDataStep({ onNext }: Props) {
-  const { register, handleSubmit, formState: { errors } } = useForm<PersonalData>({
+export function PersonalDataStep({ onNext, apiErrors }: Props) {
+  const { register, handleSubmit, setError, formState: { errors } } = useForm<PersonalData>({
     resolver: zodResolver(personalDataSchema),
   })
+
+  useEffect(() => {
+    if (!apiErrors) return
+    Object.entries(apiErrors).forEach(([field, message]) => {
+      setError(field as keyof PersonalData, { type: 'manual', message })
+    })
+  }, [apiErrors, setError])
 
   return (
     <form onSubmit={handleSubmit(onNext)} className="space-y-4">
