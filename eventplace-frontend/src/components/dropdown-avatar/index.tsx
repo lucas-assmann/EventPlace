@@ -7,6 +7,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
+import { useAuth } from "@/lib/use-auth"
+import api from "@/lib/user"
+import { useNavigate } from "react-router-dom"
 
 interface DropdownAvatarProps {
   children: React.ReactNode
@@ -14,6 +17,18 @@ interface DropdownAvatarProps {
 }
 
 export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
+  const { logout } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleLogout() {
+  try {
+    await api.post('/auth/logout')
+  } finally {
+    logout()
+    navigate('/login')
+  }
+}
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,7 +44,7 @@ export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
           <DropdownMenuItem className="cursor-pointer">
             Configurações
           </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
             Sair
           </DropdownMenuItem>
         </DropdownMenuGroup>

@@ -12,17 +12,39 @@ import {
   TypographyMuted,
   TypographyP,
 } from '@/components/ui/typography'
+import { useAuth } from '@/lib/use-auth'
+import api from '@/lib/user'
+import axios from 'axios'
 import { Eye, EyeOff, Mail } from 'lucide-react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+
+interface LoginData {
+  email: string
+  password: string
+}
 
 export function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [open, setOpen] = useState(false)
+  const [dialogError, setDialogError] = useState('')
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setOpen(true)
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginData>()
+  const { login } = useAuth()
+  const navigate = useNavigate()
+
+  async function handleSubmitData(data: LoginData) {
+    try {
+      const response = await api.post('/auth/login', data)
+      login(response.data.acess_token)
+      navigate('/')
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setDialogError(err.response?.data?.message ?? 'Email ou senha inválidos')
+        setOpen(true)
+      }
+    }
   }
 
   return (
@@ -35,8 +57,7 @@ export function Login() {
         />
       }
     >
-      <div className="w-full max-w-97.5 text-left ">
-
+      <div className="w-full max-w-97.5 text-left">
         <div className="relative flex mb-5 h-20 w-20 items-center justify-center mx-auto">
           <svg
             viewBox="0 0 64 64"
@@ -56,7 +77,7 @@ export function Login() {
           </span>
         </div>
 
-        <div className="w-full max-w-97.5 text-left ">
+        <div className="w-full max-w-97.5 text-left">
           <TypographyH2 className="mb-4 border-0 p-0 text-4xl font-semibold leading-tight tracking-tight text-white">
             Bem Vindo de volta!
           </TypographyH2>
@@ -64,44 +85,48 @@ export function Login() {
             Faça login no EventPlace e continue descobrindo eventos perfeitos para sua próxima noite incrível.
           </TypographyMuted>
 
-          <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-            <LoginField
-              id="email"
-              label="Email"
-              type="email"
-              placeholder="Digite seu email"
-            />
+          <form className="mt-5 space-y-4" onSubmit={handleSubmit(handleSubmitData)}>
+            <div>
+              <LoginField
+                id="email"
+                label="Email"
+                type="email"
+                placeholder="Digite seu email"
+                {...register('email')}
+              />
+              {errors.email && <span className="text-sm text-red-400">{errors.email.message}</span>}
+            </div>
 
-            <LoginField
-              id="password"
-              label="Senha"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Digite sua senha"
-              action={
-                <Button
-                  asChild
-                  variant="link"
-                  className="h-auto text-xs font-medium text-sky-400 hover:text-sky-300 cursor-pointer"
-                >
-                  <Link to="/forgot-password">Esqueceu sua senha?</Link>
-                </Button>
-              }
-              trailingIcon={
-                <button
-                  type="button"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                  aria-pressed={showPassword}
-                  onClick={() => setShowPassword((isVisible) => !isVisible)}
-                  className="cursor-pointer absolute right-3 top-1/2 flex size-4 -translate-y-1/2 items-center justify-center border-0 bg-transparent p-0 text-white/70 outline-none hover:text-white focus-visible:text-white"
-                >
-                  {showPassword ? (
-                    <EyeOff className="size-4" />
-                  ) : (
-                    <Eye className="size-4" />
-                  )}
-                </button>
-              }
-            />
+            <div>
+              <LoginField
+                id="password"
+                label="Senha"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Digite sua senha"
+                action={
+                  <Button
+                    asChild
+                    variant="link"
+                    className="h-auto text-xs font-medium text-sky-400 hover:text-sky-300 cursor-pointer"
+                  >
+                    <Link to="/forgot-password">Esqueceu sua senha?</Link>
+                  </Button>
+                }
+                trailingIcon={
+                  <button
+                    type="button"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-pressed={showPassword}
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="cursor-pointer absolute right-3 top-1/2 flex size-4 -translate-y-1/2 items-center justify-center border-0 bg-transparent p-0 text-white/70 outline-none hover:text-white focus-visible:text-white"
+                  >
+                    {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                  </button>
+                }
+                {...register('password')}
+              />
+              {errors.password && <span className="text-sm text-red-400">{errors.password.message}</span>}
+            </div>
 
             <Button
               type="submit"
@@ -114,11 +139,12 @@ export function Login() {
             <DialogDemo
               open={open}
               onOpenChange={setOpen}
-              title="Verifique seu email!"
-              description="Você precisa verificar o email para acessar sua conta!"
-              link="/login"
-              Icon={<Mail className="text-blue-500 size-6 mt-1 bg-blue-300 rounded-md p-1" />}
+              title={dialogError ? 'Erro ao entrar' : 'Verifique seu email!'}
+              description={dialogError || 'Você precisa verificar o email para acessar sua conta!'}
+              variant={dialogError ? 'error' : 'info'}
+              Icon={<Mail className="size-6 text-violet-200" />}
               text="Ok"
+              showClose
             />
           </form>
 
@@ -129,7 +155,7 @@ export function Login() {
             <Button
               asChild
               variant="outline"
-              className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-white transition-colors0 hover:text-black"
+              className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-white transition-colors hover:text-black"
             >
               <Link to="/register">
                 <span className="relative">Crie sua conta agora!</span>

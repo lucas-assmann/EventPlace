@@ -5,6 +5,7 @@ import { Home } from './pages/home'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { TicketsPage } from './pages/ticket'
+import { PrivateRoute } from './components/private-route'
 
 function RootLayout() {
   return (
@@ -22,10 +23,12 @@ function AuthLayout() {
 export function App() {
   return (
     <Routes>
-      <Route element={<RootLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/ticket" element={<TicketsPage />} />
-        <Route path="/event" element={<EventPage />} />
+      <Route element={<PrivateRoute />}>
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/ticket" element={<TicketsPage />} />
+          <Route path="/event" element={<EventPage />} />
+        </Route>
       </Route>
 
       <Route element={<AuthLayout />}>

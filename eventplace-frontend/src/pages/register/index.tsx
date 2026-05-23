@@ -1,11 +1,11 @@
 import loginImage from '@/assets/login-image.jpg'
 import { TypographyH2, TypographyMuted, TypographyP } from '@/components/ui/typography'
 
-import api from '@/api/user'
 import { LocationStep } from '@/components/location-step'
 import { PasswordStep } from '@/components/password-step'
 import { PersonalDataStep } from '@/components/personal-data-user-step'
 import { ProgressStep } from '@/components/progress-step'
+import api from '@/lib/user'
 import type { LocationData } from '@/schema/location-schema'
 import type { PasswordData } from '@/schema/password-schema'
 import type { PersonalData } from '@/schema/personal-data-user-schema'
