@@ -111,6 +111,13 @@ export class UserService {
     return `Usuário atualizado com sucesso!`;
   }
 
+  async findByEmail(email: string) {
+    return await this.prisma.user.findUnique({
+      where: { email },
+      select: { isVerified: true },
+    });
+  }
+
   async updatePassword(id: string, password: string, oldPasswordUser: string) {
     const oldPasswordDB = await this.prisma.user.findUnique({
       where: { id },

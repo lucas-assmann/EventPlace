@@ -59,6 +59,12 @@ export class UserController {
     );
   }
 
+  @Public()
+  @Get('verify-status')
+  findByEmail(@Query('email') email: string) {
+    return this.userService.findByEmail(email);
+  }
+
   @Delete()
   remove(@Req() request: AuthRequest) {
     const user = request.user;

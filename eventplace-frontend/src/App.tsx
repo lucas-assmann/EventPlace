@@ -6,6 +6,7 @@ import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { TicketsPage } from './pages/ticket'
 import { PrivateRoute } from './components/private-route'
+import { VerifyCode } from './pages/verify-code'
 
 function RootLayout() {
   return (
@@ -34,6 +35,7 @@ export function App() {
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-code" element={<VerifyCode />} />
       </Route>
     </Routes>
   )

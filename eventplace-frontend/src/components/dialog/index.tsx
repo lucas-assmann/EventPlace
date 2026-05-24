@@ -35,24 +35,24 @@ const variantStyles: Record<Variant, {
   label: string
 }> = {
   success: {
-    badge: 'border-violet-400/40 bg-violet-500/10 text-violet-50',
-    icon: 'border-violet-400/35 bg-violet-500/15 text-violet-100',
-    title: 'text-violet-50',
-    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.12),transparent_30%)]',
+    badge: 'border-green-400/40 bg-green-500/10 text-green-50',
+    icon: 'border-green-400/35 bg-green-500/15 text-green-100',
+    title: 'text-green-50',
+    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(34,197,94,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(34,197,94,0.12),transparent_30%)]',
     label: 'Sucesso'
   },
   error: {
-    badge: 'border-violet-400/40 bg-violet-500/10 text-violet-50',
-    icon: 'border-violet-400/35 bg-violet-500/15 text-violet-100',
-    title: 'text-violet-50',
-    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.12),transparent_30%)]',
+    badge: 'border-red-400/40 bg-red-500/10 text-red-50',
+    icon: 'border-red-400/35 bg-red-500/15 text-red-100',
+    title: 'text-red-50',
+    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(239,68,68,0.12),transparent_30%)]',
     label: 'Atenção'
   },
   info: {
-    badge: 'border-violet-400/40 bg-violet-500/10 text-violet-50',
-    icon: 'border-violet-400/35 bg-violet-500/15 text-violet-100',
-    title: 'text-violet-50',
-    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.12),transparent_30%)]',
+    badge: 'border-gray-400/40 bg-gray-500/10 text-gray-50',
+    icon: 'border-gray-400/35 bg-gray-500/15 text-gray-100',
+    title: 'text-gray-50',
+    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(107,114,128,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(107,114,128,0.12),transparent_30%)]',
     label: 'Informação'
   }
 }
@@ -115,7 +115,7 @@ export function DialogDemo({
                   <Button
                     type="button"
                     variant="ghost"
-                    className="h-10 rounded-xl border border-violet-400/25 bg-white/5 text-white hover:bg-white/10 cursor-pointer"
+                    className="h-10 rounded-xl border border-violet-400/25 text-white hover:bg-white cursor-pointer"
                   >
                     Fechar
                   </Button>
@@ -126,7 +126,7 @@ export function DialogDemo({
                   <Button
                     asChild
                     type="button"
-                    className="h-10 rounded-xl bg-[#7C3AED] text-white shadow-[0_16px_40px_-18px_rgba(124,58,237,0.85)] hover:bg-[#6D28D9]"
+                    className="h-10 rounded-xl bg-[#7C3AED] text-white shadow-[0_16px_40px_-18px_rgba(124,58,237,0.85)] hover:bg-white cursor-pointer hover:text-black"
                   >
                     <Link to={link}>{text}</Link>
                   </Button>

@@ -24,6 +24,7 @@ export function PasswordStep({ onNext, open, onOpenChange, dialogError }: Props)
   })
 
   const handleSubmitData = (data: PasswordData) => {
+    localStorage.setItem('pendingEmail', data.email)
     onNext(data)
   }
 
@@ -87,9 +88,10 @@ export function PasswordStep({ onNext, open, onOpenChange, dialogError }: Props)
         title={dialogError ? 'Erro ao criar conta no EventPlace' : 'Conta Criada 🎆'}
         description={dialogError || 'Sua conta foi criada com sucesso!'}
         variant={dialogError ? 'error' : 'success'}
-        link={dialogError ? undefined : '/login'}
-        text={dialogError ? undefined : 'Ir para Login'}
+        link={dialogError ? undefined : '/verify-code'}
+        text={dialogError ? undefined : 'Ok'}
         showClose={!!dialogError}
+
       />
 
       <div className="mt-7 space-y-3 text-center">
