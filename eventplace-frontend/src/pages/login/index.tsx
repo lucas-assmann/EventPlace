@@ -12,8 +12,8 @@ import {
   TypographyMuted,
   TypographyP,
 } from '@/components/ui/typography'
+import api from '@/lib/api'
 import { useAuth } from '@/lib/use-auth'
-import api from '@/lib/user'
 import axios from 'axios'
 import { Eye, EyeOff, Mail } from 'lucide-react'
 import { useState } from 'react'

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { TypographyH2, TypographyP } from "@/components/ui/typography"
-import api from "@/lib/user"
+import api from "@/lib/api"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 

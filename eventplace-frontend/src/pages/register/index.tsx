@@ -5,13 +5,13 @@ import { LocationStep } from '@/components/location-step'
 import { PasswordStep } from '@/components/password-step'
 import { PersonalDataStep } from '@/components/personal-data-user-step'
 import { ProgressStep } from '@/components/progress-step'
-import api from '@/lib/user'
 import type { LocationData } from '@/schema/location-schema'
 import type { PasswordData } from '@/schema/password-schema'
 import type { PersonalData } from '@/schema/personal-data-user-schema'
 import axios from 'axios'
 import { Lock, MapPin, User } from 'lucide-react'
 import { useState } from 'react'
+import api from '@/lib/api'
 
 type RegisterDTO = PersonalData & LocationData & PasswordData
 

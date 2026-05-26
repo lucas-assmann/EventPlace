@@ -65,12 +65,21 @@ export class EventService {
   }
 
   async findAll() {
-    return await this.prisma.event.findMany();
+    return await this.prisma.event.findMany({
+      include: {
+        localization: true,
+        ticketType: true,
+      },
+    });
   }
 
   async findOne(id: string) {
     const event = await this.prisma.event.findUnique({
       where: { id },
+      include: {
+        localization: true,
+        ticketType: true,
+      },
     });
     return event;
   }
@@ -78,6 +87,10 @@ export class EventService {
   async update(id: string, updateEventDto: UpdateEventDto, userId: string) {
     const event = await this.prisma.event.findUnique({
       where: { id },
+      include: {
+        localization: true,
+        ticketType: true,
+      },
     });
 
     if (event!.userId !== userId) {

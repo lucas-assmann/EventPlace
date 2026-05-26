@@ -7,8 +7,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
+import api from "@/lib/api"
 import { useAuth } from "@/lib/use-auth"
-import api from "@/lib/user"
 import { useNavigate } from "react-router-dom"
 
 interface DropdownAvatarProps {
