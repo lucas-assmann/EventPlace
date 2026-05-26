@@ -34,6 +34,12 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Get()
+  findOne(@Req() request: AuthRequest) {
+    const id = request.user.id;
+    return this.userService.findOne(id);
+  }
+
   @Public()
   @Get('verify')
   verifyEmail(@Query('code') code: string) {

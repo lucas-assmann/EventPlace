@@ -11,7 +11,6 @@ export function Home() {
 
   api.get<EventDTO[]>('/event')
     .then(response => {
-      console.log(JSON.stringify(response.data, null, 2))
       setEvents(response.data)
     })
     .catch(console.error)

@@ -72,6 +72,12 @@ export class UserService {
     return 'Usuário criado com sucesso!';
   }
 
+  async findOne(id: string) {
+    return await this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
+
   async verifyEmail(code: string) {
     const user = await this.prisma.user_verification.findUnique({
       where: { code },

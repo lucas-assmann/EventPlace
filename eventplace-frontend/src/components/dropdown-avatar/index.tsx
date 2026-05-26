@@ -38,7 +38,7 @@ export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer" onClick={() => navigate('/profile')}>
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
