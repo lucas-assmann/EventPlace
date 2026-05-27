@@ -1,25 +1,10 @@
 import { Button } from '@/components/ui/button'
 import type { EventDTO } from '@/interface/event-interface'
-import { ArrowRight, Calendar, MapPin, Ticket } from 'lucide-react'
+import { ArrowRight, Calendar, MapPin, Ticket, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { TypographyP } from '../ui/typography'
 
-export interface EventCardProps {
-  id: string
-  title: string
-  category: string
-  location: string
-  date: string
-  ticketsAvailable: number
-  imageUrl?: string
-  author: {
-    name: string
-    avatarUrl?: string
-    rating?: number
-  }
-}
-
-
-export function EventCard({ id, title, appropriate_age, localization, date, max_person_quantity, banner }: EventDTO) {
+export function EventCard({ id, title, appropriate_age, localization, date, max_person_quantity, banner, user }: EventDTO) {
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/7 bg-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/40 cursor-pointer">
       {banner ? (
@@ -31,21 +16,21 @@ export function EventCard({ id, title, appropriate_age, localization, date, max_
       )}
 
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <span className="w-fit rounded-full border border-purple-500/20 bg-purple-500/10 px-2.5 py-0.5 text-[11px] font-medium text-purple-400">
+        <TypographyP className="w-fit rounded-full border border-purple-500/20 bg-purple-500/10 px-2.5 py-0.5 text-xs font-medium text-purple-400">
           {appropriate_age}
-        </span>
+        </TypographyP>
 
-        <p className="font-semibold leading-tight text-white">{title}</p>
+        <TypographyP className="font-bold text-white text-xl">{title}</TypographyP>
 
         <div className="flex items-center gap-1.5 text-xs text-white/40">
-          <MapPin className="h-3 w-3 shrink-0" />
+          <MapPin className="h-3 w-3" />
           {localization?.[0]
             ? `${localization[0].street}, ${localization[0].city}`
             : 'Local não informado'}
         </div>
 
         <div className="flex items-center gap-1.5 text-xs text-white/35">
-          <Calendar className="h-3 w-3 shrink-0" />
+          <Calendar className="h-3 w-3" />
           {new Date(date).toLocaleDateString('pt-BR', {
             day: '2-digit',
             month: 'short',
@@ -55,8 +40,15 @@ export function EventCard({ id, title, appropriate_age, localization, date, max_
           })}
         </div>
 
-        <div className="mt-auto flex items-center justify-between border-t border-white/6 pt-3">
-          <div className="flex flex-col gap-0.5">
+        <div className="flex items-center gap-1.5 text-xs text-white/35">
+          <User className="h-3 w-3" />
+          <TypographyP className="text-xs text-white/40">
+            {user.name}
+          </TypographyP>
+        </div>
+
+        <div className="mt-auto flex items-center justify-between border-t border-white/6 pt-2">
+          <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-widest text-white/30">Ingressos</span>
             <span className="text-sm font-medium text-white">{(max_person_quantity ?? 0).toLocaleString('pt-BR')} disponíveis</span>
           </div>
@@ -66,7 +58,7 @@ export function EventCard({ id, title, appropriate_age, localization, date, max_
             variant="outline"
             className="border-purple-500/40 bg-purple-500/10 text-xs text-purple-400 hover:bg-purple-500/25 hover:text-purple-300"
           >
-            <Link to={`/eventos/${id}`}>
+            <Link to={`/event/${id}`}>
               <ArrowRight className="h-3 w-3" />
               Acessar
             </Link>

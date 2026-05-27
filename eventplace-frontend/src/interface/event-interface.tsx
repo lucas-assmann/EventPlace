@@ -39,6 +39,9 @@ export interface EventDTO {
   updatedAt: string;
   cep: string;
   userId: string;
-  localization: Localization[]; // é um array!
+  localization: Localization[];
   ticketType: TicketType[];
+  user: {
+    name: string;
+  }
 }

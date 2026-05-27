@@ -11,6 +11,7 @@ import { TicketsPage } from './pages/ticket'
 import { VerifyCode } from './pages/verify-code'
 import { useEffect, useState } from 'react'
 import { Profile } from './pages/profile'
+import { NotFound } from './pages/not-found'
 
 interface User {
   name: string;
@@ -57,6 +58,7 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-code" element={<VerifyCode />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )
