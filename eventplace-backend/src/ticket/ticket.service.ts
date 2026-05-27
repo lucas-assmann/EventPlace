@@ -143,6 +143,9 @@ export class TicketService {
       where: {
         userId,
       },
+      include: {
+        ticketType: true,
+      },
     });
 
     return allUserTicket;
