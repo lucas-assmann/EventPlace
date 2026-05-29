@@ -2,34 +2,19 @@ import { Header } from '@/components/header'
 import { Outlet, Route, Routes } from 'react-router-dom'
 import { Footer } from './components/footer'
 import { PrivateRoute } from './components/private-route'
-import api from './lib/api'
 import { EventPage } from './pages/event'
 import { Home } from './pages/home'
 import { Login } from './pages/login'
+import { NotFound } from './pages/not-found'
+import { Profile } from './pages/profile'
 import { Register } from './pages/register'
 import { TicketsPage } from './pages/ticket'
 import { VerifyCode } from './pages/verify-code'
-import { useEffect, useState } from 'react'
-import { Profile } from './pages/profile'
-import { NotFound } from './pages/not-found'
-
-interface User {
-  name: string;
-  avatarUrl: string;
-}
 
 function RootLayout() {
-  const [user, setUser] = useState<User | undefined>(undefined);
-
-  useEffect(() => {
-    api.get('/user')
-      .then(response => setUser(response.data))
-      .catch(console.error);
-  }, []);
-
   return (
     <div className="flex min-h-svh flex-col bg-zinc-950 px-4">
-      <Header user={user} ticketCount={3} />
+      <Header />
       <main className="flex-1">
         <Outlet />
       </main>

@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom'
 import { TypographyP } from '../ui/typography'
 
 export function EventCard({ id, title, appropriate_age, localization, date, max_person_quantity, banner, user }: EventDTO) {
+  console.log('EventCard', {
+    id,
+    title,
+    user,
+  })
+
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/7 bg-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/40 cursor-pointer">
       {banner ? (
@@ -43,7 +49,7 @@ export function EventCard({ id, title, appropriate_age, localization, date, max_
         <div className="flex items-center gap-1.5 text-xs text-white/35">
           <User className="h-3 w-3" />
           <TypographyP className="text-xs text-white/40">
-            {user.name}
+            {user?.username ?? 'Usuário não informado'}
           </TypographyP>
         </div>
 

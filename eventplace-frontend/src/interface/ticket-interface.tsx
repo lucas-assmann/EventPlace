@@ -20,3 +20,10 @@ export interface TicketTypeDTO {
     };
   };
 }
+
+export interface TicketDTO {
+  id: string;
+  userId: string;
+  createdAt: string;
+  ticketTypeId: string;
+}

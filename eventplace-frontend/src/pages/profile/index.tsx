@@ -1,4 +1,5 @@
 import { InfoCard } from '@/components/info-card';
+import { ProfileSkeleton } from '@/components/skeleton/profile-skeleton.index';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,43 +13,46 @@ import { useEffect, useState } from 'react';
 
 export function Profile() {
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState<UserDTO[]>([]);
+  const [userData, setUserData] = useState<UserDTO | null>(null);
 
   useEffect(() => {
-    api.get<UserDTO[]>('/user')
+    api.get<UserDTO>('/user')
       .then(response => setUserData(response.data))
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [])
 
-
   return (
     <div className="p-4 gap-6 max-w-7xl mx-auto flex flex-col">
       {loading ? (
-        <TypographyP className="text-white/40 mt-6">Carregando perfil...</TypographyP>
+        <ProfileSkeleton />
       ) : (
-        userData.map((user) => (
-          <div key={user.id}>
+        userData && (
+          <div key={userData.id}>
             <div className="flex items-center bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between">
               <div className="flex items-center gap-10">
-                <Avatar className="border-2 border-[#7c3aeD] bg-white/5 cursor-pointer h-35 w-35">
+                <Avatar className="border-2 border-[#7c3aeD] bg-white/5 cursor-pointer h-32 w-32">
                   <AvatarImage src="/avatar.png" />
                   <AvatarFallback className="bg-purple-950 text-[10px] text-white text-4xl font-bold">
-                    {user.name.charAt(0)}
+                    {userData.name.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col gap-2">
                   <div>
-                    <TypographyP className="border-none text-3xl font-bold text-white">{user.name}</TypographyP>
-                    <TypographyP className=" text-gray-500">@{user.username}</TypographyP>
-                    <TypographyP className=" text-gray-500">{new Date(user.createdAt).toLocaleDateString('pt-BR')}</TypographyP>
+                    <TypographyP className="border-none text-3xl font-bold text-white">{userData.name}</TypographyP>
+                    <TypographyP className=" text-gray-500">@{userData.username}</TypographyP>
+                    <TypographyP className="text-gray-500">
+                      Entrou em{" "}
+                      {new Date(userData.createdAt).toLocaleDateString("pt-BR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </TypographyP>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/40 mt-1 h-6">
-                      Organizador
-                    </Badge>
-                    <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/40 mt-1 h-6">
-                      Verificado
+                    <Badge variant="info" className="bg-purple-500/10 text-purple-400 border-purple-500/40 mt-1 h-6">
+                      {userData.userAge === 'ADULT' ? 'Maior de 18 anos' : 'Menor de 18 anos'}
                     </Badge>
                   </div>
                 </div>
@@ -61,16 +65,16 @@ export function Profile() {
               </div>
             </div>
 
-            <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
               <InfoCard title="4" description="Eventos criados" />
               <InfoCard title="12" description="Eventos participados" />
               <InfoCard title="8" description="Avaliação Média" />
             </div>
 
-            <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between">
+            <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between mt-6">
               <Label className="text-white text-2xl font-bold">Dados Pessoais</Label>
 
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 text-transform: uppercase ">
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 uppercase">
                 <div className="flex flex-col gap-2">
                   <Label className="text-gray-500 font-normal">Nome</Label>
                   <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" />
@@ -90,11 +94,11 @@ export function Profile() {
               </div>
             </div>
 
-            <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between gap-4">
+            <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between mt-6">
               <Label className="text-white text-2xl font-bold">Meus eventos</Label>
             </div>
           </div>
-        ))
+        )
       )}
     </div>
   )

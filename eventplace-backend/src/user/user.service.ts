@@ -77,6 +77,26 @@ export class UserService {
       where: { id },
       include: {
         localization: true,
+
+        tickets: {
+          include: {
+            ticketType: {
+              include: {
+                event: true,
+              },
+            },
+          },
+        },
+
+        events: {
+          include: {
+            ticketType: {
+              include: {
+                tickets: true,
+              },
+            },
+          },
+        },
       },
     });
   }

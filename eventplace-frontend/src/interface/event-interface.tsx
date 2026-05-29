@@ -1,3 +1,5 @@
+import type { UserDTO } from "./user-interface";
+
 export const AgeRating = {
   EVERYONE: 'EVERYONE',
   ADULT: 'ADULT',
@@ -41,7 +43,5 @@ export interface EventDTO {
   userId: string;
   localization: Localization[];
   ticketType: TicketType[];
-  user: {
-    name: string;
-  }
+  user?: UserDTO;
 }

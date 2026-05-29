@@ -1,28 +1,34 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import type { UserDTO } from '@/interface/user-interface'
+import api from '@/lib/api'
 import { CalendarDays, MapPin, Menu, PlusCircle, Search, Ticket } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { DropdownAvatar } from '../dropdown-avatar'
 import { Logo } from '../logo'
 
-interface HeaderProps {
-  user?: {
-    name: string
-    avatarUrl?: string
-  }
-  ticketCount?: number
-}
-
-export function Header({ user, ticketCount = 0 }: HeaderProps) {
+export function Header() {
   const { pathname } = useLocation()
+  const [userData, setUserData] = useState<UserDTO | null>(null);
 
-  const initials = user?.name
-    .split(' ')
-    .map((n) => n[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase()
+  const ticketsCount = userData?.tickets?.length ?? 0
+
+  useEffect(() => {
+    api.get<UserDTO>('/user')
+      .then(response => setUserData(response.data))
+      .catch(console.error)
+  }, [])
+
+  const initials = userData?.name
+    ? userData.username
+      .split(' ')
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase()
+    : ''
 
   return (
     <header className="sticky flex h-16 border-b border-purple-900/30 bg-zinc-950 lg:justify-around">
@@ -92,9 +98,9 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
             <Link to="/ticket">
               <Ticket className="h-4 w-4" />
               Ingressos
-              {ticketCount > 0 && (
+              {ticketsCount > 0 && (
                 <span className="ml-1 flex h-4 w-4 items-center justify-center rounded-full bg-purple-600 text-[10px] font-bold text-white">
-                  {ticketCount}
+                  {ticketsCount}
                 </span>
               )}
             </Link>
@@ -104,10 +110,16 @@ export function Header({ user, ticketCount = 0 }: HeaderProps) {
 
           <DropdownAvatar>
             <Avatar className="border-white/10 bg-white/5 cursor-pointer">
-              {user?.avatarUrl ? (
-                <AvatarImage src={user.avatarUrl} alt={user.name} className="object-cover" />
+              {userData?.avatar ? (
+                <AvatarImage
+                  src={userData.avatar}
+                  alt={userData.name}
+                  className="object-cover"
+                />
               ) : (
-                <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED]">{initials}</AvatarFallback>
+                <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED]">
+                  {initials}
+                </AvatarFallback>
               )}
             </Avatar>
           </DropdownAvatar>

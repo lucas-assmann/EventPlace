@@ -65,13 +65,14 @@ export class EventService {
   }
 
   async findAll() {
-    return await this.prisma.event.findMany({
+    const events = await this.prisma.event.findMany({
       include: {
         localization: true,
         ticketType: true,
         user: true,
       },
     });
+    return events;
   }
 
   async findOne(id: string) {

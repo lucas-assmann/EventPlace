@@ -21,13 +21,13 @@ export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
   const navigate = useNavigate()
 
   async function handleLogout() {
-  try {
-    await api.post('/auth/logout')
-  } finally {
-    logout()
-    navigate('/login')
+    try {
+      await api.post('/auth/logout')
+    } finally {
+      logout()
+      navigate('/login')
+    }
   }
-}
 
   return (
     <DropdownMenu>
@@ -39,7 +39,7 @@ export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
           <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer" onClick={() => navigate('/profile')}>
-            Profile
+            Perfil
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
             Configurações
