@@ -28,7 +28,7 @@ function RootLayout() {
   }, []);
 
   return (
-    <div className="flex min-h-svh flex-col bg-zinc-950">
+    <div className="flex min-h-svh flex-col bg-zinc-950 px-4">
       <Header user={user} ticketCount={3} />
       <main className="flex-1">
         <Outlet />

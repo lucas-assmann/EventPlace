@@ -144,7 +144,11 @@ export class TicketService {
         userId,
       },
       include: {
-        ticketType: true,
+        ticketType: {
+          include: {
+            event: true,
+          },
+        },
       },
     });
 
