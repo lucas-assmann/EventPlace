@@ -48,12 +48,12 @@ export function Header() {
             asChild
             variant="ghost"
             size="sm"
-            className={pathname === '/criar-evento'
+            className={pathname === '/new-event'
               ? 'text-purple-400 bg-purple-500/10 hover:bg-purple-500/15 hover:text-purple-300'
               : 'text-white/60 hover:text-white hover:bg-white/6'
             }
           >
-            <Link to="/criar-evento">
+            <Link to="/new-event">
               <PlusCircle className="h-4 w-4" />
               Criar Evento
             </Link>

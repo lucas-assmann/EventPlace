@@ -36,6 +36,7 @@ export function App() {
           <Route path="/ticket" element={<TicketsPage />} />
           <Route path="/event/:id" element={<EventPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
 
