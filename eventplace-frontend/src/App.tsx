@@ -34,7 +34,7 @@ export function App() {
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/ticket" element={<TicketsPage />} />
-          <Route path="/event" element={<EventPage />} />
+          <Route path="/event/:id" element={<EventPage />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>

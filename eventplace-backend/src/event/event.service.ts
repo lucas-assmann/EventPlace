@@ -81,6 +81,7 @@ export class EventService {
       include: {
         localization: true,
         ticketType: true,
+        user: true,
       },
     });
     return event;

@@ -96,6 +96,15 @@ export function Profile() {
 
             <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between mt-6">
               <Label className="text-white text-2xl font-bold">Meus eventos</Label>
+              {loading ? (
+                <ProfileSkeleton />
+              ) : (
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <InfoCard title="Evento 1" description="Descrição do evento 1" />
+                  <InfoCard title="Evento 2" description="Descrição do evento 2" />
+                  <InfoCard title="Evento 3" description="Descrição do evento 3" />
+                </div>
+              )}
             </div>
           </div>
         )

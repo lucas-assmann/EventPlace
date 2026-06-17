@@ -43,5 +43,5 @@ export interface EventDTO {
   userId: string;
   localization: Localization[];
   ticketType: TicketType[];
-  user?: UserDTO;
+  user: UserDTO;
 }
