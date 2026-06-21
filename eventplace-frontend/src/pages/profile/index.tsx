@@ -10,6 +10,7 @@ import type { UserDTO } from '@/interface/user-interface';
 import api from '@/lib/api';
 import { Pencil } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export function Profile() {
   const [loading, setLoading] = useState(true);
@@ -51,17 +52,19 @@ export function Profile() {
                     </TypographyP>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="info" className="bg-purple-500/10 text-purple-400 border-purple-500/40 mt-1 h-6">
+                    <Badge variant="info" className="bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/40 mt-1 h-6">
                       {userData.userAge === 'ADULT' ? 'Maior de 18 anos' : 'Menor de 18 anos'}
                     </Badge>
                   </div>
                 </div>
               </div>
               <div>
-                <Button variant="outline" className="cursor-pointer h-10 mt-4 bg-[#7c3aeD]/30 hover:bg-[#7c3aeD]/90 text-[#7c3aeD] hover:text-white border-[#5b17cf]">
-                  <Pencil className="mr-2 h-4 w-4" />
-                  Editar perfil
-                </Button>
+                <Link to="/edit-profile">
+                  <Button variant="outline" className="cursor-pointer h-10 mt-4 bg-[#7c3aeD]/30 hover:bg-[#7c3aeD]/90 text-[#7c3aeD] hover:text-white border-[#5b17cf]">
+                    <Pencil className="mr-2 h-4 w-4" />
+                    Editar perfil
+                  </Button>
+                </Link>
               </div>
             </div>
 

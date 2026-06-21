@@ -54,10 +54,10 @@ export function NewEvent() {
 
   return (
     <div className="min-h-screen bg-zinc-950 px-4 py-10 text-white">
-      <main className="mx-auto max-w-6xl">
+      <main className="mx-auto max-w-7xl">
         <div className="mb-8 border-b-2 border-purple-500/50 pb-3">
           <h1 className="text-3xl font-bold text-white">
-            Criar <span className="text-purple-400">evento</span>
+            Criar <span className="text-[#7C3AED] font-bold text-[56px]">evento</span>
           </h1>
           <p className="mt-1 text-sm text-white/40">
             Preencha as informações para publicar seu evento

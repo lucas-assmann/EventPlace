@@ -6,7 +6,7 @@ export function EventSkeleton() {
     <div className="min-h-screen bg-zinc-950 text-white">
       <Skeleton className="h-50 w-full bg-zinc-800" />
 
-      <main className="mx-auto max-w-5xl px-4 pb-20 sm:px-8">
+      <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-8">
         <div className="mt-6 flex flex-row justify-between gap-8">
 
           <div className="flex-1">

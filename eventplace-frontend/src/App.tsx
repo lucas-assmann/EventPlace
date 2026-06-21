@@ -13,6 +13,7 @@ import { VerifyCode } from './pages/verify-code'
 import { LocalEvent } from './pages/local'
 import { AllEvents } from './pages/all-event'
 import { NewEvent } from './pages/new-event'
+import { EditProfile } from './pages/edit-profile'
 
 function RootLayout() {
   return (
@@ -43,6 +44,7 @@ export function App() {
           <Route path="/local" element={<LocalEvent />} />
           <Route path="/eventos" element={<AllEvents />} />
           <Route path="/new-event" element={<NewEvent />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
       </Route>
 
