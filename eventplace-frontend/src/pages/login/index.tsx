@@ -103,15 +103,6 @@ export function Login() {
                 label="Senha"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Digite sua senha"
-                action={
-                  <Button
-                    asChild
-                    variant="link"
-                    className="h-auto text-xs font-medium text-sky-400 hover:text-sky-300 cursor-pointer"
-                  >
-                    <Link to="/forgot-password">Esqueceu sua senha?</Link>
-                  </Button>
-                }
                 trailingIcon={
                   <button
                     type="button"

@@ -1,5 +1,6 @@
 import type { TicketTypeDTO } from '@/interface/ticket-interface'
 import { Ticket } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Badge } from '../ui/badge'
 import { TypographyP } from '../ui/typography'
 
@@ -36,6 +37,8 @@ export function TicketCard({ ticketType, status, createdAt }: TicketTypeDTO) {
         </div>
 
       </div>
+
+      <Link to={`/event/${ticketType.event.id}`} className="absolute inset-0" />
     </div>
   )
 }

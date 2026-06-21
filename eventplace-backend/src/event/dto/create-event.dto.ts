@@ -8,6 +8,7 @@ import {
   IsOptional,
   IsString,
   Length,
+  MaxLength,
   Min,
   ValidateNested,
 } from 'class-validator';
@@ -26,7 +27,7 @@ export class CreateEventDto {
 
   @IsString()
   @IsOptional()
-  @Length(3, 255)
+  @MaxLength(255)
   banner?: string;
 
   @Transform(({ value }) => new Date(value as string))

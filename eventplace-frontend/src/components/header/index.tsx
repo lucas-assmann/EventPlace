@@ -83,7 +83,7 @@ export function Header() {
               : 'text-white/60 hover:text-white hover:bg-white/6'
             }
           >
-            <Link to="/locais">
+            <Link to="/local">
               <MapPin className="h-4 w-4" />
               Locais
             </Link>

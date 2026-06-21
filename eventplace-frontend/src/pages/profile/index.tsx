@@ -77,32 +77,32 @@ export function Profile() {
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 uppercase">
                 <div className="flex flex-col gap-2">
                   <Label className="text-gray-500 font-normal">Nome</Label>
-                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" />
+                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" value={userData.name} readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label className="text-gray-500 font-normal">Email</Label>
-                  <Input type="email" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" />
+                  <Input type="email" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" value={userData.email} readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label className="text-gray-500 font-normal">Telefone</Label>
-                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" />
+                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" readOnly />
                 </div>
                 <div className="flex flex-col gap-2 ">
                   <Label className="text-gray-500 font-normal">Senha</Label>
-                  <Input type="password" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" />
+                  <Input type="password" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" placeholder="*****" readOnly />
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between mt-6">
-              <Label className="text-white text-2xl font-bold">Meus eventos</Label>
+              <Label className="text-white text-2xl font-bold">Eventos Participados</Label>
               {loading ? (
                 <ProfileSkeleton />
               ) : (
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <InfoCard title="Evento 1" description="Descrição do evento 1" />
-                  <InfoCard title="Evento 2" description="Descrição do evento 2" />
-                  <InfoCard title="Evento 3" description="Descrição do evento 3" />
+                  <InfoCard title="Evento 1" description={userData.events[0]?.description} />
+                  <InfoCard title="Evento 2" description={userData.events[1]?.description} />
+                  <InfoCard title="Evento 3" description={userData.events[2]?.description} />
                 </div>
               )}
             </div>

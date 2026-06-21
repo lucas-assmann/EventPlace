@@ -1,4 +1,4 @@
-import type { Localization } from "./event-interface";
+import type { EventDTO, Localization } from "./event-interface";
 import type { TicketDTO } from "./ticket-interface";
 
 export interface UserDTO {
@@ -17,4 +17,5 @@ export interface UserDTO {
 
   localization: Localization[];
   tickets: TicketDTO[];
+  events: EventDTO[];
 }

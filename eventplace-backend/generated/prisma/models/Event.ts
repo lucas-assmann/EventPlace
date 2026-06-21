@@ -225,7 +225,7 @@ export type EventGroupByOutputType = {
   id: string
   title: string
   description: string
-  banner: string
+  banner: string | null
   date: Date
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -263,7 +263,7 @@ export type EventWhereInput = {
   id?: Prisma.StringFilter<"Event"> | string
   title?: Prisma.StringFilter<"Event"> | string
   description?: Prisma.StringFilter<"Event"> | string
-  banner?: Prisma.StringFilter<"Event"> | string
+  banner?: Prisma.StringNullableFilter<"Event"> | string | null
   date?: Prisma.DateTimeFilter<"Event"> | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFilter<"Event"> | number
@@ -281,7 +281,7 @@ export type EventOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  banner?: Prisma.SortOrder
+  banner?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrder
   appropriate_age?: Prisma.SortOrder
   max_person_quantity?: Prisma.SortOrder
@@ -302,7 +302,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EventWhereInput[]
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   description?: Prisma.StringFilter<"Event"> | string
-  banner?: Prisma.StringFilter<"Event"> | string
+  banner?: Prisma.StringNullableFilter<"Event"> | string | null
   date?: Prisma.DateTimeFilter<"Event"> | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFilter<"Event"> | number
@@ -320,7 +320,7 @@ export type EventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  banner?: Prisma.SortOrder
+  banner?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrder
   appropriate_age?: Prisma.SortOrder
   max_person_quantity?: Prisma.SortOrder
@@ -343,7 +343,7 @@ export type EventScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Event"> | string
   title?: Prisma.StringWithAggregatesFilter<"Event"> | string
   description?: Prisma.StringWithAggregatesFilter<"Event"> | string
-  banner?: Prisma.StringWithAggregatesFilter<"Event"> | string
+  banner?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   date?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageWithAggregatesFilter<"Event"> | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntWithAggregatesFilter<"Event"> | number
@@ -358,7 +358,7 @@ export type EventCreateInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -375,7 +375,7 @@ export type EventUncheckedCreateInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -392,7 +392,7 @@ export type EventUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -409,7 +409,7 @@ export type EventUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -426,7 +426,7 @@ export type EventCreateManyInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -441,7 +441,7 @@ export type EventUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -455,7 +455,7 @@ export type EventUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -620,7 +620,7 @@ export type EventCreateWithoutUserInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -636,7 +636,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -681,7 +681,7 @@ export type EventScalarWhereInput = {
   id?: Prisma.StringFilter<"Event"> | string
   title?: Prisma.StringFilter<"Event"> | string
   description?: Prisma.StringFilter<"Event"> | string
-  banner?: Prisma.StringFilter<"Event"> | string
+  banner?: Prisma.StringNullableFilter<"Event"> | string | null
   date?: Prisma.DateTimeFilter<"Event"> | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFilter<"Event"> | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFilter<"Event"> | number
@@ -696,7 +696,7 @@ export type EventCreateWithoutLocalizationInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -712,7 +712,7 @@ export type EventUncheckedCreateWithoutLocalizationInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -744,7 +744,7 @@ export type EventUpdateWithoutLocalizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -760,7 +760,7 @@ export type EventUncheckedUpdateWithoutLocalizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -776,7 +776,7 @@ export type EventCreateWithoutTicketTypeInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -792,7 +792,7 @@ export type EventUncheckedCreateWithoutTicketTypeInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -824,7 +824,7 @@ export type EventUpdateWithoutTicketTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -840,7 +840,7 @@ export type EventUncheckedUpdateWithoutTicketTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -856,7 +856,7 @@ export type EventCreateManyUserInput = {
   id?: string
   title: string
   description: string
-  banner: string
+  banner?: string | null
   date: Date | string
   appropriate_age: $Enums.Appropriate_age
   max_person_quantity: number
@@ -870,7 +870,7 @@ export type EventUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -886,7 +886,7 @@ export type EventUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -902,7 +902,7 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  banner?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1043,7 +1043,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: string
     title: string
     description: string
-    banner: string
+    banner: string | null
     date: Date
     appropriate_age: $Enums.Appropriate_age
     max_person_quantity: number

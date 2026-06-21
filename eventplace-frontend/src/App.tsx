@@ -10,6 +10,9 @@ import { Profile } from './pages/profile'
 import { Register } from './pages/register'
 import { TicketsPage } from './pages/ticket'
 import { VerifyCode } from './pages/verify-code'
+import { LocalEvent } from './pages/local'
+import { AllEvents } from './pages/all-event'
+import { NewEvent } from './pages/new-event'
 
 function RootLayout() {
   return (
@@ -37,6 +40,9 @@ export function App() {
           <Route path="/event/:id" element={<EventPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/local" element={<LocalEvent />} />
+          <Route path="/eventos" element={<AllEvents />} />
+          <Route path="/new-event" element={<NewEvent />} />
         </Route>
       </Route>
 

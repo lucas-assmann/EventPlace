@@ -75,7 +75,7 @@ model Event {
   id                  String          @id @default(uuid())
   title               String          @unique
   description         String
-  banner              String
+  banner              String?
   date                DateTime
   appropriate_age     Appropriate_age
   max_person_quantity Int

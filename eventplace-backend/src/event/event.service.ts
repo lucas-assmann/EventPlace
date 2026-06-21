@@ -38,7 +38,7 @@ export class EventService {
       data: {
         title: createEventDto.title,
         description: createEventDto.description,
-        banner: createEventDto.banner!,
+        banner: createEventDto.banner,
         date: createEventDto.date,
         appropriate_age: createEventDto.appropriate_age,
         max_person_quantity: createEventDto.max_person_quantity,
