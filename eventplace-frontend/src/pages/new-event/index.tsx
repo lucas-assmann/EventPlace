@@ -1,3 +1,4 @@
+import { ArtistAutocomplete } from '@/components/artist-autocomplete'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -9,9 +10,17 @@ import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
+interface ArtistOption {
+  id: string
+  username: string
+  name: string
+  avatar?: string | null
+}
+
 export function NewEvent() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedArtists, setSelectedArtists] = useState<ArtistOption[]>([])
   const navigate = useNavigate()
 
   const {
@@ -40,6 +49,7 @@ export function NewEvent() {
       const payload = {
         ...data,
         banner: data.banner?.trim() ? data.banner : undefined,
+        artistIds: selectedArtists.map((artist) => artist.id),
       }
 
       await api.post('/event', payload)
@@ -84,6 +94,14 @@ export function NewEvent() {
               />
               {errors.description && <span className="text-xs text-red-400">{errors.description.message}</span>}
             </div>
+
+            <div>
+              <Label className="text-white/60">Telefone</Label>
+              <Input {...register('cellphone')} placeholder="(00) 00000-0000" className="mt-1 bg-black border-white/15 text-white" />
+              {errors.cellphone && <span className="text-xs text-red-400">{errors.cellphone.message}</span>}
+            </div>
+
+            <ArtistAutocomplete selected={selectedArtists} onChange={setSelectedArtists} />
 
             <div>
               <Label className="text-white/60">Banner (URL)</Label>

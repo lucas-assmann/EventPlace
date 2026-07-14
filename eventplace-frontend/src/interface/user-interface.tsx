@@ -12,6 +12,8 @@ export interface UserDTO {
   email: string;
   createdAt: string;
   updatedAt: string;
+  isVerified: boolean;
+  cellphone: string;
 
   userAge: 'ADULT' | 'MINOR';
 

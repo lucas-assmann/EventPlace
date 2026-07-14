@@ -388,6 +388,7 @@ export const ModelName = {
   user_localization: 'user_localization',
   user_verification: 'user_verification',
   Event: 'Event',
+  EventArtist: 'EventArtist',
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "user_verification" | "event" | "event_localization" | "ticket" | "ticketType" | "blackList" | "sessionList"
+    modelProps: "user" | "user_localization" | "user_verification" | "event" | "eventArtist" | "event_localization" | "ticket" | "ticketType" | "blackList" | "sessionList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -705,6 +706,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.EventCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.EventCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventArtist: {
+      payload: Prisma.$EventArtistPayload<ExtArgs>
+      fields: Prisma.EventArtistFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventArtistFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventArtistFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        findFirst: {
+          args: Prisma.EventArtistFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventArtistFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        findMany: {
+          args: Prisma.EventArtistFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>[]
+        }
+        create: {
+          args: Prisma.EventArtistCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        createMany: {
+          args: Prisma.EventArtistCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventArtistCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>[]
+        }
+        delete: {
+          args: Prisma.EventArtistDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        update: {
+          args: Prisma.EventArtistUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventArtistDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventArtistUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventArtistUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventArtistUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventArtistPayload>
+        }
+        aggregate: {
+          args: Prisma.EventArtistAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventArtist>
+        }
+        groupBy: {
+          args: Prisma.EventArtistGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventArtistGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventArtistCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventArtistCountAggregateOutputType> | number
         }
       }
     }
@@ -1130,6 +1205,7 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   cep: 'cep',
   isVerified: 'isVerified',
+  cellphone: 'cellphone',
   age: 'age'
 } as const
 
@@ -1172,11 +1248,23 @@ export const EventScalarFieldEnum = {
   endAt: 'endAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  artist: 'artist',
+  cellphone: 'cellphone',
   cep: 'cep',
   userId: 'userId'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const EventArtistScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type EventArtistScalarFieldEnum = (typeof EventArtistScalarFieldEnum)[keyof typeof EventArtistScalarFieldEnum]
 
 
 export const Event_localizationScalarFieldEnum = {
@@ -1499,6 +1587,7 @@ export type GlobalOmitConfig = {
   user_localization?: Prisma.user_localizationOmit
   user_verification?: Prisma.user_verificationOmit
   event?: Prisma.EventOmit
+  eventArtist?: Prisma.EventArtistOmit
   event_localization?: Prisma.event_localizationOmit
   ticket?: Prisma.TicketOmit
   ticketType?: Prisma.TicketTypeOmit

@@ -1,13 +1,17 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const profileSchema = z.object({
-  name: z.string().min(1, 'Nome obrigatório').max(25),
-  username: z.string().min(3, 'Mínimo 3 caracteres').max(20),
-  email: z.string().email('Email inválido').max(255),
-  avatar: z.string().url('URL inválida').optional().or(z.literal('')),
-  birthDate: z.string().min(1, 'Data de nascimento obrigatória'),
-  cep: z.string().length(8, 'CEP deve ter 8 dígitos'),
+  name: z.string().min(1, "Nome obrigatório").max(25),
+  username: z.string().min(3, "Mínimo 3 caracteres").max(20),
+  email: z.string().email("Email inválido").max(255),
+  avatar: z.string().url("URL inválida").optional().or(z.literal("")),
+  birthDate: z.string().min(1, "Data de nascimento obrigatória"),
+  cep: z.string().length(8, "CEP deve ter 8 dígitos"),
   number: z.string().min(1).max(5),
-})
+  cellphone: z
+    .string()
+    .min(7, "Número de telefone obrigatório")
+    .max(15, "Número de telefone inválido"),
+});
 
-export type ProfileFormData = z.input<typeof profileSchema>
+export type ProfileFormData = z.input<typeof profileSchema>;

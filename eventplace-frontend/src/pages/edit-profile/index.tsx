@@ -38,6 +38,7 @@ export function EditProfile() {
           birthDate: user.birthDate?.slice(0, 10),
           cep: user.cep,
           number: user.localization?.[0]?.number ?? '',
+          cellphone: user.cellphone ?? '',
         })
       })
       .catch(console.error)
@@ -117,6 +118,12 @@ export function EditProfile() {
                 <Input {...register('avatar')} placeholder="https://..." className="mt-1 bg-black border-white/15 text-white" />
                 {errors.avatar && <span className="text-xs text-red-400">{errors.avatar.message}</span>}
               </div>
+            </div>
+
+            <div>
+              <Label className="text-white/60">Número de telefone</Label>
+              <Input type="tel" {...register('cellphone')} placeholder="(11) 99999-9999" className="mt-1 bg-black border-white/15 text-white" />
+              {errors.cellphone && <span className="text-xs text-red-400">{errors.cellphone.message}</span>}
             </div>
           </section>
 

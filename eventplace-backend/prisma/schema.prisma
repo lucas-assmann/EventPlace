@@ -38,10 +38,12 @@ model User {
   updatedAt  DateTime @updatedAt
   cep        String
   isVerified Boolean  @default(false)
+  cellphone  String   @unique
 
   age User_age
 
-  events       Event[]
+  events        Event[]   
+  eventsAsArtist EventArtist[]
   tickets      Ticket[]
   localization user_localization[]
   verification user_verification[]
@@ -82,14 +84,29 @@ model Event {
   endAt               DateTime
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
+  artist              String?
+  cellphone           String
 
   cep    String
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   ticketType TicketType[]
-
+  artists    EventArtist[]
   localization event_localization[]
+}
+
+model EventArtist {
+  id      String @id @default(uuid())
+  eventId String
+  userId  String
+
+  event  Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  artist User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, userId])
 }
 
 model event_localization {

@@ -34,6 +34,11 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Get('search')
+  search(@Query('query') query: string) {
+    return this.userService.search(query);
+  }
+
   @Get()
   findOne(@Req() request: AuthRequest) {
     const id = request.user.id;

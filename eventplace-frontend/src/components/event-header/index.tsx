@@ -12,7 +12,7 @@ interface EventHeaderProps {
 
 export function EventHeader({ title, category, date, location, author }: EventHeaderProps) {
   return (
-    <div className="relative z-10 mb-8">
+    <div className="relative z-10 mb-5">
       <div className="-mt-6">
         <h1 className="text-3xl font-bold text-white sm:text-4xl">{title}</h1>
         <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -33,7 +33,7 @@ export function EventHeader({ title, category, date, location, author }: EventHe
 
       <div className="mt-4 flex items-center gap-2">
         <Avatar className="h-6 w-6 border border-purple-500/30">
-          <AvatarImage src={author?.avatar} />          
+          <AvatarImage src={author?.avatar} />
           <AvatarFallback className="bg-purple-950 text-[10px] text-purple-300">
             {author?.name?.charAt(0) || "?"}
           </AvatarFallback>

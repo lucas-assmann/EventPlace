@@ -23,6 +23,15 @@ export function Profile() {
       .finally(() => setLoading(false))
   }, [])
 
+  const initials = userData?.name
+    ? userData.username
+      .split(' ')
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase()
+    : ''
+
   return (
     <div className="p-4 gap-6 max-w-7xl mx-auto flex flex-col">
       {loading ? (
@@ -32,11 +41,18 @@ export function Profile() {
           <div key={userData.id}>
             <div className="flex items-center bg-[#18181b] border-[0.5px] border-[rgba(124,58,237,0.2)] py-6 px-7 rounded-lg justify-between">
               <div className="flex items-center gap-10">
-                <Avatar className="border-2 border-[#7c3aeD] bg-white/5 cursor-pointer h-32 w-32">
-                  <AvatarImage src="/avatar.png" />
-                  <AvatarFallback className="bg-purple-950 text-[10px] text-white text-4xl font-bold">
-                    {userData.name.charAt(0)}
-                  </AvatarFallback>
+                <Avatar className="border-white/10 bg-white/5 cursor-pointer h-32 w-32 rounded-full border-2">
+                  {userData?.avatar ? (
+                    <AvatarImage
+                      src={userData.avatar}
+                      alt={userData.name}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED]">
+                      {initials}
+                    </AvatarFallback>
+                  )}
                 </Avatar>
                 <div className="flex flex-col gap-2">
                   <div>
@@ -54,6 +70,9 @@ export function Profile() {
                   <div className="flex items-center gap-2">
                     <Badge variant="info" className="bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/40 mt-1 h-6">
                       {userData.userAge === 'ADULT' ? 'Maior de 18 anos' : 'Menor de 18 anos'}
+                    </Badge>
+                    <Badge variant="info" className="bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/40 mt-1 h-6">
+                      {userData.isVerified ? 'Verificado' : 'Não verificado'}
                     </Badge>
                   </div>
                 </div>
@@ -88,11 +107,7 @@ export function Profile() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label className="text-gray-500 font-normal">Telefone</Label>
-                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" readOnly />
-                </div>
-                <div className="flex flex-col gap-2 ">
-                  <Label className="text-gray-500 font-normal">Senha</Label>
-                  <Input type="password" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" placeholder="*****" readOnly />
+                  <Input type="text" className="bg-black border-[0.5px] border-gray-500 h-12 text-white" value={userData.cellphone} readOnly />
                 </div>
               </div>
             </div>

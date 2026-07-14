@@ -15,6 +15,7 @@ export class EventService {
     private prisma: PrismaService,
     private getCep: GetCep,
   ) {}
+
   async create(createEventDto: CreateEventDto, userId: string) {
     const response = await this.getCep.getCep(createEventDto.cep);
 
@@ -44,6 +45,7 @@ export class EventService {
         max_person_quantity: createEventDto.max_person_quantity,
         cep: createEventDto.cep,
         endAt: createEventDto.endAt,
+        cellphone: createEventDto.cellphone,
         localization: {
           create: {
             state: response.estado,
@@ -59,6 +61,13 @@ export class EventService {
             data: createEventDto.ticketType,
           },
         },
+        artists: createEventDto.artistIds
+          ? {
+              create: createEventDto.artistIds.map((artistId) => ({
+                artist: { connect: { id: artistId } },
+              })),
+            }
+          : undefined,
       },
     });
     return 'evento criado com sucesso!';
@@ -70,6 +79,7 @@ export class EventService {
         localization: true,
         ticketType: true,
         user: true,
+        artists: { include: { artist: true } },
       },
     });
     return events;
@@ -82,6 +92,7 @@ export class EventService {
         localization: true,
         ticketType: true,
         user: true,
+        artists: { include: { artist: true } },
       },
     });
     return event;
@@ -100,9 +111,21 @@ export class EventService {
       throw new UnauthorizedExceptionRoute();
     }
 
+    const { artistIds, ...eventData } = updateEventDto;
+
     await this.prisma.event.update({
       where: { id },
-      data: updateEventDto,
+      data: {
+        ...eventData,
+        artists: artistIds
+          ? {
+              deleteMany: {},
+              create: artistIds.map((artistId) => ({
+                artist: { connect: { id: artistId } },
+              })),
+            }
+          : undefined,
+      },
     });
     return `Evento atualizado com sucesso!`;
   }
@@ -121,5 +144,39 @@ export class EventService {
     });
 
     return `Evento excluído com sucesso!`;
+  }
+
+  async addArtist(eventId: string, artistId: string, userId: string) {
+    const event = await this.prisma.event.findUnique({
+      where: { id: eventId },
+    });
+
+    if (event!.userId !== userId) {
+      throw new UnauthorizedExceptionRoute();
+    }
+
+    await this.prisma.eventArtist.create({
+      data: { eventId, userId: artistId },
+    });
+
+    return 'Artista adicionado ao evento com sucesso!';
+  }
+
+  async removeArtist(eventId: string, artistId: string, userId: string) {
+    const event = await this.prisma.event.findUnique({
+      where: { id: eventId },
+    });
+
+    if (event!.userId !== userId) {
+      throw new UnauthorizedExceptionRoute();
+    }
+
+    await this.prisma.eventArtist.delete({
+      where: {
+        eventId_userId: { eventId, userId: artistId },
+      },
+    });
+
+    return 'Artista removido do evento com sucesso!';
   }
 }

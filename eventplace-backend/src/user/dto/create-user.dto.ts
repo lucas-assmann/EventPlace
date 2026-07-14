@@ -47,6 +47,10 @@ export class CreateUserDto {
   @IsString()
   @Length(1, 5)
   number: string;
+
+  @IsString()
+  @Length(8, 15)
+  cellphone: string;
 }
 
 export class AddressResponse {

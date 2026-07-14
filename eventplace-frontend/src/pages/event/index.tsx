@@ -1,9 +1,10 @@
+import { EventArtists } from '@/components/event-artist'
 import { EventHeader } from '@/components/event-header'
 import { EventSkeleton } from '@/components/skeleton/event-skeleton.index'
 import { TicketSelector } from '@/components/ticket-selector'
 import type { EventDTO } from '@/interface/event-interface'
 import api from '@/lib/api'
-import { Ticket } from 'lucide-react'
+import { Info, Ticket } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -46,12 +47,25 @@ export function EventPage() {
               category={event.appropriate_age}
             />
             <div>
-              <h2 className="mb-3 text-lg font-semibold text-white">Sobre o evento</h2>
-              <p className="leading-7 text-white/60">{event.description}</p>
+              <EventArtists
+                artists={(event.artists ?? []).map(({ id, artist }) => ({
+                  id,
+                  name: artist.name,
+                  username: artist.username,
+                  avatar: artist.avatar,
+                }))}
+              />
+              <div className="mt-10">
+                <div className="mb-5 flex items-center gap-2 text-lg font-semibold text-white">
+                  <Info className="h-4 w-4 text-purple-400" />
+                  <h2>Sobre o evento</h2>
+                </div>
+                <p className="leading-7 text-white/60">{event.description}</p>
+              </div>
             </div>
           </div>
 
-          <div className="lg:w-85">
+          <div className="lg:w-110">
             <TicketSelector
               tickets={event.ticketType.map(t => ({
                 id: t.id,

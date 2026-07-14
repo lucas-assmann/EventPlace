@@ -38,6 +38,11 @@ export type user_verification = Prisma.user_verificationModel
  */
 export type Event = Prisma.EventModel
 /**
+ * Model EventArtist
+ * 
+ */
+export type EventArtist = Prisma.EventArtistModel
+/**
  * Model event_localization
  * 
  */

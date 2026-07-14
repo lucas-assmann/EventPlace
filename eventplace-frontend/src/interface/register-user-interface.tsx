@@ -2,6 +2,7 @@ export interface RegisterDTO {
   name: string
   username: string
   birthDate: Date
+  cellphone: string
   cep: string
   country: string
   state: string

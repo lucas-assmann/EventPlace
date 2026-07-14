@@ -9,6 +9,7 @@ export const ticketTypeSchema = z.object({
 export const eventSchema = z.object({
   title: z.string().min(3).max(50),
   description: z.string().min(3).max(255),
+  cellphone: z.string().min(7, "Celular obrigatório").max(15, "Celular inválido"),
   banner: z.string().optional(),
   date: z.string().min(1, "Data obrigatória"),
   appropriate_age: z.enum(["ADULT", "CHILD"]),
@@ -16,6 +17,7 @@ export const eventSchema = z.object({
   cep: z.string().length(8, "CEP deve ter 8 dígitos"),
   number: z.string().min(1),
   endAt: z.string().min(1, "Data de término obrigatória"),
+  artistIds: z.array(z.string().uuid()).optional(),
   ticketType: z
     .array(ticketTypeSchema)
     .min(1, "Adicione ao menos um tipo de ingresso"),

@@ -3,13 +3,13 @@ import { Button } from '@/components/ui/button'
 import type { RegisterDTO } from '@/interface/register-user-interface'
 import { personalDataSchema, type PersonalData } from '@/schema/personal-data-user-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { TypographyP } from '../ui/typography'
-import { useEffect } from 'react'
 
 interface Props {
-  onNext: (data: Pick<RegisterDTO, 'name' | 'username' | 'birthDate'>) => void
+  onNext: (data: Pick<RegisterDTO, 'name' | 'username' | 'birthDate' | 'cellphone'>) => void
   apiErrors: Record<string, string>
 }
 
@@ -49,6 +49,17 @@ export function PersonalDataStep({ onNext, apiErrors }: Props) {
           {...register('username')}
         />
         {errors.username && <span className="text-sm text-red-400">{errors.username.message}</span>}
+      </div>
+
+      <div>
+        <LoginField
+          id="cellphone"
+          label="Telefone"
+          type="tel"
+          required
+          {...register('cellphone')}
+        />
+        {errors.cellphone && <span className="text-sm text-red-400">{errors.cellphone.message}</span>}
       </div>
 
       <div>

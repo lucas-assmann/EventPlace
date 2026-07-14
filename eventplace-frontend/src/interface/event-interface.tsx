@@ -44,4 +44,15 @@ export interface EventDTO {
   localization: Localization[];
   ticketType: TicketType[];
   user: UserDTO;
+  artists?: EventArtistDTO[]
+}
+
+export interface EventArtistDTO {
+  id: string
+  artist: {
+    id: string
+    name: string
+    username: string
+    avatar?: string | null
+  }
 }

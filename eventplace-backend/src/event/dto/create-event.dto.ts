@@ -7,6 +7,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  IsUUID,
   Length,
   MaxLength,
   Min,
@@ -60,6 +61,15 @@ export class CreateEventDto {
   @ValidateNested({ each: true })
   @Type(() => CreateTicketTypeDto)
   ticketType: CreateTicketTypeDto[];
+
+  @IsArray()
+  @IsUUID('4', { each: true })
+  @IsOptional()
+  artistIds?: string[];
+
+  @IsString()
+  @Length(8, 15)
+  cellphone: string;
 }
 
 export class Event_localizationDto {

@@ -55,6 +55,7 @@ export class UserService {
         avatar: createUserDto.avatar,
         cep: createUserDto.cep,
         age: userAge,
+        cellphone: createUserDto.cellphone,
         localization: {
           create: {
             state: response.estado,
@@ -70,6 +71,23 @@ export class UserService {
     await this.email.sendEmail(createUserDto.email, user.id);
 
     return 'Usuário criado com sucesso!';
+  }
+
+  async search(query: string) {
+    if (!query || query.length < 2) return [];
+
+    return this.prisma.user.findMany({
+      where: {
+        username: { contains: query, mode: 'insensitive' },
+      },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        avatar: true,
+      },
+      take: 10,
+    });
   }
 
   async findOne(id: string) {
