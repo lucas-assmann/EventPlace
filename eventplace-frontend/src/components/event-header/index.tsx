@@ -7,10 +7,11 @@ interface EventHeaderProps {
   category?: string
   date: string
   location: string
+  cellphone: string
   author: { name: string; avatar?: string }
 }
 
-export function EventHeader({ title, category, date, location, author }: EventHeaderProps) {
+export function EventHeader({ title, category, date, location, cellphone, author }: EventHeaderProps) {
   return (
     <div className="relative z-10 mb-5">
       <div className="-mt-6">
@@ -41,6 +42,8 @@ export function EventHeader({ title, category, date, location, author }: EventHe
         <span className="text-xs text-white/40">
           por <span className="text-white/60">{author.name}</span>
         </span>
+        <span className="text-xs text-white/40">•</span>
+        <span className="text-xs text-white/40">{cellphone}</span>
       </div>
       {category && (
         <Badge variant="outline" className="mb-3 border-purple-500/20 bg-purple-500/10 text-purple-400 mt-5">

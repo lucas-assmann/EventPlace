@@ -45,6 +45,7 @@ export function EventPage() {
               location={event.localization?.[0] ? `${event.localization[0].street}, ${event.localization[0].city}` : 'Local não informado'}
               author={event.user ?? { name: 'Desconhecido' }}
               category={event.appropriate_age}
+              cellphone={event.cellphone}
             />
             <div>
               <EventArtists

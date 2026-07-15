@@ -15,9 +15,13 @@ export function EventCard({ id, title, appropriate_age, localization, date, tick
     <Link to={`/event/${id}`} className="group flex flex-col overflow-hidden rounded-2xl border border-white/7 bg-zinc-950 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/40 cursor-pointer">
       <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/7 bg-zinc-950 ">
         {banner ? (
-          <img src={banner} alt={title} className="h-50 w-full object-cover" />
+          <img
+            src={banner}
+            alt={title}
+            className="h-48 w-full object-cover"
+          />
         ) : (
-          <div className="flex h-55 w-full items-center justify-center bg-linear-to-br from-zinc-900 to-purple-950/50">
+          <div className="flex h-48 w-full items-center justify-center bg-linear-to-br from-zinc-900 to-purple-950/50">
             <Ticket className="h-12 w-12 text-purple-400/30" />
           </div>
         )}

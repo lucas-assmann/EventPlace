@@ -9,7 +9,10 @@ export const ticketTypeSchema = z.object({
 export const eventSchema = z.object({
   title: z.string().min(3).max(50),
   description: z.string().min(3).max(255),
-  cellphone: z.string().min(7, "Celular obrigatório").max(15, "Celular inválido"),
+  cellphone: z
+    .string()
+    .min(7, "Celular obrigatório")
+    .max(15, "Celular inválido"),
   banner: z.string().optional(),
   date: z.string().min(1, "Data obrigatória"),
   appropriate_age: z.enum(["ADULT", "CHILD"]),

@@ -45,6 +45,7 @@ export interface EventDTO {
   ticketType: TicketType[];
   user: UserDTO;
   artists?: EventArtistDTO[]
+  cellphone: string;
 }
 
 export interface EventArtistDTO {
