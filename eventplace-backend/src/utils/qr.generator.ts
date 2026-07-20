@@ -11,7 +11,9 @@ export class generateQRCode {
       .toString()
       .padStart(4, '0');
 
-    const qrcode = await QRCode.toDataURL(code, { width: 300 });
+    const url = `http://localhost:5173/ticket/payment/confirm?code=${code}`;
+
+    const qrcode = await QRCode.toDataURL(url, { width: 300 });
     await this.prisma.ticket.update({
       where: { id: ticketId },
       data: { paymentCode: code },

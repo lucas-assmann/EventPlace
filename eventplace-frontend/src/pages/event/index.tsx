@@ -6,10 +6,11 @@ import type { EventDTO } from '@/interface/event-interface'
 import api from '@/lib/api'
 import { Info, Ticket } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export function EventPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const [event, setEvent] = useState<EventDTO | null>(null)
 
@@ -74,7 +75,13 @@ export function EventPage() {
                 price: Number(t.price),
                 available: t.quantity,
               }))}
-              onBuy={(ticket) => console.log('comprou:', ticket)}
+              onBuy={async (ticket) => {
+                const response = await api.post("/ticket", {
+                  ticketTypeId: ticket.id,
+                });
+
+                navigate(`/payment/${response.data.id}`);
+              }}
             />
           </div>
         </div>

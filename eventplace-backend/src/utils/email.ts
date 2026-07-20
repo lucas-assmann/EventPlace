@@ -35,7 +35,7 @@ export class EmailService {
       .toString()
       .padStart(4, '0');
 
-    const url = `http://localhost:3000/user/verify?code=${code}`;
+    const url = `http://localhost:5173/confirm-email?code=${code}`;
 
     await this.transporter.sendMail({
       from: this.configService.get('GMAIL_USER'),

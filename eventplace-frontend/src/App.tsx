@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 import { Footer } from './components/footer'
 import { PrivateRoute } from './components/private-route'
 import { AllEvents } from './pages/all-event'
+import { EmailVerified } from './pages/confirm-email'
 import { EditProfile } from './pages/edit-profile'
 import { EventPage } from './pages/event'
 import { Home } from './pages/home'
@@ -10,11 +11,13 @@ import { LocalEvent } from './pages/local'
 import { Login } from './pages/login'
 import { NewEvent } from './pages/new-event'
 import { NotFound } from './pages/not-found'
+import { PaymentPage } from './pages/payment'
 import { Profile } from './pages/profile'
 import { Register } from './pages/register'
 import { TicketsPage } from './pages/ticket'
 import { UpdatePasswordPage } from './pages/update-password'
 import { VerifyCode } from './pages/verify-code'
+import { PaymentConfirm } from './pages/payment-confirm'
 
 function RootLayout() {
   return (
@@ -47,6 +50,8 @@ export function App() {
           <Route path="/new-event" element={<NewEvent />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/profile/password" element={<UpdatePasswordPage />} />
+          <Route path="/payment/:ticketId" element={<PaymentPage />} />
+          <Route path="/payment/confirm" element={<PaymentConfirm />} />
         </Route>
       </Route>
 
@@ -55,6 +60,7 @@ export function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/verify-code" element={<VerifyCode />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/confirm-email" element={<EmailVerified />} />
       </Route>
     </Routes>
   )

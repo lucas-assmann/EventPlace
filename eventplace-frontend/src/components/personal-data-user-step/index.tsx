@@ -56,6 +56,7 @@ export function PersonalDataStep({ onNext, apiErrors }: Props) {
           id="cellphone"
           label="Telefone"
           type="tel"
+          placeholder="Digite seu telefone"
           required
           {...register('cellphone')}
         />
