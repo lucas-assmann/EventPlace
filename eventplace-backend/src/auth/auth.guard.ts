@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
       request['user'] = payload;
 
-      const blacklisted = await this.prisma.blackList.findFirst({
+      const blacklisted = await this.prisma.sessionList.findFirst({
         where: { token },
       });
       if (blacklisted) {

@@ -80,11 +80,6 @@ export type Ticket = Prisma.TicketModel
  */
 export type TicketType = Prisma.TicketTypeModel
 /**
- * Model BlackList
- * 
- */
-export type BlackList = Prisma.BlackListModel
-/**
  * Model SessionList
  * 
  */

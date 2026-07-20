@@ -47,8 +47,8 @@ export type UserMinAggregateOutputType = {
   updatedAt: Date | null
   cep: string | null
   isVerified: boolean | null
-  cellphone: string | null
   age: $Enums.User_age | null
+  cellphone: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -64,8 +64,8 @@ export type UserMaxAggregateOutputType = {
   updatedAt: Date | null
   cep: string | null
   isVerified: boolean | null
-  cellphone: string | null
   age: $Enums.User_age | null
+  cellphone: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -81,8 +81,8 @@ export type UserCountAggregateOutputType = {
   updatedAt: number
   cep: number
   isVerified: number
-  cellphone: number
   age: number
+  cellphone: number
   _all: number
 }
 
@@ -108,8 +108,8 @@ export type UserMinAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
-  cellphone?: true
   age?: true
+  cellphone?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -125,8 +125,8 @@ export type UserMaxAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
-  cellphone?: true
   age?: true
+  cellphone?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -142,8 +142,8 @@ export type UserCountAggregateInputType = {
   updatedAt?: true
   cep?: true
   isVerified?: true
-  cellphone?: true
   age?: true
+  cellphone?: true
   _all?: true
 }
 
@@ -246,8 +246,8 @@ export type UserGroupByOutputType = {
   updatedAt: Date
   cep: string
   isVerified: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -286,14 +286,14 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cep?: Prisma.StringFilter<"User"> | string
   isVerified?: Prisma.BoolFilter<"User"> | boolean
-  cellphone?: Prisma.StringFilter<"User"> | string
   age?: Prisma.EnumUser_ageFilter<"User"> | $Enums.User_age
+  cellphone?: Prisma.StringFilter<"User"> | string
   events?: Prisma.EventListRelationFilter
   eventsAsArtist?: Prisma.EventArtistListRelationFilter
+  sessionList?: Prisma.SessionListListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
   verification?: Prisma.User_verificationListRelationFilter
-  sessionList?: Prisma.SessionListListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -309,14 +309,14 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  cellphone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  cellphone?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
   eventsAsArtist?: Prisma.EventArtistOrderByRelationAggregateInput
+  sessionList?: Prisma.SessionListOrderByRelationAggregateInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
   localization?: Prisma.user_localizationOrderByRelationAggregateInput
   verification?: Prisma.user_verificationOrderByRelationAggregateInput
-  sessionList?: Prisma.SessionListOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -339,10 +339,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   age?: Prisma.EnumUser_ageFilter<"User"> | $Enums.User_age
   events?: Prisma.EventListRelationFilter
   eventsAsArtist?: Prisma.EventArtistListRelationFilter
+  sessionList?: Prisma.SessionListListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   localization?: Prisma.User_localizationListRelationFilter
   verification?: Prisma.User_verificationListRelationFilter
-  sessionList?: Prisma.SessionListListRelationFilter
 }, "id" | "username" | "email" | "cellphone">
 
 export type UserOrderByWithAggregationInput = {
@@ -358,8 +358,8 @@ export type UserOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  cellphone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  cellphone?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -383,8 +383,8 @@ export type UserScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   cep?: Prisma.StringWithAggregatesFilter<"User"> | string
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  cellphone?: Prisma.StringWithAggregatesFilter<"User"> | string
   age?: Prisma.EnumUser_ageWithAggregatesFilter<"User"> | $Enums.User_age
+  cellphone?: Prisma.StringWithAggregatesFilter<"User"> | string
 }
 
 export type UserCreateInput = {
@@ -400,14 +400,14 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -423,14 +423,14 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -446,14 +446,14 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -469,14 +469,14 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -492,8 +492,8 @@ export type UserCreateManyInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -509,8 +509,8 @@ export type UserUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -526,8 +526,8 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -543,8 +543,8 @@ export type UserCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  cellphone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  cellphone?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -564,8 +564,8 @@ export type UserMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  cellphone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  cellphone?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -581,8 +581,8 @@ export type UserMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  cellphone?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  cellphone?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -719,13 +719,13 @@ export type UserCreateWithoutLocalizationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLocalizationInput = {
@@ -741,13 +741,13 @@ export type UserUncheckedCreateWithoutLocalizationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLocalizationInput = {
@@ -779,13 +779,13 @@ export type UserUpdateWithoutLocalizationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLocalizationInput = {
@@ -801,13 +801,13 @@ export type UserUncheckedUpdateWithoutLocalizationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutVerificationInput = {
@@ -823,13 +823,13 @@ export type UserCreateWithoutVerificationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVerificationInput = {
@@ -845,13 +845,13 @@ export type UserUncheckedCreateWithoutVerificationInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVerificationInput = {
@@ -883,13 +883,13 @@ export type UserUpdateWithoutVerificationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerificationInput = {
@@ -905,13 +905,13 @@ export type UserUncheckedUpdateWithoutVerificationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEventsInput = {
@@ -927,13 +927,13 @@ export type UserCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -949,13 +949,13 @@ export type UserUncheckedCreateWithoutEventsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -987,13 +987,13 @@ export type UserUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -1009,13 +1009,13 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEventsAsArtistInput = {
@@ -1031,13 +1031,13 @@ export type UserCreateWithoutEventsAsArtistInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEventsAsArtistInput = {
@@ -1053,13 +1053,13 @@ export type UserUncheckedCreateWithoutEventsAsArtistInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEventsAsArtistInput = {
@@ -1091,13 +1091,13 @@ export type UserUpdateWithoutEventsAsArtistInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsAsArtistInput = {
@@ -1113,13 +1113,13 @@ export type UserUncheckedUpdateWithoutEventsAsArtistInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTicketsInput = {
@@ -1135,13 +1135,13 @@ export type UserCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketsInput = {
@@ -1157,13 +1157,13 @@ export type UserUncheckedCreateWithoutTicketsInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
+  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
   localization?: Prisma.user_localizationUncheckedCreateNestedManyWithoutUserInput
   verification?: Prisma.user_verificationUncheckedCreateNestedManyWithoutUserInput
-  sessionList?: Prisma.SessionListUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketsInput = {
@@ -1195,13 +1195,13 @@ export type UserUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketsInput = {
@@ -1217,13 +1217,13 @@ export type UserUncheckedUpdateWithoutTicketsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
+  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
   localization?: Prisma.user_localizationUncheckedUpdateManyWithoutUserNestedInput
   verification?: Prisma.user_verificationUncheckedUpdateManyWithoutUserNestedInput
-  sessionList?: Prisma.SessionListUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionListInput = {
@@ -1239,8 +1239,8 @@ export type UserCreateWithoutSessionListInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistCreateNestedManyWithoutArtistInput
   tickets?: Prisma.TicketCreateNestedManyWithoutUserInput
@@ -1261,8 +1261,8 @@ export type UserUncheckedCreateWithoutSessionListInput = {
   updatedAt?: Date | string
   cep: string
   isVerified?: boolean
-  cellphone: string
   age: $Enums.User_age
+  cellphone: string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   eventsAsArtist?: Prisma.EventArtistUncheckedCreateNestedManyWithoutArtistInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutUserInput
@@ -1299,8 +1299,8 @@ export type UserUpdateWithoutSessionListInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUpdateManyWithoutArtistNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutUserNestedInput
@@ -1321,8 +1321,8 @@ export type UserUncheckedUpdateWithoutSessionListInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.EnumUser_ageFieldUpdateOperationsInput | $Enums.User_age
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   eventsAsArtist?: Prisma.EventArtistUncheckedUpdateManyWithoutArtistNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutUserNestedInput
@@ -1338,19 +1338,19 @@ export type UserUncheckedUpdateWithoutSessionListInput = {
 export type UserCountOutputType = {
   events: number
   eventsAsArtist: number
+  sessionList: number
   tickets: number
   localization: number
   verification: number
-  sessionList: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | UserCountOutputTypeCountEventsArgs
   eventsAsArtist?: boolean | UserCountOutputTypeCountEventsAsArtistArgs
+  sessionList?: boolean | UserCountOutputTypeCountSessionListArgs
   tickets?: boolean | UserCountOutputTypeCountTicketsArgs
   localization?: boolean | UserCountOutputTypeCountLocalizationArgs
   verification?: boolean | UserCountOutputTypeCountVerificationArgs
-  sessionList?: boolean | UserCountOutputTypeCountSessionListArgs
 }
 
 /**
@@ -1380,6 +1380,13 @@ export type UserCountOutputTypeCountEventsAsArtistArgs<ExtArgs extends runtime.T
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountSessionListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionListWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.TicketWhereInput
 }
@@ -1398,13 +1405,6 @@ export type UserCountOutputTypeCountVerificationArgs<ExtArgs extends runtime.Typ
   where?: Prisma.user_verificationWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSessionListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SessionListWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1419,14 +1419,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
-  cellphone?: boolean
   age?: boolean
+  cellphone?: boolean
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   eventsAsArtist?: boolean | Prisma.User$eventsAsArtistArgs<ExtArgs>
+  sessionList?: boolean | Prisma.User$sessionListArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
   localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
   verification?: boolean | Prisma.User$verificationArgs<ExtArgs>
-  sessionList?: boolean | Prisma.User$sessionListArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1443,8 +1443,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
-  cellphone?: boolean
   age?: boolean
+  cellphone?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1460,8 +1460,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
-  cellphone?: boolean
   age?: boolean
+  cellphone?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1477,18 +1477,18 @@ export type UserSelectScalar = {
   updatedAt?: boolean
   cep?: boolean
   isVerified?: boolean
-  cellphone?: boolean
   age?: boolean
+  cellphone?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "birthDate" | "avatar" | "rating" | "createdAt" | "updatedAt" | "cep" | "isVerified" | "cellphone" | "age", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "username" | "email" | "password" | "birthDate" | "avatar" | "rating" | "createdAt" | "updatedAt" | "cep" | "isVerified" | "age" | "cellphone", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   eventsAsArtist?: boolean | Prisma.User$eventsAsArtistArgs<ExtArgs>
+  sessionList?: boolean | Prisma.User$sessionListArgs<ExtArgs>
   tickets?: boolean | Prisma.User$ticketsArgs<ExtArgs>
   localization?: boolean | Prisma.User$localizationArgs<ExtArgs>
   verification?: boolean | Prisma.User$verificationArgs<ExtArgs>
-  sessionList?: boolean | Prisma.User$sessionListArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1499,10 +1499,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     events: Prisma.$EventPayload<ExtArgs>[]
     eventsAsArtist: Prisma.$EventArtistPayload<ExtArgs>[]
+    sessionList: Prisma.$SessionListPayload<ExtArgs>[]
     tickets: Prisma.$TicketPayload<ExtArgs>[]
     localization: Prisma.$user_localizationPayload<ExtArgs>[]
     verification: Prisma.$user_verificationPayload<ExtArgs>[]
-    sessionList: Prisma.$SessionListPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1517,8 +1517,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     cep: string
     isVerified: boolean
-    cellphone: string
     age: $Enums.User_age
+    cellphone: string
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1915,10 +1915,10 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   events<T extends Prisma.User$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   eventsAsArtist<T extends Prisma.User$eventsAsArtistArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventsAsArtistArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventArtistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessionList<T extends Prisma.User$sessionListArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionListArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tickets<T extends Prisma.User$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   localization<T extends Prisma.User$localizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$localizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_localizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   verification<T extends Prisma.User$verificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$verificationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_verificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sessionList<T extends Prisma.User$sessionListArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionListArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1960,8 +1960,8 @@ export interface UserFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly cep: Prisma.FieldRef<"User", 'String'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
-  readonly cellphone: Prisma.FieldRef<"User", 'String'>
   readonly age: Prisma.FieldRef<"User", 'User_age'>
+  readonly cellphone: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -2403,6 +2403,30 @@ export type User$eventsAsArtistArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * User.sessionList
+ */
+export type User$sessionListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SessionList
+   */
+  select?: Prisma.SessionListSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SessionList
+   */
+  omit?: Prisma.SessionListOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionListInclude<ExtArgs> | null
+  where?: Prisma.SessionListWhereInput
+  orderBy?: Prisma.SessionListOrderByWithRelationInput | Prisma.SessionListOrderByWithRelationInput[]
+  cursor?: Prisma.SessionListWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SessionListScalarFieldEnum | Prisma.SessionListScalarFieldEnum[]
+}
+
+/**
  * User.tickets
  */
 export type User$ticketsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2472,30 +2496,6 @@ export type User$verificationArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.User_verificationScalarFieldEnum | Prisma.User_verificationScalarFieldEnum[]
-}
-
-/**
- * User.sessionList
- */
-export type User$sessionListArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SessionList
-   */
-  select?: Prisma.SessionListSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SessionList
-   */
-  omit?: Prisma.SessionListOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SessionListInclude<ExtArgs> | null
-  where?: Prisma.SessionListWhereInput
-  orderBy?: Prisma.SessionListOrderByWithRelationInput | Prisma.SessionListOrderByWithRelationInput[]
-  cursor?: Prisma.SessionListWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SessionListScalarFieldEnum | Prisma.SessionListScalarFieldEnum[]
 }
 
 /**

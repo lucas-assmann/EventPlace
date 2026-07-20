@@ -65,13 +65,6 @@ export class AuthService {
     await this.prisma.sessionList.deleteMany({
       where: { token },
     });
-
-    await this.prisma.blackList.create({
-      data: {
-        token,
-      },
-    });
-
     return 'Deslogado com sucesso!';
   }
 
@@ -90,10 +83,5 @@ export class AuthService {
         });
       }
     }
-  }
-
-  @Cron(CronExpression.EVERY_HOUR)
-  async deleteToken() {
-    await this.prisma.blackList.deleteMany({});
   }
 }

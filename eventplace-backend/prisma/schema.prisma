@@ -8,6 +8,125 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id             String              @id @default(uuid())
+  name           String
+  username       String              @unique
+  email          String              @unique
+  password       String
+  birthDate      DateTime
+  avatar         String?
+  rating         Float               @default(0)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  cep            String
+  isVerified     Boolean             @default(false)
+  age            User_age
+  cellphone      String              @unique
+  events         Event[]
+  eventsAsArtist EventArtist[]
+  sessionList    SessionList[]
+  tickets        Ticket[]
+  localization   user_localization[]
+  verification   user_verification[]
+}
+
+model user_localization {
+  id           String   @id @default(uuid())
+  userId       String
+  state        String
+  city         String
+  street       String
+  number       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  neighborhood String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model user_verification {
+  id        String   @id @default(uuid())
+  userId    String
+  createdAt DateTime @default(now())
+  code      String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Event {
+  id                  String               @id @default(uuid())
+  title               String               @unique
+  description         String
+  endAt               DateTime
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  cep                 String
+  userId              String
+  banner              String?
+  max_person_quantity Int
+  date                DateTime
+  appropriate_age     Appropriate_age
+  artist              String?
+  cellphone           String
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artists             EventArtist[]
+  ticketType          TicketType[]
+  localization        event_localization[]
+}
+
+model EventArtist {
+  id        String   @id @default(uuid())
+  eventId   String
+  userId    String
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  artist    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, userId])
+}
+
+model event_localization {
+  id           String   @id @default(uuid())
+  eventId      String
+  state        String
+  city         String
+  street       String
+  number       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  neighborhood String
+  event        Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Ticket {
+  id           String        @id @default(uuid())
+  userId       String
+  createdAt    DateTime      @default(now())
+  ticketTypeId String
+  status       Status_Ticket @default(PENDING)
+  paymentCode  String?       @unique
+  ticketType   TicketType    @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model TicketType {
+  id        String   @id @default(uuid())
+  name      String
+  quantity  Int
+  price     Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  eventId   String
+  tickets   Ticket[]
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model SessionList {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 enum Appropriate_age {
   ADULT
   EVERYONE
@@ -23,143 +142,4 @@ enum Status_Ticket {
   PENDING
   CONFIRMED
   USED
-}
-
-model User {
-  id         String   @id @default(uuid())
-  name       String
-  username   String   @unique
-  email      String   @unique
-  password   String
-  birthDate  DateTime
-  avatar     String?
-  rating     Float    @default(0)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  cep        String
-  isVerified Boolean  @default(false)
-  cellphone  String   @unique
-
-  age User_age
-
-  events        Event[]   
-  eventsAsArtist EventArtist[]
-  tickets      Ticket[]
-  localization user_localization[]
-  verification user_verification[]
-  sessionList  SessionList[]
-}
-
-model user_localization {
-  id     String @id @default(uuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  state        String
-  city         String
-  street       String
-  neighborhood String
-  number       String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model user_verification {
-  id        String   @id @default(uuid())
-  userId    String
-  code      String   @unique
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-}
-
-model Event {
-  id                  String          @id @default(uuid())
-  title               String          @unique
-  description         String
-  banner              String?
-  date                DateTime
-  appropriate_age     Appropriate_age
-  max_person_quantity Int
-  endAt               DateTime
-  createdAt           DateTime        @default(now())
-  updatedAt           DateTime        @updatedAt
-  artist              String?
-  cellphone           String
-
-  cep    String
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  ticketType TicketType[]
-  artists    EventArtist[]
-  localization event_localization[]
-}
-
-model EventArtist {
-  id      String @id @default(uuid())
-  eventId String
-  userId  String
-
-  event  Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  artist User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-
-  @@unique([eventId, userId])
-}
-
-model event_localization {
-  id      String @id @default(uuid())
-  eventId String
-  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  state        String
-  city         String
-  street       String
-  neighborhood String
-  number       String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Ticket {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-
-  ticketType   TicketType @relation(fields: [ticketTypeId], references: [id], onDelete: Cascade)
-  ticketTypeId String
-
-  status      Status_Ticket @default(PENDING)
-  paymentCode String?       @unique
-}
-
-model TicketType {
-  id        String   @id @default(uuid())
-  name      String
-  quantity  Int
-  price     Decimal  @db.Decimal(10, 2)
-  createdAt DateTime @default(now())
-
-  tickets Ticket[]
-
-  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventId String
-}
-
-model BlackList {
-  id        String   @id @default(uuid())
-  token     String
-  createdAt DateTime @default(now())
-}
-
-model SessionList {
-  id        String   @id @default(uuid())
-  token     String   @unique
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
 }

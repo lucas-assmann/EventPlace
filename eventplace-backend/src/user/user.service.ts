@@ -200,10 +200,8 @@ export class UserService {
       where: { id },
     });
 
-    await this.prisma.blackList.create({
-      data: {
-        token,
-      },
+    await this.prisma.sessionList.deleteMany({
+      where: { token },
     });
 
     return `Excluído com sucesso!`;

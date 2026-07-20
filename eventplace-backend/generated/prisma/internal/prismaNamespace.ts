@@ -392,7 +392,6 @@ export const ModelName = {
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
-  BlackList: 'BlackList',
   SessionList: 'SessionList'
 } as const
 
@@ -409,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "user_localization" | "user_verification" | "event" | "eventArtist" | "event_localization" | "ticket" | "ticketType" | "blackList" | "sessionList"
+    modelProps: "user" | "user_localization" | "user_verification" | "event" | "eventArtist" | "event_localization" | "ticket" | "ticketType" | "sessionList"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1005,80 +1004,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    BlackList: {
-      payload: Prisma.$BlackListPayload<ExtArgs>
-      fields: Prisma.BlackListFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BlackListFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BlackListFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        findFirst: {
-          args: Prisma.BlackListFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BlackListFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        findMany: {
-          args: Prisma.BlackListFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
-        }
-        create: {
-          args: Prisma.BlackListCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        createMany: {
-          args: Prisma.BlackListCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BlackListCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
-        }
-        delete: {
-          args: Prisma.BlackListDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        update: {
-          args: Prisma.BlackListUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        deleteMany: {
-          args: Prisma.BlackListDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BlackListUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BlackListUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>[]
-        }
-        upsert: {
-          args: Prisma.BlackListUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlackListPayload>
-        }
-        aggregate: {
-          args: Prisma.BlackListAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBlackList>
-        }
-        groupBy: {
-          args: Prisma.BlackListGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BlackListGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BlackListCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BlackListCountAggregateOutputType> | number
-        }
-      }
-    }
     SessionList: {
       payload: Prisma.$SessionListPayload<ExtArgs>
       fields: Prisma.SessionListFieldRefs
@@ -1205,8 +1130,8 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   cep: 'cep',
   isVerified: 'isVerified',
-  cellphone: 'cellphone',
-  age: 'age'
+  age: 'age',
+  cellphone: 'cellphone'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1218,10 +1143,10 @@ export const User_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
-  neighborhood: 'neighborhood',
   number: 'number',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  neighborhood: 'neighborhood'
 } as const
 
 export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
@@ -1230,8 +1155,8 @@ export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFi
 export const User_verificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  code: 'code',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  code: 'code'
 } as const
 
 export type User_verificationScalarFieldEnum = (typeof User_verificationScalarFieldEnum)[keyof typeof User_verificationScalarFieldEnum]
@@ -1241,17 +1166,17 @@ export const EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  banner: 'banner',
-  date: 'date',
-  appropriate_age: 'appropriate_age',
-  max_person_quantity: 'max_person_quantity',
   endAt: 'endAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  artist: 'artist',
-  cellphone: 'cellphone',
   cep: 'cep',
-  userId: 'userId'
+  userId: 'userId',
+  banner: 'banner',
+  max_person_quantity: 'max_person_quantity',
+  date: 'date',
+  appropriate_age: 'appropriate_age',
+  artist: 'artist',
+  cellphone: 'cellphone'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -1273,10 +1198,10 @@ export const Event_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
-  neighborhood: 'neighborhood',
   number: 'number',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  neighborhood: 'neighborhood'
 } as const
 
 export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalarFieldEnum)[keyof typeof Event_localizationScalarFieldEnum]
@@ -1306,20 +1231,11 @@ export const TicketTypeScalarFieldEnum = {
 export type TicketTypeScalarFieldEnum = (typeof TicketTypeScalarFieldEnum)[keyof typeof TicketTypeScalarFieldEnum]
 
 
-export const BlackListScalarFieldEnum = {
-  id: 'id',
-  token: 'token',
-  createdAt: 'createdAt'
-} as const
-
-export type BlackListScalarFieldEnum = (typeof BlackListScalarFieldEnum)[keyof typeof BlackListScalarFieldEnum]
-
-
 export const SessionListScalarFieldEnum = {
   id: 'id',
   token: 'token',
-  userId: 'userId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId'
 } as const
 
 export type SessionListScalarFieldEnum = (typeof SessionListScalarFieldEnum)[keyof typeof SessionListScalarFieldEnum]
@@ -1419,20 +1335,6 @@ export type ListEnumUser_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 
 
 /**
- * Reference to a field of type 'Appropriate_age'
- */
-export type EnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age'>
-    
-
-
-/**
- * Reference to a field of type 'Appropriate_age[]'
- */
-export type ListEnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1443,6 +1345,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Appropriate_age'
+ */
+export type EnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age'>
+    
+
+
+/**
+ * Reference to a field of type 'Appropriate_age[]'
+ */
+export type ListEnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age[]'>
     
 
 
@@ -1591,7 +1507,6 @@ export type GlobalOmitConfig = {
   event_localization?: Prisma.event_localizationOmit
   ticket?: Prisma.TicketOmit
   ticketType?: Prisma.TicketTypeOmit
-  blackList?: Prisma.BlackListOmit
   sessionList?: Prisma.SessionListOmit
 }
 

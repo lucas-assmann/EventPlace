@@ -30,10 +30,10 @@ export type Event_localizationMinAggregateOutputType = {
   state: string | null
   city: string | null
   street: string | null
-  neighborhood: string | null
   number: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  neighborhood: string | null
 }
 
 export type Event_localizationMaxAggregateOutputType = {
@@ -42,10 +42,10 @@ export type Event_localizationMaxAggregateOutputType = {
   state: string | null
   city: string | null
   street: string | null
-  neighborhood: string | null
   number: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  neighborhood: string | null
 }
 
 export type Event_localizationCountAggregateOutputType = {
@@ -54,10 +54,10 @@ export type Event_localizationCountAggregateOutputType = {
   state: number
   city: number
   street: number
-  neighborhood: number
   number: number
   createdAt: number
   updatedAt: number
+  neighborhood: number
   _all: number
 }
 
@@ -68,10 +68,10 @@ export type Event_localizationMinAggregateInputType = {
   state?: true
   city?: true
   street?: true
-  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
+  neighborhood?: true
 }
 
 export type Event_localizationMaxAggregateInputType = {
@@ -80,10 +80,10 @@ export type Event_localizationMaxAggregateInputType = {
   state?: true
   city?: true
   street?: true
-  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
+  neighborhood?: true
 }
 
 export type Event_localizationCountAggregateInputType = {
@@ -92,10 +92,10 @@ export type Event_localizationCountAggregateInputType = {
   state?: true
   city?: true
   street?: true
-  neighborhood?: true
   number?: true
   createdAt?: true
   updatedAt?: true
+  neighborhood?: true
   _all?: true
 }
 
@@ -177,10 +177,10 @@ export type Event_localizationGroupByOutputType = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt: Date
   updatedAt: Date
+  neighborhood: string
   _count: Event_localizationCountAggregateOutputType | null
   _min: Event_localizationMinAggregateOutputType | null
   _max: Event_localizationMaxAggregateOutputType | null
@@ -210,10 +210,10 @@ export type event_localizationWhereInput = {
   state?: Prisma.StringFilter<"event_localization"> | string
   city?: Prisma.StringFilter<"event_localization"> | string
   street?: Prisma.StringFilter<"event_localization"> | string
-  neighborhood?: Prisma.StringFilter<"event_localization"> | string
   number?: Prisma.StringFilter<"event_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
+  neighborhood?: Prisma.StringFilter<"event_localization"> | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
 }
 
@@ -223,10 +223,10 @@ export type event_localizationOrderByWithRelationInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
-  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
 }
 
@@ -239,10 +239,10 @@ export type event_localizationWhereUniqueInput = Prisma.AtLeast<{
   state?: Prisma.StringFilter<"event_localization"> | string
   city?: Prisma.StringFilter<"event_localization"> | string
   street?: Prisma.StringFilter<"event_localization"> | string
-  neighborhood?: Prisma.StringFilter<"event_localization"> | string
   number?: Prisma.StringFilter<"event_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
+  neighborhood?: Prisma.StringFilter<"event_localization"> | string
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
 }, "id">
 
@@ -252,10 +252,10 @@ export type event_localizationOrderByWithAggregationInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
-  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
   _count?: Prisma.event_localizationCountOrderByAggregateInput
   _max?: Prisma.event_localizationMaxOrderByAggregateInput
   _min?: Prisma.event_localizationMinOrderByAggregateInput
@@ -270,10 +270,10 @@ export type event_localizationScalarWhereWithAggregatesInput = {
   state?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
   city?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
   street?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
-  neighborhood?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
   number?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"event_localization"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"event_localization"> | Date | string
+  neighborhood?: Prisma.StringWithAggregatesFilter<"event_localization"> | string
 }
 
 export type event_localizationCreateInput = {
@@ -281,10 +281,10 @@ export type event_localizationCreateInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
   event: Prisma.EventCreateNestedOneWithoutLocalizationInput
 }
 
@@ -294,10 +294,10 @@ export type event_localizationUncheckedCreateInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
 }
 
 export type event_localizationUpdateInput = {
@@ -305,10 +305,10 @@ export type event_localizationUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   event?: Prisma.EventUpdateOneRequiredWithoutLocalizationNestedInput
 }
 
@@ -318,10 +318,10 @@ export type event_localizationUncheckedUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type event_localizationCreateManyInput = {
@@ -330,10 +330,10 @@ export type event_localizationCreateManyInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
 }
 
 export type event_localizationUpdateManyMutationInput = {
@@ -341,10 +341,10 @@ export type event_localizationUpdateManyMutationInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type event_localizationUncheckedUpdateManyInput = {
@@ -353,10 +353,10 @@ export type event_localizationUncheckedUpdateManyInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type Event_localizationListRelationFilter = {
@@ -375,10 +375,10 @@ export type event_localizationCountOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
-  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
 }
 
 export type event_localizationMaxOrderByAggregateInput = {
@@ -387,10 +387,10 @@ export type event_localizationMaxOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
-  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
 }
 
 export type event_localizationMinOrderByAggregateInput = {
@@ -399,10 +399,10 @@ export type event_localizationMinOrderByAggregateInput = {
   state?: Prisma.SortOrder
   city?: Prisma.SortOrder
   street?: Prisma.SortOrder
-  neighborhood?: Prisma.SortOrder
   number?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  neighborhood?: Prisma.SortOrder
 }
 
 export type event_localizationCreateNestedManyWithoutEventInput = {
@@ -452,10 +452,10 @@ export type event_localizationCreateWithoutEventInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
 }
 
 export type event_localizationUncheckedCreateWithoutEventInput = {
@@ -463,10 +463,10 @@ export type event_localizationUncheckedCreateWithoutEventInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
 }
 
 export type event_localizationCreateOrConnectWithoutEventInput = {
@@ -504,10 +504,10 @@ export type event_localizationScalarWhereInput = {
   state?: Prisma.StringFilter<"event_localization"> | string
   city?: Prisma.StringFilter<"event_localization"> | string
   street?: Prisma.StringFilter<"event_localization"> | string
-  neighborhood?: Prisma.StringFilter<"event_localization"> | string
   number?: Prisma.StringFilter<"event_localization"> | string
   createdAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"event_localization"> | Date | string
+  neighborhood?: Prisma.StringFilter<"event_localization"> | string
 }
 
 export type event_localizationCreateManyEventInput = {
@@ -515,10 +515,10 @@ export type event_localizationCreateManyEventInput = {
   state: string
   city: string
   street: string
-  neighborhood: string
   number: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  neighborhood: string
 }
 
 export type event_localizationUpdateWithoutEventInput = {
@@ -526,10 +526,10 @@ export type event_localizationUpdateWithoutEventInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type event_localizationUncheckedUpdateWithoutEventInput = {
@@ -537,10 +537,10 @@ export type event_localizationUncheckedUpdateWithoutEventInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type event_localizationUncheckedUpdateManyWithoutEventInput = {
@@ -548,10 +548,10 @@ export type event_localizationUncheckedUpdateManyWithoutEventInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   street?: Prisma.StringFieldUpdateOperationsInput | string
-  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  neighborhood?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -562,10 +562,10 @@ export type event_localizationSelect<ExtArgs extends runtime.Types.Extensions.In
   state?: boolean
   city?: boolean
   street?: boolean
-  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  neighborhood?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event_localization"]>
 
@@ -575,10 +575,10 @@ export type event_localizationSelectCreateManyAndReturn<ExtArgs extends runtime.
   state?: boolean
   city?: boolean
   street?: boolean
-  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  neighborhood?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event_localization"]>
 
@@ -588,10 +588,10 @@ export type event_localizationSelectUpdateManyAndReturn<ExtArgs extends runtime.
   state?: boolean
   city?: boolean
   street?: boolean
-  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  neighborhood?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event_localization"]>
 
@@ -601,13 +601,13 @@ export type event_localizationSelectScalar = {
   state?: boolean
   city?: boolean
   street?: boolean
-  neighborhood?: boolean
   number?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  neighborhood?: boolean
 }
 
-export type event_localizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "state" | "city" | "street" | "neighborhood" | "number" | "createdAt" | "updatedAt", ExtArgs["result"]["event_localization"]>
+export type event_localizationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "state" | "city" | "street" | "number" | "createdAt" | "updatedAt" | "neighborhood", ExtArgs["result"]["event_localization"]>
 export type event_localizationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }
@@ -629,10 +629,10 @@ export type $event_localizationPayload<ExtArgs extends runtime.Types.Extensions.
     state: string
     city: string
     street: string
-    neighborhood: string
     number: string
     createdAt: Date
     updatedAt: Date
+    neighborhood: string
   }, ExtArgs["result"]["event_localization"]>
   composites: {}
 }
@@ -1062,10 +1062,10 @@ export interface event_localizationFieldRefs {
   readonly state: Prisma.FieldRef<"event_localization", 'String'>
   readonly city: Prisma.FieldRef<"event_localization", 'String'>
   readonly street: Prisma.FieldRef<"event_localization", 'String'>
-  readonly neighborhood: Prisma.FieldRef<"event_localization", 'String'>
   readonly number: Prisma.FieldRef<"event_localization", 'String'>
   readonly createdAt: Prisma.FieldRef<"event_localization", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"event_localization", 'DateTime'>
+  readonly neighborhood: Prisma.FieldRef<"event_localization", 'String'>
 }
     
 

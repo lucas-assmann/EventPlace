@@ -33,7 +33,7 @@ export function EmailVerified() {
           <div className="mt-6 flex justify-end">
             <Button
               type="button"
-              className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70"
+              className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70 cursor-pointer"
               onClick={() => window.close()}
             >
               Fechar página

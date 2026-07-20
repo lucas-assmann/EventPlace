@@ -60,7 +60,7 @@ export function VerifyCode() {
               type="button"
               variant="ghost"
               disabled={loading}
-              className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70"
+              className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70 cursor-pointer"
               onClick={handleVerifyCode}
             >
               {loading ? 'Verificando...' : 'Verificar'}

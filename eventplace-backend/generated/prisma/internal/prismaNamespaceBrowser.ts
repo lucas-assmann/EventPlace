@@ -59,7 +59,6 @@ export const ModelName = {
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
-  BlackList: 'BlackList',
   SessionList: 'SessionList'
 } as const
 
@@ -92,8 +91,8 @@ export const UserScalarFieldEnum = {
   updatedAt: 'updatedAt',
   cep: 'cep',
   isVerified: 'isVerified',
-  cellphone: 'cellphone',
-  age: 'age'
+  age: 'age',
+  cellphone: 'cellphone'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -105,10 +104,10 @@ export const User_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
-  neighborhood: 'neighborhood',
   number: 'number',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  neighborhood: 'neighborhood'
 } as const
 
 export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFieldEnum)[keyof typeof User_localizationScalarFieldEnum]
@@ -117,8 +116,8 @@ export type User_localizationScalarFieldEnum = (typeof User_localizationScalarFi
 export const User_verificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  code: 'code',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  code: 'code'
 } as const
 
 export type User_verificationScalarFieldEnum = (typeof User_verificationScalarFieldEnum)[keyof typeof User_verificationScalarFieldEnum]
@@ -128,17 +127,17 @@ export const EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  banner: 'banner',
-  date: 'date',
-  appropriate_age: 'appropriate_age',
-  max_person_quantity: 'max_person_quantity',
   endAt: 'endAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  artist: 'artist',
-  cellphone: 'cellphone',
   cep: 'cep',
-  userId: 'userId'
+  userId: 'userId',
+  banner: 'banner',
+  max_person_quantity: 'max_person_quantity',
+  date: 'date',
+  appropriate_age: 'appropriate_age',
+  artist: 'artist',
+  cellphone: 'cellphone'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -160,10 +159,10 @@ export const Event_localizationScalarFieldEnum = {
   state: 'state',
   city: 'city',
   street: 'street',
-  neighborhood: 'neighborhood',
   number: 'number',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  neighborhood: 'neighborhood'
 } as const
 
 export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalarFieldEnum)[keyof typeof Event_localizationScalarFieldEnum]
@@ -193,20 +192,11 @@ export const TicketTypeScalarFieldEnum = {
 export type TicketTypeScalarFieldEnum = (typeof TicketTypeScalarFieldEnum)[keyof typeof TicketTypeScalarFieldEnum]
 
 
-export const BlackListScalarFieldEnum = {
-  id: 'id',
-  token: 'token',
-  createdAt: 'createdAt'
-} as const
-
-export type BlackListScalarFieldEnum = (typeof BlackListScalarFieldEnum)[keyof typeof BlackListScalarFieldEnum]
-
-
 export const SessionListScalarFieldEnum = {
   id: 'id',
   token: 'token',
-  userId: 'userId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  userId: 'userId'
 } as const
 
 export type SessionListScalarFieldEnum = (typeof SessionListScalarFieldEnum)[keyof typeof SessionListScalarFieldEnum]

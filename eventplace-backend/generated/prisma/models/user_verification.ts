@@ -27,22 +27,22 @@ export type AggregateUser_verification = {
 export type User_verificationMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  code: string | null
   createdAt: Date | null
+  code: string | null
 }
 
 export type User_verificationMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  code: string | null
   createdAt: Date | null
+  code: string | null
 }
 
 export type User_verificationCountAggregateOutputType = {
   id: number
   userId: number
-  code: number
   createdAt: number
+  code: number
   _all: number
 }
 
@@ -50,22 +50,22 @@ export type User_verificationCountAggregateOutputType = {
 export type User_verificationMinAggregateInputType = {
   id?: true
   userId?: true
-  code?: true
   createdAt?: true
+  code?: true
 }
 
 export type User_verificationMaxAggregateInputType = {
   id?: true
   userId?: true
-  code?: true
   createdAt?: true
+  code?: true
 }
 
 export type User_verificationCountAggregateInputType = {
   id?: true
   userId?: true
-  code?: true
   createdAt?: true
+  code?: true
   _all?: true
 }
 
@@ -144,8 +144,8 @@ export type user_verificationGroupByArgs<ExtArgs extends runtime.Types.Extension
 export type User_verificationGroupByOutputType = {
   id: string
   userId: string
-  code: string
   createdAt: Date
+  code: string
   _count: User_verificationCountAggregateOutputType | null
   _min: User_verificationMinAggregateOutputType | null
   _max: User_verificationMaxAggregateOutputType | null
@@ -172,16 +172,16 @@ export type user_verificationWhereInput = {
   NOT?: Prisma.user_verificationWhereInput | Prisma.user_verificationWhereInput[]
   id?: Prisma.StringFilter<"user_verification"> | string
   userId?: Prisma.StringFilter<"user_verification"> | string
-  code?: Prisma.StringFilter<"user_verification"> | string
   createdAt?: Prisma.DateTimeFilter<"user_verification"> | Date | string
+  code?: Prisma.StringFilter<"user_verification"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type user_verificationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -199,8 +199,8 @@ export type user_verificationWhereUniqueInput = Prisma.AtLeast<{
 export type user_verificationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  code?: Prisma.SortOrder
   _count?: Prisma.user_verificationCountOrderByAggregateInput
   _max?: Prisma.user_verificationMaxOrderByAggregateInput
   _min?: Prisma.user_verificationMinOrderByAggregateInput
@@ -212,56 +212,56 @@ export type user_verificationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.user_verificationScalarWhereWithAggregatesInput | Prisma.user_verificationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"user_verification"> | string
   userId?: Prisma.StringWithAggregatesFilter<"user_verification"> | string
-  code?: Prisma.StringWithAggregatesFilter<"user_verification"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"user_verification"> | Date | string
+  code?: Prisma.StringWithAggregatesFilter<"user_verification"> | string
 }
 
 export type user_verificationCreateInput = {
   id?: string
-  code: string
   createdAt?: Date | string
+  code: string
   user: Prisma.UserCreateNestedOneWithoutVerificationInput
 }
 
 export type user_verificationUncheckedCreateInput = {
   id?: string
   userId: string
-  code: string
   createdAt?: Date | string
+  code: string
 }
 
 export type user_verificationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutVerificationNestedInput
 }
 
 export type user_verificationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type user_verificationCreateManyInput = {
   id?: string
   userId: string
-  code: string
   createdAt?: Date | string
+  code: string
 }
 
 export type user_verificationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type user_verificationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type User_verificationListRelationFilter = {
@@ -277,22 +277,22 @@ export type user_verificationOrderByRelationAggregateInput = {
 export type user_verificationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  code?: Prisma.SortOrder
 }
 
 export type user_verificationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  code?: Prisma.SortOrder
 }
 
 export type user_verificationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  code?: Prisma.SortOrder
 }
 
 export type user_verificationCreateNestedManyWithoutUserInput = {
@@ -339,14 +339,14 @@ export type user_verificationUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type user_verificationCreateWithoutUserInput = {
   id?: string
-  code: string
   createdAt?: Date | string
+  code: string
 }
 
 export type user_verificationUncheckedCreateWithoutUserInput = {
   id?: string
-  code: string
   createdAt?: Date | string
+  code: string
 }
 
 export type user_verificationCreateOrConnectWithoutUserInput = {
@@ -381,32 +381,32 @@ export type user_verificationScalarWhereInput = {
   NOT?: Prisma.user_verificationScalarWhereInput | Prisma.user_verificationScalarWhereInput[]
   id?: Prisma.StringFilter<"user_verification"> | string
   userId?: Prisma.StringFilter<"user_verification"> | string
-  code?: Prisma.StringFilter<"user_verification"> | string
   createdAt?: Prisma.DateTimeFilter<"user_verification"> | Date | string
+  code?: Prisma.StringFilter<"user_verification"> | string
 }
 
 export type user_verificationCreateManyUserInput = {
   id?: string
-  code: string
   createdAt?: Date | string
+  code: string
 }
 
 export type user_verificationUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type user_verificationUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type user_verificationUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  code?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -414,35 +414,35 @@ export type user_verificationUncheckedUpdateManyWithoutUserInput = {
 export type user_verificationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  code?: boolean
   createdAt?: boolean
+  code?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_verification"]>
 
 export type user_verificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  code?: boolean
   createdAt?: boolean
+  code?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_verification"]>
 
 export type user_verificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  code?: boolean
   createdAt?: boolean
+  code?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_verification"]>
 
 export type user_verificationSelectScalar = {
   id?: boolean
   userId?: boolean
-  code?: boolean
   createdAt?: boolean
+  code?: boolean
 }
 
-export type user_verificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "code" | "createdAt", ExtArgs["result"]["user_verification"]>
+export type user_verificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "createdAt" | "code", ExtArgs["result"]["user_verification"]>
 export type user_verificationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -461,8 +461,8 @@ export type $user_verificationPayload<ExtArgs extends runtime.Types.Extensions.I
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    code: string
     createdAt: Date
+    code: string
   }, ExtArgs["result"]["user_verification"]>
   composites: {}
 }
@@ -889,8 +889,8 @@ export interface Prisma__user_verificationClient<T, Null = never, ExtArgs extend
 export interface user_verificationFieldRefs {
   readonly id: Prisma.FieldRef<"user_verification", 'String'>
   readonly userId: Prisma.FieldRef<"user_verification", 'String'>
-  readonly code: Prisma.FieldRef<"user_verification", 'String'>
   readonly createdAt: Prisma.FieldRef<"user_verification", 'DateTime'>
+  readonly code: Prisma.FieldRef<"user_verification", 'String'>
 }
     
 

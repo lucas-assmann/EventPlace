@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { passwordSchema, type PasswordData } from '@/schema/password-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeOff, ShieldAlert } from 'lucide-react'
+import { Eye, EyeOff, MailCheck, ShieldAlert } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -91,7 +91,7 @@ export function PasswordStep({ onNext, open, onOpenChange, dialogError }: Props)
         link={dialogError ? undefined : '/verify-code'}
         text={dialogError ? undefined : 'Ok'}
         showClose={!!dialogError}
-
+        Icon={dialogError ? ShieldAlert : MailCheck}
       />
 
       <div className="mt-7 space-y-3 text-center">

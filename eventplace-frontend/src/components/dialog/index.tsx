@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog"
+import type { LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 
 type Variant = 'success' | 'error' | 'info'
@@ -22,7 +23,7 @@ interface DialogDemoProps {
   onOpenChange?: (open: boolean) => void
   link?: string
   text?: string
-  Icon?: React.ReactNode
+  Icon?: LucideIcon
   variant?: Variant
   showClose?: boolean
 }
@@ -91,7 +92,7 @@ export function DialogDemo({
 
             <div className="flex items-start gap-3">
               <div className={`flex size-11 shrink-0 items-center justify-center rounded-2xl border ${styles.icon}`}>
-                {Icon}
+                {Icon && <Icon className="size-5" />}
               </div>
               <div className="space-y-2">
                 <DialogTitle className={`text-lg font-semibold leading-tight ${styles.title}`}>
@@ -126,7 +127,7 @@ export function DialogDemo({
                   <Button
                     asChild
                     type="button"
-                    className="h-10 rounded-xl bg-[#7C3AED] text-white shadow-[0_16px_40px_-18px_rgba(124,58,237,0.85)] hover:bg-white cursor-pointer hover:text-black"
+                    className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70 cursor-pointer"
                   >
                     <Link to={link}>{text}</Link>
                   </Button>
