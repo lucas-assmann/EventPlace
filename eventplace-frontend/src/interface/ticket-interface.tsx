@@ -26,4 +26,5 @@ export interface TicketDTO {
   userId: string;
   createdAt: string;
   ticketTypeId: string;
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED';
 }

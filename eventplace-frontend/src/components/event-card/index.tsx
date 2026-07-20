@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, MapPin, Star, Ticket, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TypographyP } from '../ui/typography'
 
-export function EventCard({ id, title, appropriate_age, localization, date, ticketType, banner, user }: EventDTO) {
+export function EventCard({ id, title, appropriate_age, localization, date, ticketType, banner, user, max_person_quantity }: EventDTO) {
 
   const totalTickets = ticketType?.reduce(
     (acc, ticket) => acc + ticket.quantity,
@@ -51,6 +51,11 @@ export function EventCard({ id, title, appropriate_age, localization, date, tick
             })}
           </div>
 
+          <div className="flex items-center gap-1.5 text-xs text-white/35">
+            <Ticket className="h-3 w-3" />
+            {max_person_quantity} capacidade máxima
+          </div>
+
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 text-xs text-white/35">
               <User className="h-3 w-3" />
@@ -64,7 +69,6 @@ export function EventCard({ id, title, appropriate_age, localization, date, tick
                 {user?.rating ?? '5.0'}
               </TypographyP>
               <Star className="h-4 w-4 text-yellow-400" />
-
             </div>
           </div>
 

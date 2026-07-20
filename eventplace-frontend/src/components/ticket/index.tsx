@@ -31,8 +31,20 @@ export function TicketCard({ ticketType, status, createdAt }: TicketTypeDTO) {
 
         <div className="hidden flex-col items-end gap-0.5 sm:flex">
           <TypographyP className="text-[10px] uppercase tracking-widest text-white/30">Status</TypographyP>
-          <Badge variant={status === 'CONFIRMED' ? 'success' : status === 'CANCELLED' ? 'destructive' : 'default'}>
-            {status === 'CONFIRMED' ? 'Confirmado' : status === 'CANCELLED' ? 'Cancelado' : 'Pendente'}
+          <Badge
+            variant={
+              status === "CONFIRMED"
+                ? "success"
+                : status === "CANCELLED"
+                  ? "destructive"
+                  : "warning"
+            }
+          >
+            {status === "CONFIRMED"
+              ? "Confirmado"
+              : status === "CANCELLED"
+                ? "Cancelado"
+                : "Pendente"}
           </Badge>
         </div>
 

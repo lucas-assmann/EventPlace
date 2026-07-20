@@ -13,7 +13,11 @@ export function Header() {
   const { pathname } = useLocation()
   const [userData, setUserData] = useState<UserDTO | null>(null);
 
-  const ticketsCount = userData?.tickets?.length ?? 0
+  const confirmedTickets = userData?.tickets?.filter(
+    ({ status }) => status === "CONFIRMED"
+  );
+
+  const ticketsCount = confirmedTickets ? confirmedTickets.length : 0;
 
   useEffect(() => {
     api.get<UserDTO>('/user')
@@ -33,7 +37,9 @@ export function Header() {
   return (
     <header className="sticky flex h-16 border-b border-purple-900/30 bg-zinc-950 lg:justify-around">
       <div className="max-w-7xl flex items-center gap-4 justify-around w-full">
-        <Logo />
+        <Link to="/" className="flex shrink-0 items-center gap-2.5">
+          <Logo />
+        </Link>
 
         <div className="relative hidden flex-1  sm:block max-w-2xl">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30 lg:width-full" />
