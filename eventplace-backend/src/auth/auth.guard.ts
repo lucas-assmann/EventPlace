@@ -11,6 +11,7 @@ import { IS_PUBLIC_KEY } from 'src/utils/public.decorator';
 interface JwtPayload {
   id: string;
 }
+
 interface AuthRequest extends Request {
   user: JwtPayload;
 }
@@ -19,8 +20,8 @@ interface AuthRequest extends Request {
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
-    private prisma: PrismaService,
-    private reflector: Reflector,
+    private readonly prisma: PrismaService,
+    private readonly reflector: Reflector,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -28,26 +29,37 @@ export class AuthGuard implements CanActivate {
       context.getHandler(),
       context.getClass(),
     ]);
-    if (isPublic) return true;
+
+    if (isPublic) {
+      return true;
+    }
+
     const request = context.switchToHttp().getRequest<AuthRequest>();
+
     const token = extractTokenFromHeader(request);
+
     if (!token) {
       throw new UnauthorizedExceptionRoute();
     }
+
     try {
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
-      request['user'] = payload;
 
-      const blacklisted = await this.prisma.sessionList.findFirst({
-        where: { token },
+      const session = await this.prisma.sessionList.findFirst({
+        where: {
+          token,
+        },
       });
-      if (blacklisted) {
+
+      if (!session) {
         throw new UnauthorizedExceptionRoute();
       }
+
+      request.user = payload;
+
+      return true;
     } catch {
       throw new UnauthorizedExceptionRoute();
     }
-
-    return true;
   }
 }
