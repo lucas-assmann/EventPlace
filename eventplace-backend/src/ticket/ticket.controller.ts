@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { TicketService } from './ticket.service';
+import { CheckinTicketDto } from './dto/checkin-ticket.dto';
 interface AuthRequest extends Request {
   user: JwtPayload;
 }
@@ -52,5 +53,10 @@ export class TicketController {
     const user = request.user;
 
     return this.ticketService.findByName(name, user.id);
+  }
+
+  @Post('checkin')
+  checkin(@Body() dto: CheckinTicketDto, @Req() request: AuthRequest) {
+    return this.ticketService.checkin(dto.entryCode, request.user.id);
   }
 }

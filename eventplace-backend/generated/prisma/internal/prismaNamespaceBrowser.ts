@@ -171,6 +171,8 @@ export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalar
 export const TicketScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  entryStatus: 'entryStatus',
+  entryCode: 'entryCode',
   createdAt: 'createdAt',
   ticketTypeId: 'ticketTypeId',
   status: 'status',

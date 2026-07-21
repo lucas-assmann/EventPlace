@@ -167,3 +167,27 @@ export class NeededValidationException extends HttpException {
     );
   }
 }
+
+export class TicketAlreadyCheckin extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Ticket já verificado',
+        error: 'TICKET_ALREADY_CHECKIN',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}
+
+export class PaymentUnavailableException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Pagamento indisponível',
+        error: 'PAYMENT_UNAVAILABLE',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

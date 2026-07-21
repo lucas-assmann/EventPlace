@@ -33,3 +33,11 @@ export const Status_Ticket = {
 } as const
 
 export type Status_Ticket = (typeof Status_Ticket)[keyof typeof Status_Ticket]
+
+
+export const EntryStatus = {
+  ENTERED: 'ENTERED',
+  NOT_ENTERED: 'NOT_ENTERED'
+} as const
+
+export type EntryStatus = (typeof EntryStatus)[keyof typeof EntryStatus]

@@ -1210,6 +1210,8 @@ export type Event_localizationScalarFieldEnum = (typeof Event_localizationScalar
 export const TicketScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  entryStatus: 'entryStatus',
+  entryCode: 'entryCode',
   createdAt: 'createdAt',
   ticketTypeId: 'ticketTypeId',
   status: 'status',
@@ -1359,6 +1361,20 @@ export type EnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$
  * Reference to a field of type 'Appropriate_age[]'
  */
 export type ListEnumAppropriate_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Appropriate_age[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EntryStatus'
+ */
+export type EnumEntryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntryStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EntryStatus[]'
+ */
+export type ListEnumEntryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EntryStatus[]'>
     
 
 

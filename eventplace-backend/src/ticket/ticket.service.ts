@@ -1,12 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import {
   EnoughAgeException,
   EnoughTicket,
   InvalidEmailException,
   NotExistTicket,
+  TicketAlreadyCheckin,
+  PaymentUnavailableException,
 } from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
 import { EmailService } from 'src/utils/email';
+import { entryCode } from 'src/utils/entry-code.utils';
 import { generateQRCode } from 'src/utils/qr.generator';
 import { Appropriate_age, User_age } from './../../generated/prisma/enums';
 import { CreateTicketDto } from './dto/create-ticket.dto';
@@ -50,8 +53,9 @@ export class TicketService {
 
     const buyTicket = await this.prisma.ticket.create({
       data: {
-        ...createTicketDto,
+        ticketTypeId: createTicketDto.ticketTypeId,
         userId,
+        entryCode: entryCode,
       },
     });
 
@@ -183,5 +187,49 @@ export class TicketService {
       },
     });
     return searchTicketTypeByUser;
+  }
+
+  async checkin(entryCode: string, ownerId: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: {
+        entryCode,
+      },
+      include: {
+        ticketType: {
+          include: {
+            event: true,
+          },
+        },
+      },
+    });
+
+    if (!ticket) {
+      throw new NotExistTicket();
+    }
+
+    if (ticket.status !== 'CONFIRMED') {
+      throw new PaymentUnavailableException();
+    }
+
+    if (ticket.entryStatus === 'ENTERED') {
+      throw new TicketAlreadyCheckin();
+    }
+
+    if (ticket.ticketType.event.userId !== ownerId) {
+      throw new UnauthorizedException('Você não é o organizador deste evento.');
+    }
+
+    await this.prisma.ticket.update({
+      where: {
+        id: ticket.id,
+      },
+      data: {
+        entryStatus: 'ENTERED',
+      },
+    });
+
+    return {
+      message: 'Entrada liberada com sucesso.',
+    };
   }
 }
