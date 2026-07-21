@@ -167,6 +167,13 @@ export type EnumUser_ageWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumUser_ageFilter<$PrismaModel>
 }
 
+export type EnumEventStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventStatusFilter<$PrismaModel> | $Enums.EventStatus
+}
+
 export type IntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -183,6 +190,16 @@ export type EnumAppropriate_ageFilter<$PrismaModel = never> = {
   in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
   notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel> | $Enums.Appropriate_age
+}
+
+export type EnumEventStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventStatusWithAggregatesFilter<$PrismaModel> | $Enums.EventStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventStatusFilter<$PrismaModel>
 }
 
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -438,11 +455,28 @@ export type NestedEnumUser_ageWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumUser_ageFilter<$PrismaModel>
 }
 
+export type NestedEnumEventStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventStatusFilter<$PrismaModel> | $Enums.EventStatus
+}
+
 export type NestedEnumAppropriate_ageFilter<$PrismaModel = never> = {
   equals?: $Enums.Appropriate_age | Prisma.EnumAppropriate_ageFieldRefInput<$PrismaModel>
   in?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
   notIn?: $Enums.Appropriate_age[] | Prisma.ListEnumAppropriate_ageFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumAppropriate_ageFilter<$PrismaModel> | $Enums.Appropriate_age
+}
+
+export type NestedEnumEventStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEventStatusWithAggregatesFilter<$PrismaModel> | $Enums.EventStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventStatusFilter<$PrismaModel>
 }
 
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {

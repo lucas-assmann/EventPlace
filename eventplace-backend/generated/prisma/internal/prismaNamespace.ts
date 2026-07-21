@@ -1167,6 +1167,7 @@ export const EventScalarFieldEnum = {
   title: 'title',
   description: 'description',
   endAt: 'endAt',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   cep: 'cep',
@@ -1333,6 +1334,20 @@ export type EnumUser_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'User_age[]'
  */
 export type ListEnumUser_ageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'User_age[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EventStatus'
+ */
+export type EnumEventStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EventStatus[]'
+ */
+export type ListEnumEventStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventStatus[]'>
     
 
 

@@ -51,6 +51,16 @@ export class EventController {
     return this.eventService.update(id, updateEventDto, user.id);
   }
 
+  @Patch(':id/start')
+  startEvent(@Param('id') id: string, @Req() request: AuthRequest) {
+    return this.eventService.startEvent(id, request.user.id);
+  }
+
+  @Patch(':id/finish')
+  finishEvent(@Param('id') id: string, @Req() request: AuthRequest) {
+    return this.eventService.finishEvent(id, request.user.id);
+  }
+
   @Delete(':id')
   remove(@Req() request: AuthRequest, @Param('id') id: string) {
     const user = request.user;

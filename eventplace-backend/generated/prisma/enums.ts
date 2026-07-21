@@ -41,3 +41,12 @@ export const EntryStatus = {
 } as const
 
 export type EntryStatus = (typeof EntryStatus)[keyof typeof EntryStatus]
+
+
+export const EventStatus = {
+  WILL_HAPPEN: 'WILL_HAPPEN',
+  ONGOING: 'ONGOING',
+  FINISHED: 'FINISHED'
+} as const
+
+export type EventStatus = (typeof EventStatus)[keyof typeof EventStatus]

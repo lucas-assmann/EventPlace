@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import {
   DateInvalidException,
   EventAlreadyExistsException,
@@ -178,5 +182,65 @@ export class EventService {
     });
 
     return 'Artista removido do evento com sucesso!';
+  }
+
+  async startEvent(id: string, userId: string) {
+    const event = await this.prisma.event.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!event) {
+      throw new UnauthorizedExceptionRoute();
+    }
+
+    if (event.userId !== userId) {
+      throw new UnauthorizedException('Você não é o organizador deste evento.');
+    }
+
+    if (event.status !== 'WILL_HAPPEN') {
+      throw new BadRequestException('O evento não pode ser iniciado.');
+    }
+
+    const updatedEvent = await this.prisma.event.update({
+      where: { id },
+      data: {
+        status: 'ONGOING',
+      },
+    });
+
+    return updatedEvent;
+  }
+
+  async finishEvent(id: string, userId: string) {
+    const event = await this.prisma.event.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!event) {
+      throw new UnauthorizedExceptionRoute();
+    }
+
+    if (event.userId !== userId) {
+      throw new UnauthorizedException('Você não é o organizador deste evento.');
+    }
+
+    if (event.status !== 'ONGOING') {
+      throw new BadRequestException('O evento não está em andamento.');
+    }
+
+    const updatedEvent = await this.prisma.event.update({
+      where: {
+        id,
+      },
+      data: {
+        status: 'FINISHED',
+      },
+    });
+
+    return updatedEvent;
   }
 }

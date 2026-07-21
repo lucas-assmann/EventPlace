@@ -57,7 +57,7 @@ model Event {
   title               String               @unique
   description         String
   endAt               DateTime
-  finishedAt          DateTime?
+  status              EventStatus          @default(WILL_HAPPEN)
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   cep                 String
@@ -150,4 +150,10 @@ enum Status_Ticket {
 enum EntryStatus {
   ENTERED
   NOT_ENTERED
+}
+
+enum EventStatus {
+  WILL_HAPPEN
+  ONGOING
+  FINISHED
 }

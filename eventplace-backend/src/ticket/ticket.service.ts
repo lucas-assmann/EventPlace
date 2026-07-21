@@ -11,7 +11,11 @@ import { PrismaService } from 'src/prisma.service';
 import { EmailService } from 'src/utils/email';
 import { entryCode } from 'src/utils/entry-code.utils';
 import { generateQRCode } from 'src/utils/qr.generator';
-import { Appropriate_age, User_age } from './../../generated/prisma/enums';
+import {
+  Appropriate_age,
+  EventStatus,
+  User_age,
+} from './../../generated/prisma/enums';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 
 @Injectable()
@@ -32,6 +36,13 @@ export class TicketService {
     });
 
     if (!userTicket) {
+      throw new NotExistTicket();
+    }
+
+    if (
+      userTicket.event.status !== EventStatus.WILL_HAPPEN &&
+      userTicket.event.status !== EventStatus.ONGOING
+    ) {
       throw new NotExistTicket();
     }
 
