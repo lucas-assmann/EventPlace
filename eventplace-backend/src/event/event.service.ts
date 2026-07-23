@@ -243,4 +243,24 @@ export class EventService {
 
     return updatedEvent;
   }
+
+  async buscar(termo?: string) {
+    if (!termo) {
+      return this.prisma.event.findMany({
+        orderBy: { date: 'asc' },
+      });
+    }
+
+    return this.prisma.event.findMany({
+      where: {
+        OR: [
+          { title: { contains: termo, mode: 'insensitive' } },
+          { description: { contains: termo, mode: 'insensitive' } },
+          { cep: { contains: termo, mode: 'insensitive' } },
+          { artist: { contains: termo, mode: 'insensitive' } },
+        ],
+      },
+      orderBy: { date: 'asc' },
+    });
+  }
 }

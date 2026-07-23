@@ -5,13 +5,16 @@ import type { UserDTO } from '@/interface/user-interface'
 import api from '@/lib/api'
 import { CalendarDays, MapPin, Menu, PlusCircle, Search, Ticket } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { DropdownAvatar } from '../dropdown-avatar'
 import { Logo } from '../logo'
 
 export function Header() {
   const { pathname } = useLocation()
   const [userData, setUserData] = useState<UserDTO | null>(null);
+  const [busca, setBusca] = useState('');
+
+  const navigate = useNavigate();
 
   const confirmedTickets = userData?.tickets?.filter(
     ({ status }) => status === "CONFIRMED"
@@ -34,6 +37,13 @@ export function Header() {
       .toUpperCase()
     : ''
 
+  function handleBuscar(e: React.FormEvent) {
+    e.preventDefault();
+    if (busca.trim()) {
+      navigate(`/eventos?q=${encodeURIComponent(busca.trim())}`);
+    }
+  }
+
   return (
     <header className="sticky flex h-16 border-b border-purple-900/30 bg-zinc-950 lg:justify-around">
       <div className="max-w-7xl flex items-center gap-4 justify-around w-full">
@@ -41,13 +51,15 @@ export function Header() {
           <Logo />
         </Link>
 
-        <div className="relative hidden flex-1  sm:block max-w-2xl">
+        <form onSubmit={handleBuscar} className="relative hidden flex-1 sm:block max-w-2xl">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30 lg:width-full" />
           <Input
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
             placeholder="Buscar eventos, artistas..."
             className="h-9 border-white/10 bg-white/5 pl-9 text-sm text-white placeholder:text-white/30 focus-visible:border-purple-500/50 focus-visible:ring-purple-500/20"
           />
-        </div>
+        </form>
 
         <div className="flex items-center gap-4">
           <Button

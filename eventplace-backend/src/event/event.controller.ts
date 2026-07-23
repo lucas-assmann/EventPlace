@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -66,5 +67,10 @@ export class EventController {
     const user = request.user;
 
     return this.eventService.remove(id, user.id);
+  }
+
+  @Get()
+  buscar(@Query('q') termo?: string) {
+    return this.eventService.buscar(termo);
   }
 }
