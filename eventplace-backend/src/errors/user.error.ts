@@ -191,3 +191,15 @@ export class PaymentUnavailableException extends HttpException {
     );
   }
 }
+
+export class CannotRateException extends HttpException {
+  constructor() {
+    super(
+      {
+        message: 'Não é possível avaliar este evento',
+        error: 'CANNOT_RATE',
+      },
+      HttpStatus.UNPROCESSABLE_ENTITY,
+    );
+  }
+}

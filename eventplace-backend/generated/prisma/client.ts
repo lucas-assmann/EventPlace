@@ -84,3 +84,8 @@ export type TicketType = Prisma.TicketTypeModel
  * 
  */
 export type SessionList = Prisma.SessionListModel
+/**
+ * Model Rating
+ * 
+ */
+export type Rating = Prisma.RatingModel

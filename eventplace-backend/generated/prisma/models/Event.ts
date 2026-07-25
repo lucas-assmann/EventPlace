@@ -42,6 +42,7 @@ export type EventMinAggregateOutputType = {
   status: $Enums.EventStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  finishedAt: Date | null
   cep: string | null
   userId: string | null
   banner: string | null
@@ -60,6 +61,7 @@ export type EventMaxAggregateOutputType = {
   status: $Enums.EventStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  finishedAt: Date | null
   cep: string | null
   userId: string | null
   banner: string | null
@@ -78,6 +80,7 @@ export type EventCountAggregateOutputType = {
   status: number
   createdAt: number
   updatedAt: number
+  finishedAt: number
   cep: number
   userId: number
   banner: number
@@ -106,6 +109,7 @@ export type EventMinAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  finishedAt?: true
   cep?: true
   userId?: true
   banner?: true
@@ -124,6 +128,7 @@ export type EventMaxAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  finishedAt?: true
   cep?: true
   userId?: true
   banner?: true
@@ -142,6 +147,7 @@ export type EventCountAggregateInputType = {
   status?: true
   createdAt?: true
   updatedAt?: true
+  finishedAt?: true
   cep?: true
   userId?: true
   banner?: true
@@ -247,6 +253,7 @@ export type EventGroupByOutputType = {
   status: $Enums.EventStatus
   createdAt: Date
   updatedAt: Date
+  finishedAt: Date | null
   cep: string
   userId: string
   banner: string | null
@@ -288,6 +295,7 @@ export type EventWhereInput = {
   status?: Prisma.EnumEventStatusFilter<"Event"> | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  finishedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   cep?: Prisma.StringFilter<"Event"> | string
   userId?: Prisma.StringFilter<"Event"> | string
   banner?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -300,6 +308,7 @@ export type EventWhereInput = {
   artists?: Prisma.EventArtistListRelationFilter
   ticketType?: Prisma.TicketTypeListRelationFilter
   localization?: Prisma.Event_localizationListRelationFilter
+  ratings?: Prisma.RatingListRelationFilter
 }
 
 export type EventOrderByWithRelationInput = {
@@ -310,6 +319,7 @@ export type EventOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -322,6 +332,7 @@ export type EventOrderByWithRelationInput = {
   artists?: Prisma.EventArtistOrderByRelationAggregateInput
   ticketType?: Prisma.TicketTypeOrderByRelationAggregateInput
   localization?: Prisma.event_localizationOrderByRelationAggregateInput
+  ratings?: Prisma.RatingOrderByRelationAggregateInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
@@ -335,6 +346,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumEventStatusFilter<"Event"> | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  finishedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   cep?: Prisma.StringFilter<"Event"> | string
   userId?: Prisma.StringFilter<"Event"> | string
   banner?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -347,6 +359,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   artists?: Prisma.EventArtistListRelationFilter
   ticketType?: Prisma.TicketTypeListRelationFilter
   localization?: Prisma.Event_localizationListRelationFilter
+  ratings?: Prisma.RatingListRelationFilter
 }, "id" | "title">
 
 export type EventOrderByWithAggregationInput = {
@@ -357,6 +370,7 @@ export type EventOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -383,6 +397,7 @@ export type EventScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumEventStatusWithAggregatesFilter<"Event"> | $Enums.EventStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
+  finishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   cep?: Prisma.StringWithAggregatesFilter<"Event"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Event"> | string
   banner?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
@@ -401,6 +416,7 @@ export type EventCreateInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -412,6 +428,7 @@ export type EventCreateInput = {
   artists?: Prisma.EventArtistCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateInput = {
@@ -422,6 +439,7 @@ export type EventUncheckedCreateInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   userId: string
   banner?: string | null
@@ -433,6 +451,7 @@ export type EventUncheckedCreateInput = {
   artists?: Prisma.EventArtistUncheckedCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
@@ -443,6 +462,7 @@ export type EventUpdateInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -454,6 +474,7 @@ export type EventUpdateInput = {
   artists?: Prisma.EventArtistUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
@@ -464,6 +485,7 @@ export type EventUncheckedUpdateInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -475,6 +497,7 @@ export type EventUncheckedUpdateInput = {
   artists?: Prisma.EventArtistUncheckedUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUncheckedUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
@@ -485,6 +508,7 @@ export type EventCreateManyInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   userId: string
   banner?: string | null
@@ -503,6 +527,7 @@ export type EventUpdateManyMutationInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -520,6 +545,7 @@ export type EventUncheckedUpdateManyInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -548,6 +574,7 @@ export type EventCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   banner?: Prisma.SortOrder
@@ -570,6 +597,7 @@ export type EventMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   banner?: Prisma.SortOrder
@@ -588,6 +616,7 @@ export type EventMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrder
   cep?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   banner?: Prisma.SortOrder
@@ -653,6 +682,10 @@ export type EnumEventStatusFieldUpdateOperationsInput = {
   set?: $Enums.EventStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -707,6 +740,20 @@ export type EventUpdateOneRequiredWithoutTicketTypeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutTicketTypeInput, Prisma.EventUpdateWithoutTicketTypeInput>, Prisma.EventUncheckedUpdateWithoutTicketTypeInput>
 }
 
+export type EventCreateNestedOneWithoutRatingsInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutRatingsInput, Prisma.EventUncheckedCreateWithoutRatingsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutRatingsInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneRequiredWithoutRatingsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutRatingsInput, Prisma.EventUncheckedCreateWithoutRatingsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutRatingsInput
+  upsert?: Prisma.EventUpsertWithoutRatingsInput
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutRatingsInput, Prisma.EventUpdateWithoutRatingsInput>, Prisma.EventUncheckedUpdateWithoutRatingsInput>
+}
+
 export type EventCreateWithoutUserInput = {
   id?: string
   title: string
@@ -715,6 +762,7 @@ export type EventCreateWithoutUserInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -725,6 +773,7 @@ export type EventCreateWithoutUserInput = {
   artists?: Prisma.EventArtistCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutUserInput = {
@@ -735,6 +784,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -745,6 +795,7 @@ export type EventUncheckedCreateWithoutUserInput = {
   artists?: Prisma.EventArtistUncheckedCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutUserInput = {
@@ -784,6 +835,7 @@ export type EventScalarWhereInput = {
   status?: Prisma.EnumEventStatusFilter<"Event"> | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Event"> | Date | string
+  finishedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   cep?: Prisma.StringFilter<"Event"> | string
   userId?: Prisma.StringFilter<"Event"> | string
   banner?: Prisma.StringNullableFilter<"Event"> | string | null
@@ -802,6 +854,7 @@ export type EventCreateWithoutArtistsInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -812,6 +865,7 @@ export type EventCreateWithoutArtistsInput = {
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   ticketType?: Prisma.TicketTypeCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutArtistsInput = {
@@ -822,6 +876,7 @@ export type EventUncheckedCreateWithoutArtistsInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   userId: string
   banner?: string | null
@@ -832,6 +887,7 @@ export type EventUncheckedCreateWithoutArtistsInput = {
   cellphone: string
   ticketType?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutArtistsInput = {
@@ -858,6 +914,7 @@ export type EventUpdateWithoutArtistsInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -868,6 +925,7 @@ export type EventUpdateWithoutArtistsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   ticketType?: Prisma.TicketTypeUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutArtistsInput = {
@@ -878,6 +936,7 @@ export type EventUncheckedUpdateWithoutArtistsInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -888,6 +947,7 @@ export type EventUncheckedUpdateWithoutArtistsInput = {
   cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   ticketType?: Prisma.TicketTypeUncheckedUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutLocalizationInput = {
@@ -898,6 +958,7 @@ export type EventCreateWithoutLocalizationInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -908,6 +969,7 @@ export type EventCreateWithoutLocalizationInput = {
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   artists?: Prisma.EventArtistCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutLocalizationInput = {
@@ -918,6 +980,7 @@ export type EventUncheckedCreateWithoutLocalizationInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   userId: string
   banner?: string | null
@@ -928,6 +991,7 @@ export type EventUncheckedCreateWithoutLocalizationInput = {
   cellphone: string
   artists?: Prisma.EventArtistUncheckedCreateNestedManyWithoutEventInput
   ticketType?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutLocalizationInput = {
@@ -954,6 +1018,7 @@ export type EventUpdateWithoutLocalizationInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -964,6 +1029,7 @@ export type EventUpdateWithoutLocalizationInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   artists?: Prisma.EventArtistUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutLocalizationInput = {
@@ -974,6 +1040,7 @@ export type EventUncheckedUpdateWithoutLocalizationInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -984,6 +1051,7 @@ export type EventUncheckedUpdateWithoutLocalizationInput = {
   cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   artists?: Prisma.EventArtistUncheckedUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUncheckedUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutTicketTypeInput = {
@@ -994,6 +1062,7 @@ export type EventCreateWithoutTicketTypeInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -1004,6 +1073,7 @@ export type EventCreateWithoutTicketTypeInput = {
   user: Prisma.UserCreateNestedOneWithoutEventsInput
   artists?: Prisma.EventArtistCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutTicketTypeInput = {
@@ -1014,6 +1084,7 @@ export type EventUncheckedCreateWithoutTicketTypeInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   userId: string
   banner?: string | null
@@ -1024,6 +1095,7 @@ export type EventUncheckedCreateWithoutTicketTypeInput = {
   cellphone: string
   artists?: Prisma.EventArtistUncheckedCreateNestedManyWithoutEventInput
   localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
+  ratings?: Prisma.RatingUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutTicketTypeInput = {
@@ -1050,6 +1122,7 @@ export type EventUpdateWithoutTicketTypeInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1060,6 +1133,7 @@ export type EventUpdateWithoutTicketTypeInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
   artists?: Prisma.EventArtistUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutTicketTypeInput = {
@@ -1070,6 +1144,7 @@ export type EventUncheckedUpdateWithoutTicketTypeInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1079,6 +1154,111 @@ export type EventUncheckedUpdateWithoutTicketTypeInput = {
   artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cellphone?: Prisma.StringFieldUpdateOperationsInput | string
   artists?: Prisma.EventArtistUncheckedUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutRatingsInput = {
+  id?: string
+  title: string
+  description: string
+  endAt: Date | string
+  status?: $Enums.EventStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  finishedAt?: Date | string | null
+  cep: string
+  banner?: string | null
+  max_person_quantity: number
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  artist?: string | null
+  cellphone: string
+  user: Prisma.UserCreateNestedOneWithoutEventsInput
+  artists?: Prisma.EventArtistCreateNestedManyWithoutEventInput
+  ticketType?: Prisma.TicketTypeCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutRatingsInput = {
+  id?: string
+  title: string
+  description: string
+  endAt: Date | string
+  status?: $Enums.EventStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  finishedAt?: Date | string | null
+  cep: string
+  userId: string
+  banner?: string | null
+  max_person_quantity: number
+  date: Date | string
+  appropriate_age: $Enums.Appropriate_age
+  artist?: string | null
+  cellphone: string
+  artists?: Prisma.EventArtistUncheckedCreateNestedManyWithoutEventInput
+  ticketType?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutEventInput
+  localization?: Prisma.event_localizationUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutRatingsInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutRatingsInput, Prisma.EventUncheckedCreateWithoutRatingsInput>
+}
+
+export type EventUpsertWithoutRatingsInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutRatingsInput, Prisma.EventUncheckedUpdateWithoutRatingsInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutRatingsInput, Prisma.EventUncheckedCreateWithoutRatingsInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutRatingsInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutRatingsInput, Prisma.EventUncheckedUpdateWithoutRatingsInput>
+}
+
+export type EventUpdateWithoutRatingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
+  user?: Prisma.UserUpdateOneRequiredWithoutEventsNestedInput
+  artists?: Prisma.EventArtistUpdateManyWithoutEventNestedInput
+  ticketType?: Prisma.TicketTypeUpdateManyWithoutEventNestedInput
+  localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutRatingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  endAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cep?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appropriate_age?: Prisma.EnumAppropriate_ageFieldUpdateOperationsInput | $Enums.Appropriate_age
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cellphone?: Prisma.StringFieldUpdateOperationsInput | string
+  artists?: Prisma.EventArtistUncheckedUpdateManyWithoutEventNestedInput
+  ticketType?: Prisma.TicketTypeUncheckedUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
 }
 
@@ -1090,6 +1270,7 @@ export type EventCreateManyUserInput = {
   status?: $Enums.EventStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  finishedAt?: Date | string | null
   cep: string
   banner?: string | null
   max_person_quantity: number
@@ -1107,6 +1288,7 @@ export type EventUpdateWithoutUserInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1117,6 +1299,7 @@ export type EventUpdateWithoutUserInput = {
   artists?: Prisma.EventArtistUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutUserInput = {
@@ -1127,6 +1310,7 @@ export type EventUncheckedUpdateWithoutUserInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1137,6 +1321,7 @@ export type EventUncheckedUpdateWithoutUserInput = {
   artists?: Prisma.EventArtistUncheckedUpdateManyWithoutEventNestedInput
   ticketType?: Prisma.TicketTypeUncheckedUpdateManyWithoutEventNestedInput
   localization?: Prisma.event_localizationUncheckedUpdateManyWithoutEventNestedInput
+  ratings?: Prisma.RatingUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutUserInput = {
@@ -1147,6 +1332,7 @@ export type EventUncheckedUpdateManyWithoutUserInput = {
   status?: Prisma.EnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cep?: Prisma.StringFieldUpdateOperationsInput | string
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   max_person_quantity?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1165,12 +1351,14 @@ export type EventCountOutputType = {
   artists: number
   ticketType: number
   localization: number
+  ratings: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   artists?: boolean | EventCountOutputTypeCountArtistsArgs
   ticketType?: boolean | EventCountOutputTypeCountTicketTypeArgs
   localization?: boolean | EventCountOutputTypeCountLocalizationArgs
+  ratings?: boolean | EventCountOutputTypeCountRatingsArgs
 }
 
 /**
@@ -1204,6 +1392,13 @@ export type EventCountOutputTypeCountLocalizationArgs<ExtArgs extends runtime.Ty
   where?: Prisma.event_localizationWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountRatingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RatingWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1213,6 +1408,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  finishedAt?: boolean
   cep?: boolean
   userId?: boolean
   banner?: boolean
@@ -1225,6 +1421,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   artists?: boolean | Prisma.Event$artistsArgs<ExtArgs>
   ticketType?: boolean | Prisma.Event$ticketTypeArgs<ExtArgs>
   localization?: boolean | Prisma.Event$localizationArgs<ExtArgs>
+  ratings?: boolean | Prisma.Event$ratingsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1236,6 +1433,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  finishedAt?: boolean
   cep?: boolean
   userId?: boolean
   banner?: boolean
@@ -1255,6 +1453,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  finishedAt?: boolean
   cep?: boolean
   userId?: boolean
   banner?: boolean
@@ -1274,6 +1473,7 @@ export type EventSelectScalar = {
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  finishedAt?: boolean
   cep?: boolean
   userId?: boolean
   banner?: boolean
@@ -1284,12 +1484,13 @@ export type EventSelectScalar = {
   cellphone?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "endAt" | "status" | "createdAt" | "updatedAt" | "cep" | "userId" | "banner" | "max_person_quantity" | "date" | "appropriate_age" | "artist" | "cellphone", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "endAt" | "status" | "createdAt" | "updatedAt" | "finishedAt" | "cep" | "userId" | "banner" | "max_person_quantity" | "date" | "appropriate_age" | "artist" | "cellphone", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   artists?: boolean | Prisma.Event$artistsArgs<ExtArgs>
   ticketType?: boolean | Prisma.Event$ticketTypeArgs<ExtArgs>
   localization?: boolean | Prisma.Event$localizationArgs<ExtArgs>
+  ratings?: boolean | Prisma.Event$ratingsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1306,6 +1507,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     artists: Prisma.$EventArtistPayload<ExtArgs>[]
     ticketType: Prisma.$TicketTypePayload<ExtArgs>[]
     localization: Prisma.$event_localizationPayload<ExtArgs>[]
+    ratings: Prisma.$RatingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1315,6 +1517,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     status: $Enums.EventStatus
     createdAt: Date
     updatedAt: Date
+    finishedAt: Date | null
     cep: string
     userId: string
     banner: string | null
@@ -1721,6 +1924,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   artists<T extends Prisma.Event$artistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$artistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventArtistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ticketType<T extends Prisma.Event$ticketTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$ticketTypeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   localization<T extends Prisma.Event$localizationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$localizationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$event_localizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ratings<T extends Prisma.Event$ratingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$ratingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1757,6 +1961,7 @@ export interface EventFieldRefs {
   readonly status: Prisma.FieldRef<"Event", 'EventStatus'>
   readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly finishedAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly cep: Prisma.FieldRef<"Event", 'String'>
   readonly userId: Prisma.FieldRef<"Event", 'String'>
   readonly banner: Prisma.FieldRef<"Event", 'String'>
@@ -2235,6 +2440,30 @@ export type Event$localizationArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.Event_localizationScalarFieldEnum | Prisma.Event_localizationScalarFieldEnum[]
+}
+
+/**
+ * Event.ratings
+ */
+export type Event$ratingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Rating
+   */
+  select?: Prisma.RatingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Rating
+   */
+  omit?: Prisma.RatingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RatingInclude<ExtArgs> | null
+  where?: Prisma.RatingWhereInput
+  orderBy?: Prisma.RatingOrderByWithRelationInput | Prisma.RatingOrderByWithRelationInput[]
+  cursor?: Prisma.RatingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RatingScalarFieldEnum | Prisma.RatingScalarFieldEnum[]
 }
 
 /**

@@ -238,6 +238,7 @@ export class EventService {
       },
       data: {
         status: 'FINISHED',
+        finishedAt: new Date(),
       },
     });
 

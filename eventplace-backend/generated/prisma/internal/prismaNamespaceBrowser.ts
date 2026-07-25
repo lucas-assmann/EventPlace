@@ -59,7 +59,8 @@ export const ModelName = {
   event_localization: 'event_localization',
   Ticket: 'Ticket',
   TicketType: 'TicketType',
-  SessionList: 'SessionList'
+  SessionList: 'SessionList',
+  Rating: 'Rating'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -131,6 +132,7 @@ export const EventScalarFieldEnum = {
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  finishedAt: 'finishedAt',
   cep: 'cep',
   userId: 'userId',
   banner: 'banner',
@@ -203,6 +205,18 @@ export const SessionListScalarFieldEnum = {
 } as const
 
 export type SessionListScalarFieldEnum = (typeof SessionListScalarFieldEnum)[keyof typeof SessionListScalarFieldEnum]
+
+
+export const RatingScalarFieldEnum = {
+  id: 'id',
+  stars: 'stars',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  userId: 'userId',
+  eventId: 'eventId'
+} as const
+
+export type RatingScalarFieldEnum = (typeof RatingScalarFieldEnum)[keyof typeof RatingScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -29,6 +29,7 @@ model User {
   tickets        Ticket[]
   localization   user_localization[]
   verification   user_verification[]
+  ratings        Rating[]
 }
 
 model user_localization {
@@ -60,6 +61,7 @@ model Event {
   status              EventStatus          @default(WILL_HAPPEN)
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+  finishedAt          DateTime?
   cep                 String
   userId              String
   banner              String?
@@ -72,6 +74,7 @@ model Event {
   artists             EventArtist[]
   ticketType          TicketType[]
   localization        event_localization[]
+  ratings             Rating[]
 }
 
 model EventArtist {
@@ -128,6 +131,21 @@ model SessionList {
   createdAt DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id        String   @id @default(uuid())
+  stars     Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  userId  String
+  eventId String
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
 }
 
 enum Appropriate_age {
