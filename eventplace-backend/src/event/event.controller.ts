@@ -32,14 +32,23 @@ export class EventController {
     return this.eventService.create(createEventDto, user.id);
   }
 
-  @Get()
-  findAll() {
-    return this.eventService.findAll();
+  @Get('my')
+  findMyEvents(@Req() request: AuthRequest) {
+    return this.eventService.findMyEvents(request.user.id);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.eventService.findOne(id);
+  }
+
+  @Get()
+  findAll(@Query('q') termo?: string) {
+    if (termo) {
+      return this.eventService.buscar(termo);
+    }
+
+    return this.eventService.findAll();
   }
 
   @Patch(':id')
@@ -67,10 +76,5 @@ export class EventController {
     const user = request.user;
 
     return this.eventService.remove(id, user.id);
-  }
-
-  @Get()
-  buscar(@Query('q') termo?: string) {
-    return this.eventService.buscar(termo);
   }
 }

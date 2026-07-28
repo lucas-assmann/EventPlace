@@ -36,6 +36,7 @@ export interface EventDTO {
   date: string;
   appropriate_age: AgeRating;
   max_person_quantity: number;
+  status: "WILL_HAPPEN" | "ONGOING" | "FINISHED";
   endAt: string;
   createdAt: string;
   updatedAt: string;

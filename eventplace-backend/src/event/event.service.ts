@@ -90,16 +90,21 @@ export class EventService {
   }
 
   async findOne(id: string) {
-    const event = await this.prisma.event.findUnique({
-      where: { id },
+    return this.prisma.event.findUnique({
+      where: {
+        id,
+      },
       include: {
+        user: true,
         localization: true,
         ticketType: true,
-        user: true,
-        artists: { include: { artist: true } },
+        artists: {
+          include: {
+            artist: true,
+          },
+        },
       },
     });
-    return event;
   }
 
   async update(id: string, updateEventDto: UpdateEventDto, userId: string) {
@@ -262,6 +267,35 @@ export class EventService {
         ],
       },
       orderBy: { date: 'asc' },
+    });
+  }
+
+  async findMyEvents(userId: string) {
+    const events = await this.prisma.event.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        user: true,
+        localization: true,
+        ticketType: true,
+      },
+    });
+
+    const priority = {
+      ONGOING: 0,
+      WILL_HAPPEN: 1,
+      FINISHED: 2,
+    };
+
+    return events.sort((a, b) => {
+      const statusDiff = priority[a.status] - priority[b.status];
+
+      if (statusDiff !== 0) {
+        return statusDiff;
+      }
+
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
   }
 }

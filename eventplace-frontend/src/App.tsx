@@ -18,6 +18,7 @@ import { TicketsPage } from './pages/ticket'
 import { UpdatePasswordPage } from './pages/update-password'
 import { VerifyCode } from './pages/verify-code'
 import { PaymentConfirm } from './pages/payment-confirm'
+import { MyEvent } from './pages/my-event'
 
 function RootLayout() {
   return (
@@ -52,6 +53,7 @@ export function App() {
           <Route path="/profile/password" element={<UpdatePasswordPage />} />
           <Route path="/payment/:ticketId" element={<PaymentPage />} />
           <Route path="/payment/confirm" element={<PaymentConfirm />} />
+          <Route path="/my/event" element={<MyEvent />} />
         </Route>
       </Route>
 

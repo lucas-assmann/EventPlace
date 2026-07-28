@@ -2,9 +2,10 @@ import { Button } from '@/components/ui/button'
 import type { EventDTO } from '@/interface/event-interface'
 import { ArrowRight, Calendar, MapPin, Star, Ticket, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Badge } from '../ui/badge'
 import { TypographyP } from '../ui/typography'
 
-export function EventCard({ id, title, appropriate_age, localization, date, ticketType, banner, user, max_person_quantity }: EventDTO) {
+export function EventCard({ id, title, appropriate_age, localization, date, ticketType, banner, user, max_person_quantity, status }: EventDTO) {
 
   const totalTickets = ticketType?.reduce(
     (acc, ticket) => acc + ticket.quantity,
@@ -27,9 +28,29 @@ export function EventCard({ id, title, appropriate_age, localization, date, tick
         )}
 
         <div className="flex flex-1 flex-col gap-2 p-4">
-          <TypographyP className="w-fit rounded-full border border-purple-500/20 bg-purple-500/10 px-2.5 py-0.5 text-xs font-medium text-purple-400">
-            {appropriate_age}
-          </TypographyP>
+          <div className="flex gap-2">
+            <Badge
+              className="bg-purple-500/10 text-purple-400 border border-purple-500/20"
+            >
+              {appropriate_age === "ADULT" ? "18+" : "Livre"}
+            </Badge>
+
+            <Badge
+              variant={
+                status === "WILL_HAPPEN"
+                  ? "willHappen"
+                  : status === "ONGOING"
+                    ? "ongoing"
+                    : "finished"
+              }
+            >
+              {status === "WILL_HAPPEN"
+                ? "Em breve"
+                : status === "ONGOING"
+                  ? "Em andamento"
+                  : "Encerrado"}
+            </Badge>
+          </div>
 
           <TypographyP className="font-bold text-white text-xl">{title}</TypographyP>
 

@@ -49,7 +49,7 @@ export function Profile() {
                       className="object-cover"
                     />
                   ) : (
-                    <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED]">
+                    <AvatarFallback className="bg-gray-900 border-2 border-[#7C3AED] text-[#7C3AED] text-[50px]">
                       {initials}
                     </AvatarFallback>
                   )}
@@ -68,11 +68,26 @@ export function Profile() {
                     </TypographyP>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="info" className="bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/40 mt-1 h-6">
-                      {userData.userAge === 'ADULT' ? 'Maior de 18 anos' : 'Menor de 18 anos'}
+                    <Badge
+                      className={
+                        userData.userAge === "ADULT"
+                          ? "mt-1 h-6 border-purple-500/40 bg-purple-500/10 text-purple-400"
+                          : "mt-1 h-6 border-yellow-500/40 bg-yellow-500/10 text-yellow-400"
+                      }
+                    >
+                      {userData.userAge === "ADULT"
+                        ? "Maior de 18 anos"
+                        : "Menor de 18 anos"}
                     </Badge>
-                    <Badge variant="info" className="bg-[#7C3AED]/10 text-[#7C3AED] border-[#7C3AED]/40 mt-1 h-6">
-                      {userData.isVerified ? 'Verificado' : 'Não verificado'}
+
+                    <Badge
+                      className={
+                        userData.isVerified
+                          ? "mt-1 h-6 border-green-500/40 bg-green-500/10 text-green-400"
+                          : "mt-1 h-6 border-red-500/40 bg-red-500/10 text-red-400"
+                      }
+                    >
+                      {userData.isVerified ? "Verificado" : "Não verificado"}
                     </Badge>
                   </div>
                 </div>

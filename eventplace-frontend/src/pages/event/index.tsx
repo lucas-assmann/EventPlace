@@ -47,6 +47,7 @@ export function EventPage() {
               author={event.user ?? { name: 'Desconhecido' }}
               category={event.appropriate_age}
               cellphone={event.cellphone}
+              status={event.status}
             />
             <div>
               <EventArtists

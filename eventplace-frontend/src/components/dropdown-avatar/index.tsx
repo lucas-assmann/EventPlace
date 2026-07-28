@@ -41,6 +41,9 @@ export function DropdownAvatar({ children, className }: DropdownAvatarProps) {
           <DropdownMenuItem className="cursor-pointer" onClick={() => navigate('/profile')}>
             Perfil
           </DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer" onClick={() => navigate('/my/event')}>
+            Meus eventos
+          </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" onClick={() => navigate('/edit-profile')}>
             Configurações
           </DropdownMenuItem>

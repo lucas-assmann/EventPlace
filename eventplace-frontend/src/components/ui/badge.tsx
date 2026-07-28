@@ -22,6 +22,20 @@ const badgeVariants = cva(
         success: "bg-green-500/10 text-green-500 focus-visible:ring-green-500/20 dark:bg-green-500/20 dark:focus-visible:ring-green-500/40 [a]:hover:bg-green-500/20",
         warning: "bg-yellow-500/10 text-yellow-500 focus-visible:ring-yellow-500/20 dark:bg-yellow-500/20 dark:focus-visible:ring-yellow-500/40 [a]:hover:bg-yellow-500/20",
         info: "bg-blue-500/10 text-blue-500 focus-visible:ring-blue-500/20 dark:bg-blue-500/20 dark:focus-visible:ring-blue-500/40 [a]:hover:bg-blue-500/20",
+        adult:
+          "bg-red-500/10 text-red-500 border border-red-500/20",
+
+        free:
+          "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20",
+
+        willHappen:
+          "bg-sky-500/10 text-sky-500 border border-sky-500/20",
+
+        ongoing:
+          "bg-green-500/10 text-green-500 border border-green-500/20",
+
+        finished:
+          "bg-zinc-500/10 text-zinc-400 border border-zinc-500/20",
       },
     },
     defaultVariants: {

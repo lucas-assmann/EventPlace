@@ -8,10 +8,11 @@ interface EventHeaderProps {
   date: string
   location: string
   cellphone: string
+  status: 'WILL_HAPPEN' | 'ONGOING' | 'FINISHED'
   author: { name: string; avatar?: string }
 }
 
-export function EventHeader({ title, category, date, location, cellphone, author }: EventHeaderProps) {
+export function EventHeader({ title, category, date, location, cellphone, author, status }: EventHeaderProps) {
   return (
     <div className="relative z-10 mb-5">
       <div className="-mt-6">
@@ -45,11 +46,28 @@ export function EventHeader({ title, category, date, location, cellphone, author
         <span className="text-xs text-white/40">•</span>
         <span className="text-xs text-white/40">{cellphone}</span>
       </div>
-      {category && (
-        <Badge variant="outline" className="mb-3 border-purple-500/20 bg-purple-500/10 text-purple-400 mt-5">
-          {category}
+      <div className="flex items-center gap-2 mt-5">
+        <Badge
+          className="bg-purple-500/10 text-purple-400 border border-purple-500/20"
+        >
+          {category === "ADULT" ? "18+" : "Livre"}
         </Badge>
-      )}
+        <Badge
+          variant={
+            status === "WILL_HAPPEN"
+              ? "willHappen"
+              : status === "ONGOING"
+                ? "ongoing"
+                : "finished"
+          }
+        >
+          {status === "WILL_HAPPEN"
+            ? "Em breve"
+            : status === "ONGOING"
+              ? "Em andamento"
+              : "Encerrado"}
+        </Badge>
+      </div>
     </div>
   )
 }

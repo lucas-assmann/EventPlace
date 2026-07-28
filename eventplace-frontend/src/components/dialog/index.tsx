@@ -50,11 +50,11 @@ const variantStyles: Record<Variant, {
     label: 'Atenção'
   },
   info: {
-    badge: 'border-gray-400/40 bg-gray-500/10 text-gray-50',
-    icon: 'border-gray-400/35 bg-gray-500/15 text-gray-100',
-    title: 'text-gray-50',
-    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(107,114,128,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(107,114,128,0.12),transparent_30%)]',
-    label: 'Informação'
+    badge: 'border-violet-500/40 bg-violet-500/10 text-violet-100',
+    icon: 'border-violet-500/35 bg-violet-500/15 text-violet-100',
+    title: 'text-white',
+    glow: 'bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.12),transparent_30%)]',
+    label: 'Confirmação'
   }
 }
 
@@ -107,7 +107,11 @@ export function DialogDemo({
             </div>
           </DialogHeader>
 
-          {children && <div className="mt-4 text-sm leading-6 text-zinc-100/90">{children}</div>}
+          {children && (
+            <div className="mt-4 text-sm leading-6 text-zinc-100/90">
+              {children}
+            </div>
+          )}
 
           {hasFooter && (
             <DialogFooter className="mt-6 flex flex-col gap-2 mx-0 mb-0 rounded-none border-0 bg-transparent p-0 sm:flex-row sm:justify-end">
@@ -116,18 +120,45 @@ export function DialogDemo({
                   <Button
                     type="button"
                     variant="ghost"
-                    className="h-10 rounded-xl border border-violet-400/25 text-white hover:bg-white cursor-pointer"
+                    className="
+                      h-10
+                      rounded-xl
+                      border
+                      border-violet-500/25
+                      bg-zinc-900
+                      text-zinc-200
+                      hover:border-violet-500
+                      hover:bg-violet-500/15
+                      hover:text-violet-100
+                      transition-all
+                      duration-200
+                      cursor-pointer
+                    "
                   >
                     Fechar
                   </Button>
                 </DialogClose>
               )}
+
               {link && text && (
                 <DialogClose asChild>
                   <Button
-                    asChild
                     type="button"
-                    className="h-10 rounded-xl border border-violet-400/25 bg-white text-black hover:bg-white/70 cursor-pointer"
+                    variant="ghost"
+                    className="
+                      h-10
+                      rounded-xl
+                      border
+                      border-violet-500/25
+                      bg-zinc-900
+                      text-zinc-200
+                      hover:border-violet-500
+                      hover:bg-violet-500/15
+                      hover:text-violet-100
+                      transition-all
+                      duration-200
+                      cursor-pointer
+                    "
                   >
                     <Link to={link}>{text}</Link>
                   </Button>
