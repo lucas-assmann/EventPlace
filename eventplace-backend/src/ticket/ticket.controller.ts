@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { TicketService } from './ticket.service';
-import { CheckinTicketDto } from './dto/checkin-ticket.dto';
 interface AuthRequest extends Request {
   user: JwtPayload;
 }
@@ -55,8 +54,26 @@ export class TicketController {
     return this.ticketService.findByName(name, user.id);
   }
 
+  @Post('checkin/preview')
+  previewCheckin(
+    @Body() body: { entryCode: string },
+    @Req() request: AuthRequest,
+  ) {
+    return this.ticketService.previewCheckin(body.entryCode, request.user.id);
+  }
+
   @Post('checkin')
-  checkin(@Body() dto: CheckinTicketDto, @Req() request: AuthRequest) {
-    return this.ticketService.checkin(dto.entryCode, request.user.id);
+  checkin(@Body() body: { entryCode: string }, @Req() request: AuthRequest) {
+    return this.ticketService.checkin(body.entryCode, request.user.id);
+  }
+
+  @Get('checkin/:code')
+  getTicket(@Param('code') code: string, @Req() request: AuthRequest) {
+    return this.ticketService.getTicketByEntryCode(code, request.user.id);
+  }
+
+  @Get('checkin/event/:eventId')
+  findCheckins(@Param('eventId') eventId: string, @Req() request: AuthRequest) {
+    return this.ticketService.findEventCheckins(eventId, request.user.id);
   }
 }

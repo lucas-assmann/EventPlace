@@ -47,6 +47,7 @@ export interface EventDTO {
   user: UserDTO;
   artists?: EventArtistDTO[]
   cellphone: string;
+  totalCheckins?: number;
 }
 
 export interface EventArtistDTO {

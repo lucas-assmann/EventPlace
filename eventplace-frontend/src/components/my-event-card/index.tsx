@@ -3,13 +3,16 @@ import type { EventDTO } from "@/interface/event-interface";
 import {
   Calendar,
   CheckCircle,
+  CircleCheckBig,
   MapPin,
   Play,
   Square,
   Ticket,
   TriangleAlert,
+  Users,
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { DialogDemo } from "../dialog";
 import { Badge } from "../ui/badge";
 import { TypographyP } from "../ui/typography";
@@ -31,6 +34,7 @@ export function MyEventCard({
   status,
   onStart,
   onFinish,
+  totalCheckins,
 }: MyEventCardProps) {
   const [openStart, setOpenStart] = useState(false);
   const [openFinish, setOpenFinish] = useState(false);
@@ -120,6 +124,11 @@ export function MyEventCard({
           </TypographyP>
         </div>
 
+        <div className="flex items-center gap-2 text-xs text-white/40">
+          <CircleCheckBig className="h-3 w-3 text-green-400" />
+          {totalCheckins} check-ins realizados
+        </div>
+
         <div className="mt-auto border-t border-white/6 pt-3">
           {status === "WILL_HAPPEN" && (
             <Button
@@ -133,13 +142,31 @@ export function MyEventCard({
 
           {status === "ONGOING" && (
             <div className="flex gap-2">
-              <Button
-                variant="outline"
-                className="flex-1 border-purple-500/40 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20  hover:text-white cursor-pointer"
-              >
-                <CheckCircle className="mr-2 h-4 w-4" />
-                Check-in
-              </Button>
+              <div className="flex gap-2">
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="flex-1 border-purple-500/40 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:text-white"
+                >
+                  <Link to={`/event/checkins/${id}`}>
+                    <Users className="mr-2 h-4 w-4" />
+                    Ver check-ins
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="outline"
+                  className="flex-1 border-purple-500/40 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:text-white"
+                >
+                  <Link to={`/ticket/check-in/${id}`}>
+                    <CheckCircle className="mr-2 h-4 w-4" />
+                    Check-in
+                  </Link>
+                </Button>
+
+              </div>
 
               <Button
                 onClick={() => setOpenFinish(true)}

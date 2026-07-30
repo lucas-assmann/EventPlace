@@ -278,7 +278,19 @@ export class EventService {
       include: {
         user: true,
         localization: true,
-        ticketType: true,
+        ticketType: {
+          include: {
+            _count: {
+              select: {
+                tickets: {
+                  where: {
+                    entryStatus: 'ENTERED',
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
 
@@ -288,14 +300,22 @@ export class EventService {
       FINISHED: 2,
     };
 
-    return events.sort((a, b) => {
-      const statusDiff = priority[a.status] - priority[b.status];
+    return events
+      .map((event) => ({
+        ...event,
+        totalCheckins: event.ticketType.reduce(
+          (total, ticketType) => total + ticketType._count.tickets,
+          0,
+        ),
+      }))
+      .sort((a, b) => {
+        const statusDiff = priority[a.status] - priority[b.status];
 
-      if (statusDiff !== 0) {
-        return statusDiff;
-      }
+        if (statusDiff !== 0) {
+          return statusDiff;
+        }
 
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
-    });
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
   }
 }

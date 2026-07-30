@@ -4,8 +4,8 @@ import {
   EnoughTicket,
   InvalidEmailException,
   NotExistTicket,
-  TicketAlreadyCheckin,
   PaymentUnavailableException,
+  TicketAlreadyCheckin,
 } from 'src/errors/user.error';
 import { PrismaService } from 'src/prisma.service';
 import { EmailService } from 'src/utils/email';
@@ -218,12 +218,49 @@ export class TicketService {
       throw new NotExistTicket();
     }
 
+    if (ticket.ticketType.event.userId !== ownerId) {
+      throw new UnauthorizedException('Você não é o organizador deste evento.');
+    }
+
     if (ticket.status !== 'CONFIRMED') {
       throw new PaymentUnavailableException();
     }
 
     if (ticket.entryStatus === 'ENTERED') {
       throw new TicketAlreadyCheckin();
+    }
+
+    await this.prisma.ticket.update({
+      where: {
+        id: ticket.id,
+      },
+      data: {
+        entryStatus: 'ENTERED',
+      },
+    });
+
+    return {
+      message: 'Entrada liberada com sucesso.',
+    };
+  }
+
+  async previewCheckin(entryCode: string, ownerId: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: {
+        entryCode,
+      },
+      include: {
+        user: true,
+        ticketType: {
+          include: {
+            event: true,
+          },
+        },
+      },
+    });
+
+    if (!ticket) {
+      throw new NotExistTicket();
     }
 
     if (ticket.ticketType.event.userId !== ownerId) {
@@ -242,5 +279,66 @@ export class TicketService {
     return {
       message: 'Entrada liberada com sucesso.',
     };
+  }
+
+  async getTicketByEntryCode(entryCode: string, ownerId: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: {
+        entryCode,
+      },
+      include: {
+        user: true,
+        ticketType: {
+          include: {
+            event: true,
+          },
+        },
+      },
+    });
+
+    if (!ticket) {
+      throw new NotExistTicket();
+    }
+
+    if (ticket.ticketType.event.userId !== ownerId) {
+      throw new UnauthorizedException('Você não é o organizador deste evento.');
+    }
+
+    return {
+      id: ticket.id,
+      buyerName: ticket.user.name,
+      buyerEmail: ticket.user.email,
+      ticketName: ticket.ticketType.name,
+      price: ticket.ticketType.price,
+      purchaseDate: ticket.createdAt,
+      entryStatus: ticket.entryStatus,
+      status: ticket.status,
+    };
+  }
+
+  async findEventCheckins(eventId: string, ownerId: string) {
+    return this.prisma.ticket.findMany({
+      where: {
+        entryStatus: 'ENTERED',
+
+        ticketType: {
+          eventId,
+
+          event: {
+            userId: ownerId,
+          },
+        },
+      },
+
+      include: {
+        user: true,
+
+        ticketType: true,
+      },
+
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 }
