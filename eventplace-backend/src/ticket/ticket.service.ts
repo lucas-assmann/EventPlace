@@ -13,10 +13,13 @@ import { entryCode } from 'src/utils/entry-code.utils';
 import { generateQRCode } from 'src/utils/qr.generator';
 import {
   Appropriate_age,
+  EntryStatus,
   EventStatus,
+  Status_Ticket,
   User_age,
 } from './../../generated/prisma/enums';
 import { CreateTicketDto } from './dto/create-ticket.dto';
+import { Prisma } from 'generated/prisma/client';
 
 @Injectable()
 export class TicketService {
@@ -153,7 +156,47 @@ export class TicketService {
     return 'Pagamento confirmado e enviado para o email do usuário';
   }
 
-  async findAll(userId: string) {
+  async findAll(
+    userId: string,
+    q?: string,
+    status?: Status_Ticket,
+    entryStatus?: EntryStatus,
+  ) {
+    const where: Prisma.TicketWhereInput = {
+      userId,
+    };
+
+    if (status) {
+      where.status = status;
+    }
+
+    if (entryStatus) {
+      where.entryStatus = entryStatus;
+    }
+
+    if (q) {
+      where.OR = [
+        {
+          ticketType: {
+            name: {
+              contains: q,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          ticketType: {
+            event: {
+              title: {
+                contains: q,
+                mode: 'insensitive',
+              },
+            },
+          },
+        },
+      ];
+    }
+
     const allUserTicket = await this.prisma.ticket.findMany({
       where: {
         userId,

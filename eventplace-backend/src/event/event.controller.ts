@@ -9,6 +9,7 @@ import {
   Query,
   Req,
 } from '@nestjs/common';
+import { Appropriate_age, EventStatus } from 'generated/prisma/client';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { EventService } from './event.service';
@@ -43,12 +44,13 @@ export class EventController {
   }
 
   @Get()
-  findAll(@Query('q') termo?: string) {
-    if (termo) {
-      return this.eventService.buscar(termo);
-    }
-
-    return this.eventService.findAll();
+  findAll(
+    @Query('q') q?: string,
+    @Query('status') status?: EventStatus,
+    @Query('age') age?: Appropriate_age,
+    @Query('sort') sort?: string,
+  ) {
+    return this.eventService.findAll(q, status, age, sort);
   }
 
   @Patch(':id')

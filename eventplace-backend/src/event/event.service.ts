@@ -12,6 +12,7 @@ import { PrismaService } from 'src/prisma.service';
 import { GetCep } from 'src/utils/get.cep.utils';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
+import { Appropriate_age, EventStatus, Prisma } from 'generated/prisma/client';
 
 @Injectable()
 export class EventService {
@@ -77,16 +78,39 @@ export class EventService {
     return 'evento criado com sucesso!';
   }
 
-  async findAll() {
-    const events = await this.prisma.event.findMany({
+  async findAll(
+    q?: string,
+    status?: EventStatus,
+    age?: Appropriate_age,
+    sort?: string,
+  ) {
+    const where: Prisma.EventWhereInput = {};
+
+    if (q) {
+      where.title = {
+        contains: q,
+        mode: 'insensitive',
+      };
+    }
+
+    if (status) {
+      where.status = status;
+    }
+
+    if (age) {
+      where.appropriate_age = age;
+    }
+
+    return this.prisma.event.findMany({
+      where,
+      orderBy: sort === 'NAME' ? { title: 'asc' } : { date: 'asc' },
+
       include: {
         localization: true,
         ticketType: true,
         user: true,
-        artists: { include: { artist: true } },
       },
     });
-    return events;
   }
 
   async findOne(id: string) {

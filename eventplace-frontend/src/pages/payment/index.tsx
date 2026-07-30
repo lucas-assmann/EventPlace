@@ -87,9 +87,9 @@ export function PaymentPage() {
         </div>
 
         <Button
-          variant="ghost"
+          variant="event"
           className="mt-6 w-full text-zinc-300 cursor-pointer"
-          onClick={() => navigate("/tickets")}
+          onClick={() => navigate("/ticket")}
         >
           Ver meus ingressos
         </Button>

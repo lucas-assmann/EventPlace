@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { TicketService } from './ticket.service';
+import { EntryStatus, Status_Ticket } from 'generated/prisma/client';
 interface AuthRequest extends Request {
   user: JwtPayload;
 }
@@ -22,11 +23,14 @@ export class TicketController {
     return this.ticketService.create(createTicketDto, user.id);
   }
 
-  @Get('/my')
-  findAll(@Req() request: AuthRequest) {
-    const user = request.user;
-
-    return this.ticketService.findAll(user.id);
+  @Get('my')
+  findAll(
+    @Req() request: AuthRequest,
+    @Query('q') q?: string,
+    @Query('status') status?: Status_Ticket,
+    @Query('entryStatus') entryStatus?: EntryStatus,
+  ) {
+    return this.ticketService.findAll(request.user.id, q, status, entryStatus);
   }
 
   @Get('qrcode/generate/:ticketId')
