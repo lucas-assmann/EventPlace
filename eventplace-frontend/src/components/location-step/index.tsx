@@ -58,17 +58,17 @@ export function LocationStep({ onNext }: Props) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <LoginField id="country" label="País" type="text" clickable={false} className={country ? 'border-white/25 bg-white/8 text-white opacity-100' : ''} {...register('country')} />
+          <LoginField id="country" label="País" type="text" className={country ? 'border-white/25 bg-white/8 text-white opacity-100' : ''} {...register('country')} />
           {errors.country && <span className="text-sm text-red-400">{errors.country.message}</span>}
         </div>
 
         <div>
-          <LoginField id="state" label="Estado" type="text" clickable={false} className={state ? 'border-white/25 bg-white/8 text-white' : ''} {...register('state')} />
+          <LoginField id="state" label="Estado" type="text" className={state ? 'border-white/25 bg-white/8 text-white' : ''} {...register('state')} />
           {errors.state && <span className="text-sm text-red-400">{errors.state.message}</span>}
         </div>
 
         <div>
-          <LoginField id="street" label="Rua" type="text" clickable={false} className={street ? 'border-white/25 bg-white/8 text-white' : ''} {...register('street')} />
+          <LoginField id="street" label="Rua" type="text" className={street ? 'border-white/25 bg-white/8 text-white' : ''} {...register('street')} />
           {errors.street && <span className="text-sm text-red-400">{errors.street.message}</span>}
         </div>
 
@@ -76,6 +76,17 @@ export function LocationStep({ onNext }: Props) {
           <LoginField id="number" label="Número" type="text" placeholder="Número" required {...register('number')} />
           {errors.number && <span className="text-sm text-red-400">{errors.number.message}</span>}
         </div>
+      </div>
+
+      <div>
+        <LoginField
+          id="complement"
+          label="Complemento"
+          type="text"
+          placeholder="Complemento"
+          {...register('complement')}
+        />
+        {errors.complement && <span className="text-sm text-red-400">{errors.complement.message}</span>}
       </div>
 
       <Button

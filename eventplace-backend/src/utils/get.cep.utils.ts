@@ -14,6 +14,11 @@ export class GetCep {
       throw new InvalidUserCepException();
     }
 
-    return data;
+    const requiresManualAddress = !data.logradouro;
+
+    return {
+      ...data,
+      requiresManualAddress,
+    };
   }
 }

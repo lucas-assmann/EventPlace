@@ -7,6 +7,7 @@ import {
   DateInvalidException,
   EmailOrCodeInvalidException,
   InvalidPasswordException,
+  InvalidUserCepException,
   UserAlreadyExistsException,
 } from '../errors/user.error';
 import { PrismaService } from '../prisma.service';
@@ -39,11 +40,21 @@ export class UserService {
 
     const response = await this.getCep.getCep(createUserDto.cep);
 
+    if (response.requiresManualAddress) {
+      if (!createUserDto.street || !createUserDto.neighborhood) {
+        throw new InvalidUserCepException();
+      }
+    }
+
     const userAge = this.user_age.getAge(createUserDto.birthDate);
 
     if (!userAge) {
       throw new DateInvalidException();
     }
+
+    const street: string = response.logradouro || createUserDto.street || '';
+    const neighborhood: string =
+      response.bairro || createUserDto.neighborhood || '';
 
     const user = await this.prisma.user.create({
       data: {
@@ -60,9 +71,9 @@ export class UserService {
           create: {
             state: response.estado,
             city: response.localidade,
-            street: response.logradouro,
+            street,
             number: createUserDto.number,
-            neighborhood: response.bairro,
+            neighborhood,
           },
         },
       },

@@ -51,6 +51,16 @@ export class CreateUserDto {
   @IsString()
   @Length(8, 15)
   cellphone: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  street?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  neighborhood?: string;
 }
 
 export class AddressResponse {

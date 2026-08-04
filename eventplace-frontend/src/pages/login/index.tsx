@@ -145,8 +145,8 @@ export function Login() {
             </TypographyP>
             <Button
               asChild
-              variant="outline"
-              className="mt-2 group relative h-10 w-full overflow-hidden border-white/25 bg-transparent text-sm font-semibold text-white transition-colors hover:text-black"
+              variant="event"
+              className="mt-2 group relative h-10 w-full overflow-hidden"
             >
               <Link to="/register">
                 <span className="relative">Crie sua conta agora!</span>

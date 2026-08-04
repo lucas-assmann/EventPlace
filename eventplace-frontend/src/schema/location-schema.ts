@@ -6,6 +6,7 @@ export const locationSchema = z.object({
   state: z.string().min(1, "Estado obrigatório"),
   street: z.string().min(1, "Rua obrigatória"),
   number: z.string().min(1, "Número obrigatório"),
+  complement: z.string().optional(),
 });
 
 export type LocationData = z.infer<typeof locationSchema>;
