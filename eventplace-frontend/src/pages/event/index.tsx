@@ -70,7 +70,7 @@ export function EventPage() {
 
           <div className="lg:w-110">
             <TicketSelector
-              tickets={event.ticketType.map(t => ({
+              tickets={event.ticketType.map((t) => ({
                 id: t.id,
                 name: t.name,
                 price: Number(t.price),

@@ -133,7 +133,7 @@ export function Login() {
               title={dialogError ? 'Erro ao entrar' : 'Verifique seu email!'}
               description={dialogError || 'Você precisa verificar o email para acessar sua conta!'}
               variant={dialogError ? 'error' : 'info'}
-              Icon={<Mail className="size-6 text-violet-200" />}
+              Icon={Mail}
               text="Ok"
               showClose
             />

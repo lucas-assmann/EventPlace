@@ -94,7 +94,7 @@ export function Profile() {
               </div>
               <div>
                 <Link to="/edit-profile">
-                  <Button variant="outline" className="cursor-pointer h-10 mt-4 bg-[#7c3aeD]/30 hover:bg-[#7c3aeD]/90 text-[#7c3aeD] hover:text-white border-[#5b17cf]">
+                  <Button variant="event" className="cursor-pointer h-10 mt-4">
                     <Pencil className="mr-2 h-4 w-4" />
                     Editar perfil
                   </Button>

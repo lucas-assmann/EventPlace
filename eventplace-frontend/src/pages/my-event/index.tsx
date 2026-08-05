@@ -27,6 +27,16 @@ export function MyEvent() {
       .finally(() => setLoading(false));
   }, []);
 
+  async function deleteEvent(id: string) {
+    try {
+      await api.delete(`/event/${id}`);
+
+      setEvents((prev) => prev.filter((event) => event.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleStart = async (id: string) => {
     try {
       await api.patch(`/event/${id}/start`);
@@ -96,6 +106,7 @@ export function MyEvent() {
                 {...event}
                 onStart={handleStart}
                 onFinish={handleFinish}
+                onDelete={deleteEvent}
               />
             ))}
           </div>

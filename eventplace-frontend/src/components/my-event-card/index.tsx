@@ -8,6 +8,7 @@ import {
   Play,
   Square,
   Ticket,
+  Trash2,
   TriangleAlert,
   Users,
 } from "lucide-react";
@@ -20,6 +21,7 @@ import { TypographyP } from "../ui/typography";
 interface MyEventCardProps extends EventDTO {
   onStart: (id: string) => void;
   onFinish: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export function MyEventCard({
@@ -34,9 +36,11 @@ export function MyEventCard({
   status,
   onStart,
   onFinish,
+  onDelete,
   totalCheckins,
 }: MyEventCardProps) {
   const [openStart, setOpenStart] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const [openFinish, setOpenFinish] = useState(false);
 
   const availableTickets =
@@ -131,13 +135,24 @@ export function MyEventCard({
 
         <div className="mt-auto border-t border-white/6 pt-3">
           {status === "WILL_HAPPEN" && (
-            <Button
-              onClick={() => setOpenStart(true)}
-              className="w-full bg-purple-600 hover:bg-purple-700 cursor-pointer"
-            >
-              <Play className="mr-2 h-4 w-4" />
-              Iniciar Evento
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => setOpenStart(true)}
+                className="flex-1 cursor-pointer bg-purple-600 hover:bg-purple-700"
+              >
+                <Play className="mr-2 h-4 w-4" />
+                Iniciar
+              </Button>
+
+              <Button
+                variant="destructive"
+                className="flex-1 cursor-pointer"
+                onClick={() => setOpenDelete(true)}
+              >
+                <Trash2 className="mr-2 h-4 w-4" />
+                Excluir
+              </Button>
+            </div>
           )}
 
           {status === "ONGOING" && (
@@ -243,6 +258,34 @@ export function MyEventCard({
               }}
             >
               Sim, encerrar
+            </Button>
+          </div>
+        </DialogDemo>
+        <DialogDemo
+          open={openDelete}
+          onOpenChange={setOpenDelete}
+          variant="error"
+          Icon={TriangleAlert}
+          title="Excluir evento?"
+          description="Esta ação excluirá permanentemente o evento. Ela não poderá ser desfeita."
+        >
+          <div className="mt-6 flex justify-end gap-3">
+            <Button
+              variant="outline"
+              className="border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-violet-500 hover:bg-violet-500/10 hover:text-white cursor-pointer"
+              onClick={() => setOpenDelete(false)}
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              className="cursor-pointer bg-red-600 hover:bg-red-700 text-white"
+              onClick={() => {
+                onDelete(id);
+                setOpenDelete(false);
+              }}
+            >
+              Sim, excluir
             </Button>
           </div>
         </DialogDemo>

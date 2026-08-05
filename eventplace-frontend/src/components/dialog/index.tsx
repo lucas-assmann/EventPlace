@@ -124,7 +124,6 @@ export function DialogDemo({
                       h-10
                       rounded-xl
                       border
-                      border-violet-500/25
                       bg-zinc-900
                       text-zinc-200
                       hover:border-violet-500
